@@ -15,7 +15,7 @@ const Login = () => {
                 </form>
             </div>
             <div className="auth__img">
-                <img src={people} alt="imagen diseño" />
+                <img src={people} alt="imagen diseño" className="auth_img_img"/>
             </div>
         </div>
     );

@@ -6,12 +6,13 @@
 
         //login
         .auth {
+
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             justify-content: center;
-            height: 832px;
+            height: 100vh;
             background-image: url("./img/login-bg.png");
             background-size: cover;
             background-position: center;
@@ -73,6 +74,69 @@
                 right: 470px;
                 width: 200px;
                 height: 200px;
+
+                @media only screen and (max-width: 1400px) and (max-width: 1399px){
+                    position: absolute;
+                    bottom: 220px;
+                    right: 200px;
+                    width: 350px;
+                    height: 200px;
+                }
+
+                @media only screen and (max-width: 1332px) and (min-width:900px){
+                    position: absolute;
+                    bottom: 220px;
+                    right: 170px;
+                    width: 350px;
+                    height: 200px;
+                }
+
+                @media only screen and (max-width: 899px) and (min-width:600px) {
+                    position: absolute;
+                    bottom: 10px;
+                    right: 5rem;
+                    width: 350px;
+                    height: 200px;
+                }
+
+                @media only screen and (max-width: 599px)  {
+                    position: absolute;
+                    bottom: 5px;
+                    right: auto;
+                    width: 350px;
+                    height: 200px;
+                }
+                
+            }
+
+            .auth_img_img{
+                @media only screen and (min-width: 1400px) {
+                    width: 20rem;
+                    height: auto;
+                    bottom: 220px;
+                    right: 470px;
+
+                }
+
+                @media only screen and (min-width:1333px) and (max-width: 1399px) {
+                    width: 17rem;
+                    height: auto;
+                    bottom: 220px;
+                    right: 470px;
+                }
+
+                @media only screen and (max-width: 1332px) and (min-width:1031px) {
+                    width: 15rem;
+                    height: auto;
+                }
+
+                @media only screen and (max-width: 1030px) {
+                    width: 13rem;
+                    height: auto;
+                    bottom: 100px;
+                    display: flex;
+                    align-self: center;
+                }
             }
         }
     }
