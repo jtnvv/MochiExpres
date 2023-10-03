@@ -27,7 +27,7 @@ const Login = () => {
                     {errorMessage && <p className="auth__bg__error">{errorMessage}</p>}
                     <Link className="auth__bg__text" to="/Recuperacion-Contrasena">¿Olvidaste tu contraseña?</Link>
                     <button type="submit">Entra!</button>
-                    <Link className="auth__bg__text" to="/Registro">¿No tienes cuenta? Unete</Link>
+                    <Link className="auth__bg__text" to="/Registro">¿No tienes cuenta? Únete</Link>
                 </form>
             </div>
             <div className="auth__img">
