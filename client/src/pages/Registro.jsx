@@ -1,10 +1,10 @@
 import React from "react";
 
-const PersonalInfo = () => {
+const Registro = () => {
     return (
         <div>
             ola
         </div>
     );
 };
-export default PersonalInfo;
+export default Registro;
