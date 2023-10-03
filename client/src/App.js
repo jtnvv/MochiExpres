@@ -4,6 +4,8 @@ import {
 } from "react-router-dom";
 import Login from "./pages/Login";
 import PersonalInfo from "./pages/PersonalInfo";
+import RecuperacionContrasena from "./pages/RecuperacionContrasena";
+import Registro from "./pages/Registro";
 import "./style.scss";
 const router = createBrowserRouter([
   {
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
     path: "/Personal-Info",
     element: <PersonalInfo />,
   },
+  {
+    path: "/Recuperacion-Contrasena",
+    element: <RecuperacionContrasena />,
+  },
+  {
+    path: "/Registro",
+    element: <Registro />,
+  },
 ]);
 
 function App() {
@@ -26,7 +36,6 @@ function App() {
       <div className="container">
         <RouterProvider router={router} />
       </div>
-
     </div>
   );
 }
