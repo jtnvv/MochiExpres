@@ -153,5 +153,136 @@
                 }
             }
         }
+        .register {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url("./img/login-bg.png");
+            background-size: cover;
+            background-position: center;
+            
+            .register__bg {
+                padding: 150px 90px;
+                background-color: rgb(247,212,193,0.5);
+                border-radius: 50px;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                position: absolute;
+                right: 30px;                
+                height: 50vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: left;
+                
+
+                h1 {
+                    margin: 0;
+                    font-size: 50px;
+                    font-family: Coiny, cursive;
+                    color: #3289A0;
+                }
+
+                form {
+                    display: flex;
+                    justify-content: left;
+                    align-items: left;
+                    flex-direction: column;
+                    padding: 20px;
+                    margin: 0;
+                    background-color:rgb(247,212,193,0);
+                    height: 50vh;
+                    input {
+                        padding: 10px;
+                        border: 2px solid #3289A0;
+                        border-radius: 10px;
+                        font-family: Comfortaa, cursive;
+                        font-size: 20px;
+                        width: 306px;
+                        height: 44px;
+                        text-align: center;
+                        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                        width: 50%;
+                    }
+
+                    button {
+                        padding: 10px;
+                        border: 2px solid #3289A0;
+                        border-radius: 100px;
+                        height: 50px;
+                        width: 177px;
+                        font-family: Coiny, cursive;
+                        font-size: 18px;
+                        text-align: center;
+                        background-color: #3289A0;
+                        color: #fff;
+                        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                        cursor: pointer;
+                        margin-top: 25px;
+                    }
+
+                    .register__bg__text {
+                        font-family: Coiny, cursive;;
+                        font-size: 24px;
+                        color: rgb(74, 72, 70);
+                        margin-bottom: 5px;   
+                    }
+
+                    .register__bg__error {
+                        margin: 0;
+                        font-family: Comfortaa, cursive;
+                        font-size: 15px;
+                        color: red;
+                        margin-top: 5px;                        
+                    }
+                }
+            }
+
+            .register__img {
+                position: absolute;
+                bottom: 260px;
+                right: 930px;
+                width: 200px;
+                height: 200px;
+
+                @media only screen and (max-width: 1400px) and (max-width: 1399px) {
+                    position: absolute;
+                    bottom: 220px;
+                    right: 200px;
+                    width: 350px;
+                    height: 200px;
+                }
+
+                @media only screen and (max-width: 1332px) and (min-width:900px) {
+                    position: absolute;
+                    bottom: 220px;
+                    right: 170px;
+                    width: 350px;
+                    height: 200px;
+                }
+
+                @media only screen and (max-width: 899px) and (min-width:600px) {
+                    position: absolute;
+                    bottom: 10px;
+                    right: 5rem;
+                    width: 350px;
+                    height: 200px;
+                }
+
+                @media only screen and (max-width: 599px) {
+                    position: absolute;
+                    bottom: 5px;
+                    right: auto;
+                    width: 350px;
+                    height: 200px;
+                }
+
+            }
+
+           
+            }
+        }
     }
-}

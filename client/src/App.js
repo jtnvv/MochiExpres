@@ -4,7 +4,9 @@ import {
 } from "react-router-dom";
 import Login from "./pages/Login";
 import PersonalInfo from "./pages/PersonalInfo";
-import RecuperacionContrasena from "./pages/RecuperacionContrasena";
+import RecuperacionContrasena1 from "./pages/RecuperacionContrasena1";
+import RecuperacionContrasena2 from "./pages/RecuperacionContrasena2";
+import RecuperacionContrasena3 from "./pages/RecuperacionContrasena3";
 import Registro from "./pages/Registro";
 import "./style.scss";
 const router = createBrowserRouter([
@@ -21,8 +23,16 @@ const router = createBrowserRouter([
     element: <PersonalInfo />,
   },
   {
-    path: "/Recuperacion-Contrasena",
-    element: <RecuperacionContrasena />,
+    path: "/Recuperacion-Contrasena1",
+    element: <RecuperacionContrasena1 />,
+  },
+  {
+    path: "/Recuperacion-Contrasena2",
+    element: <RecuperacionContrasena2 />,
+  },
+  {
+    path: "/Recuperacion-Contrasena3",
+    element: <RecuperacionContrasena3 />,
   },
   {
     path: "/Registro",

@@ -10,7 +10,7 @@ const Login = () => {
                     <input type="text" placeholder="Username" />
                     <input type="password" placeholder="Password" />
                     <p className="auth__bg__error">Esto es un error</p>
-                    <Link className="auth__bg__text" to="/Recuperacion-Contrasena">¿Olvidaste tu contraseña?</Link>
+                    <Link className="auth__bg__text" to="/Recuperacion-Contrasena1">¿Olvidaste tu contraseña?</Link>
                     <button type="submit">Entra!</button>
                     <Link className="auth__bg__text" to="/Registro">¿No tienes cuenta? Únete</Link>
                 </form>
