@@ -284,5 +284,58 @@
 
            
             }
+        //Info. personal
+        
+        .Navbar{
+            .flex{
+                display: flex;
+            }
+            .Logo{
+                font-size: 50px;
+            }
+            background-color: #fff;
+            padding: 1rem 2rem;
+            width: 95%;
+            height: 6%;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #c4ccdc;
+        }
+        .Sidebar{
+            .flex{
+                display: flex;
+            }
+            margin-top: 6%;
+            .Dashboard{
+                font-size: 37px;
+                width: 7rem;
+                height: calc(100vh - 45px);
+                border-right: 1px solid #c4ccdc;
+                outline: none;
+                box-shadow: none;
+                overflow: auto;
+                ul {
+                    list-style: none;
+                    padding: 1rem 2rem;
+                    li{
+                        margin-bottom: 1rem;
+                    }
+                }
+                .Salida{
+                    font-size: 37px;
+                    //height: calc(90vh - 45px);
+                    ul {
+                        list-style: none;
+                        padding: 1rem 2rem;
+                        li{
+                            margin-bottom: 1rem;
+                        }
+                    }
+                }
+            }
+                
+            
+            
+        }
         }
     }
