@@ -17,7 +17,7 @@ import PersonalInfo from "./pages/PersonalInfo";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello!</div>,
+    element:<Login />,
   },
   {
     path: "/Login",
