@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
 .app {
-    .container {
-
+    .container {            
+        height: 100%;
+        overflow-y: hidden;
         //login
         .auth {
 
@@ -285,35 +286,269 @@
            
             }
         //Info. personal
-        
-        .Navbar{
-            .flex{
-                display: flex;
+        .content-flex{
+            height: 100%;
+            padding-bottom: 0px;
+            padding-right: 10px;
+            display: flex;
+            background: rgb(50,137,160);
+            background: linear-gradient(170deg, rgba(50,137,160,1) 0%, rgba(58,126,125,1) 52%, rgba(247,212,193,1) 100%);
+            .divContent{
+                height: 100%;
+                width: 100%;
+                .ItemsContainer{
+                    height: 80vh;
+                    width: 100%;
+                    margin-top: 30px;
+                }
+                .ItemsContainer-PersonalInfo{
+                    height: 90vh;
+                    width: 100%;
+                    margin-top: 30px;
+                    .divHeaderPersonalInfo{
+                        height: 8%;
+                        background-color: transparent;
+                        margin-bottom: 10px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        color: white;
+                        p{                        
+                            cursor: pointer;
+                            font-size: 20px;
+                            margin-left: 10%;
+                        }
+                        .photo{
+                            width: 300px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-evenly;
+                        }
+                        .photo img{
+                            height: 50px;
+                            width: 50px;
+                            border-radius: 30px;
+                            margin: 0;
+                        }
+                        .IoIconsPersonalInfo{
+                            color: white;
+                        }
+                    }
+                    .divBodyPersonalInfo{
+                        display: flex;
+                        flex-direction: row;
+                        height: 90%;
+                        border-radius: 30px;
+                        background-color: white;
+                        align-items: center;
+                        overflow: hidden;
+                        .divLeftPersonalInfo{
+                            height: 80%;
+                            width: 30%;
+                            margin-left: 30px;
+                            display: block;
+                            h2{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 100%;
+                                margin-top: 10px;                       
+                                font-size: 30px;
+                                font-family: Coiny, cursive;
+                                color: rgb(51, 51, 51);
+                            }
+                            .imgLeftPersonalInfo{
+                                height: 60%;
+                                width: 60%;
+                                border-radius: 100px;
+                                margin-left: 20%;
+                                margin-top: 20px;
+                                object-fit: contain;
+                                object-fit: cover;
+                            }
+                            .imgLeftPersonalInfo:hover{
+                                filter: brightness(120%);
+                            }
+                        }
+                        .divRightPersonalInfo{
+                            height: 80%;
+                            width: 63%;
+                            margin-left: 30px;
+                            padding: 10px 10px 10px 10px;
+                            display: block;
+                            overflow-y: scroll;
+                            .top{
+                                height:65%;
+                                .tittle {
+                                    margin: 0;
+                                    font-size: 50px;
+                                    font-family: Coiny, cursive;
+                                    color: #3289A0;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+                                ul {
+                                    padding-left: 2rem;
+                                    list-style-image: url("./img/yellow-circle.png");    
+                                    li{
+                                        width: 90%;
+                                        .p{
+                                            display: flex;
+                                            width: 100%;
+                                            .p-list{
+                                                font-size: 20px;
+                                                font-family: Coiny;
+                                                color: rgb(51, 51, 51);
+                                                margin: 0;       
+                                            }
+                                            .content{
+                                                margin: 0;
+                                                font-size: 20px;
+                                                width: 50%;
+                                                display: flex;
+                                                align-items: center;
+                                                margin-left: 20px;
+                                                font-family: Comfortaa, cursive;
+                                                color: rgb(51, 51, 51);
+                                            }
+                                        }     
+                                    }
+                                }
+                            }
+                            .bottom{
+                                height:35%;
+                                justify-content: space-evenly;
+                                .flex{
+                                    display: flex;
+                                    justify-content: space-evenly;    
+                                    .div{
+                                        width: 200px;
+                                        height: 110px;
+                                        margin-top: 10px;
+                                        display: block;
+                                        p{
+                                            font-size: 15px;
+                                            width: 100%;
+                                            text-align: center;
+                                            font-family: Comfortaa, cursive;
+                                            color: rgb(51, 51, 51);
+                                        }    
+                                        button{
+                                            border-radius: 30px;
+                                            background-color: #F7D4C1;
+                                            color: #3289A0;
+                                            width: 100%;
+                                            height: 40px;
+                                            cursor: pointer;
+                                            font-size: 20px;                                    
+                                            font-family: Coiny, cursive;
+                                        }
+                                    }
+                                }  
+                            }
+                        }
+                    }
+                    @media (max-width: 1110px) {
+                        .divBodyPersonalInfo {
+                          flex-direction: column;
+                          .divLeftPersonalInfo{
+                            display: flex;
+                            height: 30%;
+                            width: 90%;
+                            margin-left: 10%;
+                            margin-right: 10%;
+                            align-items: center;
+                            .imgLeftPersonalInfo{
+                                height: 40%;
+                                width: 40%;
+                                border-radius: 100px;
+                                margin-left: 5%;
+                                object-fit: cover;
+                                object-fit: contain;
+                            } 
+                            .usernameTxt{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 100%;
+                                margin-left:20px;
+                                margin-top: 10px;                       
+                                font-size: 20px;
+                                font-family: Coiny, cursive;
+                                color: rgb(51, 51, 51);
+                            }
+                            .rolTxt{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 100%;
+                                margin-top: 10px;                       
+                                font-size: 20px;
+                                font-family: Coiny, cursive;
+                                color: rgb(51, 51, 51);
+                                
+                            }
+                          }
+                          .divRightPersonalInfo{
+                            height: 80%;
+                            width: 90%;
+                            margin-left: 30px;
+                            padding: 10px 10px 10px 10px;
+                            display: block;
+                            .top{
+                                overflow-y: scroll;
+                            }
+                          }
+                        }
+                      }  
+                }
             }
-            .Logo{
-                font-size: 50px;
+        }
+        .content-flex-infobar{
+            margin-top: 20px;
+            display: flex;
+            border-radius: 25px;
+            background-color: white;
+            width: 100% ;
+            height: 60px;
+            flex-direction: row-reverse;
+            align-items: center;
+            .InfoBarImg{
+                height: 55px;
+                width: 55px;
+                margin-right: 10px;
+                .imgPersonalInfo{
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 50px;
+                }
             }
-            background-color: #fff;
-            padding: 1rem 2rem;
-            width: 95%;
-            height: 6%;
-            position: fixed;
-            top: 0;
-            border-bottom: 1px solid #c4ccdc;
+            .InfoBarImg:hover{
+                filter: brightness(120%)
+            }
         }
         .Sidebar{
-            .flex{
-                display: flex;
-            }
-            margin-top: 6%;
+            top: 0;
+            position: sticky;
+            z-index: 0;
+            height: 100%;
+            width: 7rem;
+            margin-right: 10px;
             .Dashboard{
+                background-color: #c1dce3b9;
+                opacity: 0.9;
+                height: 100vh;
                 font-size: 37px;
-                width: 7rem;
-                height: calc(100vh - 45px);
-                border-right: 1px solid #c4ccdc;
                 outline: none;
                 box-shadow: none;
-                overflow: auto;
+                overflow: hidden;
+                .IconColor{
+                    color:rgb(34, 34, 34);
+                }
+                .IconColor:hover{
+                    color:#3289A0;
+                }
                 ul {
                     list-style: none;
                     padding: 1rem 2rem;
@@ -323,7 +558,6 @@
                 }
                 .Salida{
                     font-size: 37px;
-                    //height: calc(90vh - 45px);
                     ul {
                         list-style: none;
                         padding: 1rem 2rem;
@@ -333,9 +567,39 @@
                     }
                 }
             }
-                
-            
-            
-        }
-        }
+        } 
+        @media (max-width: 1110px) {
+            .content-flex{
+                display: block;
+                height: 110vh;
+            }
+            .Sidebar{
+                top: 1px;
+                width: 100vw;
+                height: 100px;
+                display: flex;
+                .Dashboard{     
+                    width: 100vw;
+                    display: flex;
+                    height: 100px;
+                    align-items: center;
+                    justify-content: space-between;
+                    ul{
+                        width: 80%;
+                        display: flex;
+                        margin: 0;
+                        padding: 0;
+                        padding-left: 10px;
+                        align-items: center;
+                        justify-content: space-evenly;
+                    }
+                }
+            }
+          }
+          @media (max-width: 1110px) {
+            .Sidebar .Dashboard .Salida ul{
+                padding: 0;
+            }
+          }
     }
+}

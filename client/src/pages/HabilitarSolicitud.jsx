@@ -1,9 +1,16 @@
 import React from "react";
-
+import Sidebar from "./Sidebar";
+import InfoBar from "./InfoBar";
 const HabilitarSolicitud = () => {
     return (
-        <div>
-            ola soy una solicitud
+        <div className="content-flex">
+            <Sidebar/>
+            <div className="divContent">
+                <InfoBar />
+                <div className="ItemsContainer">
+                    ola soy un habilitar solicitar
+                </div>
+            </div>
         </div>
     );
 };

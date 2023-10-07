@@ -1,12 +1,8 @@
 import {
   createBrowserRouter,
-  Route,
   RouterProvider,
-  Routes,
 } from "react-router-dom";
 import Login from "./pages/Login";
-import Navbar from "./pages/Navbar";
-import Sidebar from "./pages/Sidebar";
 import RecuperacionContrasena1 from "./pages/RecuperacionContrasena1";
 import RecuperacionContrasena2 from "./pages/RecuperacionContrasena2";
 import RecuperacionContrasena3 from "./pages/RecuperacionContrasena3";
@@ -17,6 +13,7 @@ import ConsultarPedidos from "./pages/ConsultarPedidos";
 import Envios from "./pages/Envios";
 import HabilitarSolicitud from "./pages/HabilitarSolicitud";
 import "./style.scss";
+import PersonalInfo from "./pages/PersonalInfo";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,12 +25,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/Personal-Info",
-    element: 
-      <>
-        <Navbar />,
-        <Sidebar />
-      </>
-    ,
+    element:
+      <PersonalInfo />,
   },
   {
     path: "/Recuperacion-Contrasena1",
@@ -54,55 +47,31 @@ const router = createBrowserRouter([
   {
     path: "/Clientes",
     element: 
-    <> 
-      <Navbar />,
-      <div className="flex">
-        <Sidebar />
-        <div className="content">
-          <Routes path="/Clientes" exact={true} Component={Clientes}/>
-        </div>
-      </div>
-    </>,
-    
+      <Clientes />,
   },
   {
     path: "/Consultar-Pedidos",
     element: 
-    <> 
-      <Navbar />,
-      <Sidebar />,
-      <ConsultarPedidos />
-    </>,
+      <ConsultarPedidos />,
     
   },
   {
     path: "/Envios",
     element: 
-    <> 
-      <Navbar />,
-      <Sidebar />,
-      <Envios />
-    </>,
+      <Envios />,
     
   },
   {
     path: "/Habilitar-Solicitud",
     element: 
-    <> 
-      <Navbar />,
-      <Sidebar />,
-      <HabilitarSolicitud />
-    </>,
+      <HabilitarSolicitud />,
     
   },
   {
     path: "/Repartidores",
     element: 
-    <> 
-      <Navbar />,
-      <Sidebar />,
       <Repartidores />
-    </>,
+    ,
     
   },
 ]);

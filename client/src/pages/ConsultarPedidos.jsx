@@ -1,9 +1,17 @@
 import React from "react";
+import Sidebar from "./Sidebar";
+import InfoBar from "./InfoBar";
 
 const ConsultarPedidos = () => {
     return (
-        <div>
-            ola soy un pedidos hecho u-u
+        <div className="content-flex">
+            <Sidebar/>
+            <div className="divContent">    
+                <InfoBar />
+                <div className="ItemsContainer">
+                    ola soy un consultarpedido
+                </div>
+            </div>
         </div>
     );
 };

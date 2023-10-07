@@ -1,9 +1,17 @@
 import React from "react";
+import Sidebar from "./Sidebar";
+import InfoBar from "./InfoBar";
 
 const Repartidores = () => {
     return (
-        <div>
-            ola soy un repartidor uwu
+        <div className="content-flex">
+            <Sidebar/>
+            <div className="divContent">
+                <InfoBar />
+                <div className="ItemsContainer">
+                    ola soy un repartidor
+                </div>
+            </div>
         </div>
     );
 };
