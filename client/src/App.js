@@ -14,10 +14,15 @@ import Envios from "./pages/Envios";
 import HabilitarSolicitud from "./pages/HabilitarSolicitud";
 import "./style.scss";
 import PersonalInfo from "./pages/PersonalInfo";
+import Actualiza from "./pages/ActualizacionInfo";
 const router = createBrowserRouter([
   {
     path: "/",
     element:<Login />,
+  },
+  {
+    path: "/Actualiza-personal-Info",
+    element:<Actualiza/>,
   },
   {
     path: "/Login",
