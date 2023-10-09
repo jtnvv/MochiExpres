@@ -198,7 +198,7 @@ const Boton = styled.button`
   transition: .3s ease all;
   border: none;
   font-size: 20px;
-  margin-left: 4%;
+  margin-left: 6%;
 
   &:hover{
     background: #fff;
