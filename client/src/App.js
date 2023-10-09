@@ -1,6 +1,8 @@
 import {
   createBrowserRouter,
   RouterProvider,
+  Route,
+  Outlet,
 } from "react-router-dom";
 import Login from "./pages/Login";
 import RecuperacionContrasena1 from "./pages/RecuperacionContrasena1";
