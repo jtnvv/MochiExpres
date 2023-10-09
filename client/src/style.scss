@@ -333,6 +333,13 @@
                         .IoIconsPersonalInfo{
                             color: white;
                         }
+                        .divVolverInfoBar{
+                            display: flex;
+                            font-family: Comfortaa, cursive;
+                            color: white;
+                            text-decoration: none;
+
+                        }
                     }
                     .divBodyPersonalInfo{
                         display: flex;
@@ -612,6 +619,9 @@
                 .IconColor:hover{
                     color:#3289A0;
                 }
+                .IconLogo{
+                    font-size: 55px;
+                }
                 ul {
                     list-style: none;
                     padding: 1rem 2rem;
@@ -664,5 +674,11 @@
                 padding: 0;
             }
           }
+        .VentanaModel{
+            .IconClose{
+                font-size: 20px;
+            }
+            
+        }
     }
 }

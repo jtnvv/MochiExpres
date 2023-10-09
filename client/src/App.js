@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import RecuperacionContrasena1 from "./pages/RecuperacionContrasena1";
 import RecuperacionContrasena2 from "./pages/RecuperacionContrasena2";
 import RecuperacionContrasena3 from "./pages/RecuperacionContrasena3";
+
 import Registro from "./pages/Registro";
 import Clientes from "./pages/Clientes";
 import Repartidores from "./pages/Repartidores";
@@ -15,6 +16,7 @@ import HabilitarSolicitud from "./pages/HabilitarSolicitud";
 import "./style.scss";
 import PersonalInfo from "./pages/PersonalInfo";
 import Actualiza from "./pages/ActualizacionInfo";
+import Home from "./pages/Home";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,7 +33,11 @@ const router = createBrowserRouter([
   {
     path: "/Personal-Info",
     element:
-      <PersonalInfo />,
+    <>
+    <PersonalInfo />,
+    
+    </>
+      
   },
   {
     path: "/Recuperacion-Contrasena1",
@@ -79,6 +85,13 @@ const router = createBrowserRouter([
     ,
     
   },
+  {
+  path: "/Home",
+  element: 
+    <Home />
+  ,
+  
+  },
 ]);
 
 function App() {
@@ -92,3 +105,4 @@ function App() {
 }
 
 export default App;
+

@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import * as IoIcons from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 
 const Actualiza = () => {
@@ -10,7 +11,9 @@ const Actualiza = () => {
             <div className="divContent">
                 <div className="ItemsContainer-PersonalInfo">
                     <div className="divHeaderPersonalInfo">
-                        <p><i><IoIcons.IoCaretBackOutline  className="IoIconsPersonalInfo"/></i> Volver</p>
+                        <Link to="/Personal-Info" className="divVolverInfoBar">
+                            <IoIcons.IoCaretBackOutline  className="IoIconsPersonalInfo"/> Volver</Link>
+                        
                         <p className="photo">Nombre de usuario <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="" /></p>
                                                
                     </div>

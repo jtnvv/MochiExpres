@@ -13,8 +13,8 @@ const Sidebar = () => {
             <div className="Dashboard">
                 <ul style={{listStyleType:"none"}}>
                     <li>
-                        <Link to="#" className="Inicio">
-                            <FcIcons.FcInTransit className="IconColor"/> 
+                        <Link to="/Home" className="Inicio">
+                            <FcIcons.FcInTransit className="IconLogo"/> 
                         </Link>
                     </li>
                     <li>
