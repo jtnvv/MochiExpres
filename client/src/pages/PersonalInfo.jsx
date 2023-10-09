@@ -4,111 +4,117 @@ import * as IoIcons from "react-icons/io5";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import * as RiIcons from "react-icons/ri";
-import {getPreguntaSeguridad} from "../components/preguntaSeguridad.js";
+import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
+import { useState } from "react";
 const PersonalInfo = () => {
 
-    const {currentUser} = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
+    const [showModal, setShowModal] = useState(false);
 
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
 
     return (
         <>
-        <div className="content-flex">
-            <Sidebar/>
-            <div className="divContent">
-                <div className="ItemsContainer-PersonalInfo">
-                    <div className="divHeaderPersonalInfo">
-                        <p><i><IoIcons.IoCaretBackOutline  className="IoIconsPersonalInfo"/></i> Volver</p>
-                        <p className="photo">{currentUser?.nombreusuario}<img src="https://i.imgur.com/T9X0JHm.jpg" alt="" /></p>
-                    </div>
-                    <div className="divBodyPersonalInfo">
-                        <div className="divLeftPersonalInfo">
-                            <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
-                            <h2 className="usernameTxt">{currentUser?.nombreusuario}</h2>
-                            <h2 className="rolTxt">Rol: {currentUser?.tipousuario}</h2>
+            <div className="content-flex">
+                <Sidebar />
+                <div className="divContent">
+                    <div className="ItemsContainer-PersonalInfo">
+                        <div className="divHeaderPersonalInfo">
+                            <p><i><IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" /></i> Volver</p>
+                            <p className="photo">{currentUser?.nombreusuario}<img src="https://i.imgur.com/T9X0JHm.jpg" alt="" /></p>
                         </div>
-                        <div className="divRightPersonalInfo">
-                            <div className="top">    
-                                <h1 className="tittle">Tus datos personales</h1>
-                                <ul>
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Número telefónico: </p>
-                                            <p className="content">{currentUser?.telefonousuario}</p>
-                                        </div>
-                                    </li><br />
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Correo electrónico: </p>
-                                            <p className="content">{currentUser?.correousuario}</p>
-                                        </div>
-                                    </li><br />
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Número identidad: </p>
-                                            <p className="content">{currentUser?.idusuario}</p>
-                                        </div>
-                                    </li><br />
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Pregunta de seguridad: </p>
-                                            <p className="content">{getPreguntaSeguridad(currentUser?.identificadorpregusuario)}</p>
-                                        </div>
-                                    </li><br />
-                                </ul>
+                        <div className="divBodyPersonalInfo">
+                            <div className="divLeftPersonalInfo">
+                                <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                                <h2 className="usernameTxt">{currentUser?.nombreusuario}</h2>
+                                <h2 className="rolTxt">Rol: {currentUser?.tipousuario}</h2>
                             </div>
-                            <div className="bottom">
-                                <div className="flex">
-                                    <div className="div">
-                                        <p>¿Deseas cambiar tu contraseña?.</p>
-                                        <button type="submit">Cambiar!</button>
-                                    </div>
-                                    <div className="div">
-                                        <p>¿Deseas actualizar tus datos?.</p>
-                                        <Link to="/Actualiza-personal-Info"><button type="submit">Actualizar!</button></Link>
-                                        
-                                    </div>
+                            <div className="divRightPersonalInfo">
+                                <div className="top">
+                                    <h1 className="tittle">Tus datos personales</h1>
+                                    <ul>
+                                        <li>
+                                            <div className="p">
+                                                <p className="p-list">Número telefónico: </p>
+                                                <p className="content">{currentUser?.telefonousuario}</p>
+                                            </div>
+                                        </li><br />
+                                        <li>
+                                            <div className="p">
+                                                <p className="p-list">Correo electrónico: </p>
+                                                <p className="content">{currentUser?.correousuario}</p>
+                                            </div>
+                                        </li><br />
+                                        <li>
+                                            <div className="p">
+                                                <p className="p-list">Número identidad: </p>
+                                                <p className="content">{currentUser?.idusuario}</p>
+                                            </div>
+                                        </li><br />
+                                        <li>
+                                            <div className="p">
+                                                <p className="p-list">Pregunta de seguridad: </p>
+                                                <p className="content">{getPreguntaSeguridad(currentUser?.identificadorpregusuario)}</p>
+                                            </div>
+                                        </li><br />
+                                    </ul>
                                 </div>
-                                
+                                <div className="bottom">
+                                    <div className="flex">
+                                        <div className="div">
+                                            <p>¿Deseas cambiar tu contraseña?.</p>
+                                            <button type="submit" onClick={() => setShowModal(true)}>Cambiar!</button>
+                                        </div>
+                                        <div className="div">
+                                            <p>¿Deseas actualizar tus datos?.</p>
+                                            <Link to="/Actualiza-personal-Info"><button type="submit">Actualizar!</button></Link>
+
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div className="VentanaModel">
-        <Overlay>
-            <ContenedorModal> 
-                <EncabezadoModal>
-                    <h3>Cambiar Contraseña</h3>
-                </EncabezadoModal>
-                
-                <Contenido>
-                    <form>
-                        <h2>Inserta tu nombre de usuario</h2>
-                        <input type="text" placeholder="Usuario" />
-                        <h2>Inserta tu anterior contraseña</h2>
-                        <input type="password" placeholder="Contraseña" />
-                        <h2>Inserta tu nueva contraseña</h2>
-                        <input type="password" placeholder="Nueva Contraseña" />
-                    </form>
-                </Contenido>
-                <Boton>Confirmar</Boton>
-                <BotonCerrar><RiIcons.RiCloseFill className="IconClose"/></BotonCerrar>
-            </ContenedorModal>
-            
-        </Overlay>
-        </div>
+            {showModal && 
+            (<div className="VentanaModel">
+                <Overlay>
+                    <ContenedorModal>
+                        <EncabezadoModal>
+                            <h3>Cambiar Contraseña</h3>
+                        </EncabezadoModal>
+
+                        <Contenido>
+                            <form>
+                                <h2>Inserta tu nombre de usuario</h2>
+                                <input type="text" placeholder="Usuario" />
+                                <h2>Inserta tu anterior contraseña</h2>
+                                <input type="password" placeholder="Contraseña" />
+                                <h2>Inserta tu nueva contraseña</h2>
+                                <input type="password" placeholder="Nueva Contraseña" />
+                            </form>
+                        </Contenido>
+                        <Boton>Confirmar</Boton>
+                        <BotonCerrar onClick={handleCloseModal}><RiIcons.RiCloseFill className="IconClose" /></BotonCerrar>
+                    </ContenedorModal>
+
+                </Overlay>
+            </div>)}
         </>
     );
 };
 export default PersonalInfo;
-  
-    
 
 
-const Overlay=styled.div`
+
+
+const Overlay = styled.div`
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -121,7 +127,7 @@ const Overlay=styled.div`
     justify-content: center;
 `;
 
-const ContenedorModal=styled.div`
+const ContenedorModal = styled.div`
     align-items: center;
     //justify-content: center;
     width: 60vw;
@@ -138,7 +144,7 @@ const ContenedorModal=styled.div`
     
 `;
 
-const EncabezadoModal= styled.div`
+const EncabezadoModal = styled.div`
     height: 100px;
     display: flex;
     //align-items: center;
@@ -160,7 +166,7 @@ const EncabezadoModal= styled.div`
 
 `;
 
-const BotonCerrar=styled.button`
+const BotonCerrar = styled.button`
     position: absolute;
     top: 20px;
     right: 20px;
