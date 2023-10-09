@@ -288,7 +288,11 @@
             }
         //Info. personal
         .content-flex{
-            height: 100%;
+            //border: 1px solid #000;
+            //height: auto;
+            //min-height: 100%;
+            height: auto;
+            min-height: 100vh;
             padding-bottom: 0px;
             padding-right: 10px;
             display: flex;

@@ -35,12 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Personal-Info",
-    element:
-    <>
-    <PersonalInfo />,
-    
-    </>
-      
+    element:<PersonalInfo />,
   },
   {
     path: "/Recuperacion-Contrasena1",
