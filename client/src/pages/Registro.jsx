@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as IoIcons from "react-icons/io5";
+import {getPreguntaSeguridad} from "../components/preguntaSeguridad.js";
 import axios from "axios";
 
 const Registro = () => {
@@ -96,10 +97,10 @@ const Registro = () => {
                                             <div className="p">
                                             
                                             <select name="identificadorpregcliente" onChange={handleChange}>
-                                                <option value="0">None</option>    
-                                                <option value="1">Cual es tu color favorito</option>
-                                                <option value="2">Ciudad en la que se casaron tus padres</option>
-                                                <option value="3">Nombre de tu primera mascota</option>
+                                                <option value="0">{getPreguntaSeguridad(0)}</option>    
+                                                <option value="1">{getPreguntaSeguridad(1)}</option>
+                                                <option value="2">{getPreguntaSeguridad(2)}</option>
+                                                <option value="3">{getPreguntaSeguridad(3)}</option>
                                             </select>
                                             </div>
                                              <div className="p">
