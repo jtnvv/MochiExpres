@@ -24,7 +24,7 @@ const PersonalInfo = () => {
                 <div className="divContent">
                     <div className="ItemsContainer-PersonalInfo">
                         <div className="divHeaderPersonalInfo">
-                            <p><i><IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" /></i> Volver</p>
+                            <p><IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" />Volver</p>
                             <p className="photo">{currentUser?.nombreusuario}<img src="https://i.imgur.com/T9X0JHm.jpg" alt="" /></p>
                         </div>
                         <div className="divBodyPersonalInfo">
@@ -147,7 +147,8 @@ const ContenedorModal = styled.div`
 const EncabezadoModal = styled.div`
     height: 100px;
     display: flex;
-    //align-items: center;
+    align-items: center;
+    margin-left: 3%;
     justify-content: space-between;
     margin-bottom: 2px;
     padding-bottom: 2px;
@@ -197,6 +198,7 @@ const Boton = styled.button`
   transition: .3s ease all;
   border: none;
   font-size: 20px;
+  margin-left: 4%;
 
   &:hover{
     background: #fff;
@@ -209,15 +211,16 @@ const Boton = styled.button`
 const Contenido = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 90%;
+    height: 68%;
     h2{
         padding-left: 2rem;
-        margin-left: 0px;
         font-size: 18px;
         font-weight: 700;
         font-family: Comfortaa, cursive;
         color: #fff; 
-        align-items: left;
+        align-items: center;
     }
 
     input{
@@ -227,8 +230,9 @@ const Contenido = styled.div`
         border-radius: 10px;
         height: 30px;
         border: none;
-        margin-left: 15%;
+        margin-left: 20%;
         font-family: Coiny, cursive;
+        font-size: 15px;
         color: #3289A0; 
     }
 `;
