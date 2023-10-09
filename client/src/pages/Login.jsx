@@ -8,8 +8,8 @@ import { AuthContextProvider } from '../context/authContext.js';
 
 const Login = () => {
     const [inputs, setInputs] = useState({
-        username: "",
-        password: "",
+        idusuario: "",
+        contrasenausuario: "",
     });
 
     const [err, setError] = useState(null);
@@ -27,7 +27,7 @@ const Login = () => {
         try {
             await axios.post("/auth/login", inputs);
             //await login(inputs)
-            navigate("/");
+            navigate("/Personal-Info");
         } catch (err) {
             setError(err.response.data);
         }
@@ -42,14 +42,14 @@ const Login = () => {
                         required
                         type="text" 
                         placeholder="Username" 
-                        name="username"
+                        name="idusuario"
                         onChange={handleChange}
                     />
                     <input 
                         required
                         type="password" 
                         placeholder="Password" 
-                        name="password"
+                        name="contrasenausuario"
                         onChange={handleChange}
                     />
                     {err && <p className="auth__bg__error">Esto es un error</p>}

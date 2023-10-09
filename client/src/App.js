@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     element: <RecuperacionContrasena3 />,
   },
   {
-    path: "/register",
+    path: "/Registro",
     element: <Registro />,
   },
   {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as IoIcons from "react-icons/io5";
 import axios from "axios";
 
@@ -15,9 +16,9 @@ const Registro = () => {
         respuestapregcliente:"",
     });
 
-    // const [err, setError] = useState(null);
+    const [err, setError] = useState(null);
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         
@@ -31,8 +32,9 @@ const Registro = () => {
         try{
             const res = await axios.post("/auth/register", inputs);
             console.log("Ha salido bien :D ", res);
+            navigate("/login");
         }catch(err){
-            console.log("Ha pasado un error D: ", err);
+            setError(err.response.data);
         }
         
     }
