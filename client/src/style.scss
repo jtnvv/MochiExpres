@@ -4,6 +4,7 @@
 .app {
     .container {            
         height: 100%;
+        margin:0;
         overflow-y: hidden;
         //login
         .auth {
@@ -293,6 +294,7 @@
             display: flex;
             background: rgb(50,137,160);
             background: linear-gradient(170deg, rgba(50,137,160,1) 0%, rgba(58,126,125,1) 52%, rgba(247,212,193,1) 100%);
+            
             .divContent{
                 height: 100%;
                 width: 100%;

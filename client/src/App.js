@@ -16,6 +16,7 @@ import ConsultarPedidos from "./pages/ConsultarPedidos";
 import Envios from "./pages/Envios";
 import HabilitarSolicitud from "./pages/HabilitarSolicitud";
 import "./style.scss";
+import "./index.css";
 import PersonalInfo from "./pages/PersonalInfo";
 import Actualiza from "./pages/ActualizacionInfo";
 import Home from "./pages/Home";
