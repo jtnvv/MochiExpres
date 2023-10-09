@@ -48,17 +48,14 @@ export const login = (req, res) => {
     //Se verifica el usuario
     const q = "select * from (select idCliente as idusuario, nombrecliente as nombreusuario, correocliente as correousuario, direccioncliente as direccionusuario, telefonocliente as telefonousuario, contrasenacliente as contrasenausuario, identificadorpregcliente as identificadorpregusuario, respuestapregcliente as respuestapregusuario, tipousuario from cliente union select idadministrador as idusuario, nombreadministrador as nombreusuario, correoadministrador as correousuario, direccionadministrador as direccionusuario, telefonoadministrador as telefonousuario, contrasenaadministrador as contrasenausuario, identificadorpregadmin as identificadorpregusuario, respuestapregadmin as respuestapregusuario, tipousuario from administrador union select idrepartidor as idusuario, nombrerepartidor as nombreusuario, correorepartidor as correousuario, direccionrepartidor as direccionusuario, telefonorepartidor as telefonousuario, contrasenarepartidor as contrasenausuario, identificadorpregrepar as identificadorpregusuario, respuestapregrepar as respuestapregusuario, tipousuario from repartidor) as usuarios where idusuario = ?";
 
+    //Validación de identidad del usuario ingresado
     db.query(q, [req.body.idusuario], (err, data) => {
         if (err) return res.status(500).json("Ha pasado algo ", err);
         if (data.length === 0) return res.status(404).json("¡Usuario no encontrado!");
 
-
-        //verificar contraseña
+        //Verificación de contrasena
         const isPasswordCorrect = bcrypt.compareSync(req.body.contrasenausuario, data[0].contrasenausuario);
-        //const isPasswordCorrect = false;
-        // if (req.body.password === data[0].contrasenausuario) {
-        //     isPasswordCorrect = true;
-        // }
+        
         if (!isPasswordCorrect) return res.status(400).json("¡Contraseña incorrecta!");
 
         const token = jwt.sign({ id: data[0].idusuario }, "jwtkey");
