@@ -4,6 +4,7 @@ import adminRoutes from "./model/administradores.js";
 import repartidorRoutes from "./model/repartidores.js";
 import authRoutes from "./model/auth.js";
 import cookieParser from "cookie-parser";
+import {PORT} from "./config.js";
 
 const app = express()
 app.use(express.json())
@@ -16,7 +17,7 @@ app.use("/api/auth",authRoutes)
 
 
 
-app.listen(8800, () => {
-    console.log("Conectado!")
+app.listen(PORT, () => {
+    console.log("Conectado! ", PORT);
 })
  
