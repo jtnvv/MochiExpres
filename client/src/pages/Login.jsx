@@ -25,12 +25,16 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            //await axios.post("/auth/login", inputs);
-            await login(inputs);
-            navigate("/Home");
-        } catch (err) {
-            setError(err.response.data);
+        if (!inputs.idusuario || !inputs.contrasenausuario) {
+            setError("Por favor, completa todos los campos");
+        } else {
+            try {
+                //await axios.post("/auth/login", inputs);
+                await login(inputs);
+                navigate("/Home");
+            } catch (err) {
+                setError(err.response.data);
+            }
         }
     };
 
@@ -39,23 +43,23 @@ const Login = () => {
             <div className="auth__bg">
                 <h1>¡Bienvenido!</h1>
                 <form>
-                    <input 
+                    <input
                         required
-                        type="text" 
-                        placeholder="Username" 
+                        type="text"
+                        placeholder="Username"
                         name="idusuario"
                         onChange={handleChange}
                     />
-                    <input 
+                    <input
                         required
-                        type="password" 
-                        placeholder="Password" 
+                        type="password"
+                        placeholder="Password"
                         name="contrasenausuario"
                         onChange={handleChange}
                     />
-                    {err && <p className="auth__bg__error">Esto es un error</p>}
+                    {err && <p className="auth__bg__error">{err}</p>}
                     <Link className="auth__bg__text" to="/Recuperacion-Contrasena1">¿Olvidaste tu contraseña?</Link>
-                    <button 
+                    <button
                         type="submit"
                         onClick={handleSubmit}
                     >Entra!</button>
