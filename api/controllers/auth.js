@@ -10,7 +10,7 @@ export const registerClients = (req, res) => {
     const q = "SELECT * FROM cliente WHERE idCliente = ?";
 
     console.log("Entro")
-    console.log
+    //console.log
 
     db.query(q, [parseInt(req.body.idCliente)], (err, data) => {
         if (err) return res.status(500).json(err);
