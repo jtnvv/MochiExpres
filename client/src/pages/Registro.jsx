@@ -93,9 +93,8 @@ const Registro = () => {
                                     <li>
                                         <div className="p">
                                             <p className="p-list">Pregunta de seguridad: </p>
-                                            </div>
+                                        </div>
                                             <div className="p">
-                                            
                                             <select name="identificadorpregcliente" onChange={handleChange}>
                                                 <option value="0">{getPreguntaSeguridad(0)}</option>    
                                                 <option value="1">{getPreguntaSeguridad(1)}</option>

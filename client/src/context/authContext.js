@@ -54,10 +54,22 @@ export const AuthContexProvider = ({ children }) => {
 
   };
 
-  const getinfouser = async (inputs) =>{
+  const getinfouser = async (inputs) => {
     const res = await axios.post("/usuarios/getuser", inputs);
     //console.log(res.data);
     setCurrentUser(res.data);
+  }
+
+  const updatepass = async (inputs) => {
+    const res = await axios.post("/usuarios/updatepass", inputs);
+    //console.log(res.data);
+    setCurrentUser("");
+  }
+
+  const checkpass = async (inputs) => {
+    const res = await axios.post("/usuarios/checkpass", inputs);
+    //console.log(res.data);
+    return res.data;
   }
 
   useEffect(() => {
@@ -73,7 +85,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout, auth_recov1,auth_recov2,auth_recov3, getinfouser, currentIn, currentNew,update }}>
+    <AuthContext.Provider value={{ currentUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass }}>
       {children}
     </AuthContext.Provider>
   );
