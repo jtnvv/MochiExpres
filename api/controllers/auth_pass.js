@@ -1,6 +1,7 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+
 // const db = require('../db.js');
 
 const usuario_mod = {

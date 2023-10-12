@@ -12,6 +12,10 @@ export const AuthContexProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("in")) || null
   );
 
+  const [currentNew, setCurrentNew] = useState(
+    JSON.parse(localStorage.getItem("new")) || null
+  );
+
 
   const login = async (inputs) => {
     const res = await axios.post("/auth/login", inputs);
@@ -41,6 +45,21 @@ export const AuthContexProvider = ({ children }) => {
     setCurrentIn("");
   };
 
+  const update = async (inputs) => {
+    const res = await axios.post("/usuarios/update", inputs);
+    //console.log(res.data);
+    setCurrentUser("");
+    // const res2 = await axios.post("/usuarios/getuser", inputs);
+    // setCurrentUser(res2.data);
+
+  };
+
+  const getinfouser = async (inputs) =>{
+    const res = await axios.post("/usuarios/getuser", inputs);
+    //console.log(res.data);
+    setCurrentUser(res.data);
+  }
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
@@ -49,8 +68,12 @@ export const AuthContexProvider = ({ children }) => {
     localStorage.setItem("in", JSON.stringify(currentIn));
   }, [currentIn]);
 
+  useEffect(() => {
+    localStorage.setItem("in", JSON.stringify(currentNew));
+  }, [currentNew]);
+
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout, auth_recov1,auth_recov2,auth_recov3,  currentIn }}>
+    <AuthContext.Provider value={{ currentUser, login, logout, auth_recov1,auth_recov2,auth_recov3, getinfouser, currentIn, currentNew,update }}>
       {children}
     </AuthContext.Provider>
   );

@@ -3,6 +3,18 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 // const db = require('../db.js');
 
+export const usuario_log = {
+    idusuario: "",
+    nombreusuario: "",
+    correousuario: "",
+    direccionusuario: "",
+    telefonousuario: "",
+    contrasenausuario: "",
+    identificadorpregusuario: "",
+    respuestapregusuario: "",
+    tipousuario: ""
+};
+
 export const registerClients = (req, res) => {
 
     //Verificar si el usuario ya existe
@@ -61,6 +73,17 @@ export const login = (req, res) => {
 
         const token = jwt.sign({ id: data[0].idusuario }, "jwtkey");
         const { contrasenausuario, ...other } = data[0];
+
+        usuario_log.idusuario = data[0].idusuario;
+        usuario_log.nombreusuario = data[0].nombreusuario;
+        usuario_log.contrasenausuario = data[0].contrasenausuario;  
+        usuario_log.correousuario = data[0].correousuario;
+        usuario_log.direccionusuario = data[0].direccionusuario;
+        usuario_log.telefonousuario = data[0].telefonousuario;  
+        usuario_log.contrasenausuario = data[0].contrasenausuario;
+        usuario_log.identificadorpregusuario = data[0].identificadorpregusuario;
+        usuario_log.respuestapregusuario = data[0].respuestapregusuario;    
+        usuario_log.tipousuario = data[0].tipousuario;
 
         res.cookie("access_token", token, {
             httpOnly: true
