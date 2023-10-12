@@ -48,9 +48,9 @@ const RecuperacionContrasena2 = () => {
             <form>
                 <p className="register__bg__text">{getPreguntaSeguridad(currentIn?.identificadorpregusuario)}</p>
                 <input type="text" placeholder="Respuesta" name="respuestapregusuario" onChange={handleChange}/>
-                {err && <p className="register__bg__error">Esto es un error</p>}
+              
                 <button type="submit"onClick={handleSubmit}>Confirmar datos</button>
-                {err && <p className="register__bg__error">Esto es un error</p>}
+                {err && <p className="register__bg__error">{err}</p>}
             </form>
         </div>
         <div className="register__img">

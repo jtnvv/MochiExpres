@@ -26,6 +26,7 @@ const RecuperacionContrasena3 = () => {
         if (contrasena1.contrasena1 && contrasena2.contrasena2) {
             if (compararContrasena(contrasena1.contrasena1, contrasena2.contrasena2)) {
                 setInputs((prev) => ({ ...prev, nuevacontrasenausuario: contrasena1.contrasena1 }))
+                setError(null);
             } else {
                 setError("Las contraseñas no coinciden");
             }
@@ -62,7 +63,8 @@ const RecuperacionContrasena3 = () => {
 
         if (!inputs.nuevacontrasenausuario) {
             setError("Por favor, completa todos los campos");
-        } else {
+        } 
+        else {
             try {
                 //await axios.post("/auth/login", inputs);
                 await auth_recov3(inputs);
@@ -81,12 +83,12 @@ const RecuperacionContrasena3 = () => {
                 <form>
                     <p className="register__bg__text">Por favor ingrese su nueva contraseña</p>
                     <input type="text" placeholder="Nueva contraseña" name="contrasena1" onChange={handleContrasena1Change} />
-                    {err && <p className="register__bg__error">Esto es un error</p>}
+                   
                     <p className="register__bg__text">Confirme su nueva contraseña</p>
                     <input type="text" placeholder="Nueva contraseña" name="contrasena2" onChange={handleContrasena2Change} />
-                    {err && <p className="register__bg__error">Esto es un error</p>}
+                   
                     <button type="submit" onClick={handleSubmit}>Confirmar datos</button>
-                    {err && <p className="register__bg__error">Esto es un error</p>}
+                    {err && <p className="register__bg__error">{err}</p>}
                 </form>
             </div>
             <div className="register__img">

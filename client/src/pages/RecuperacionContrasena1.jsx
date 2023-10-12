@@ -67,14 +67,14 @@ const RecuperacionContrasena1 = () => {
         <div className="register__bg">
             <h1>Recuperación de contraseña</h1>
             <form>
-                <p className="register__bg__text">Inserta tu nombre de usuario</p>
-                <input required type="text" placeholder="Usuario" name="idusuario" onChange={handleChange} />
-                { err && <p className="register__bg__error">Esto es un error</p>}
-                <p className="register__bg__text">Inserta tu número de ID</p>
+                <p className="register__bg__text">Inserta tu número de identidad</p>
+                <input required type="number" placeholder="Número de identidad" name="idusuario" onChange={handleChange} />
+                { err && <p className="register__bg__error"></p>}
+                <p className="register__bg__text">Inserta tu usuario</p>
                 <input required type="text" placeholder="Nombre de usuario" name="nombreusuario" onChange={handleChange}/>
-                {err && <p className="register__bg__error">Esto es un error</p>}
+                {err && <p className="register__bg__error"></p>}
                 <button type="submit" onClick={handleSubmit}>Confirmar datos</button>
-                {err && <p className="register__bg__error">Esto es un error</p>}
+                {err && <p className="register__bg__error"> {err}</p>}
             </form>
         </div>
         <div className="register__img">
