@@ -295,7 +295,7 @@ const Contenido = styled.div`
         font-weight: 700;
         font-family: Comfortaa, cursive;
         color: #fff; 
-        align-items: center;
+        text-align: center;
     }
 
     input{
