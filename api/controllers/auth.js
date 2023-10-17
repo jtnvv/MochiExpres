@@ -1,6 +1,19 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+// const db = require('../db.js');
+
+export const usuario_log = {
+    idusuario: "",
+    nombreusuario: "",
+    correousuario: "",
+    direccionusuario: "",
+    telefonousuario: "",
+    contrasenausuario: "",
+    identificadorpregusuario: "",
+    respuestapregusuario: "",
+    tipousuario: ""
+};
 
 export const registerClients = (req, res) => {
 
@@ -9,7 +22,7 @@ export const registerClients = (req, res) => {
     const q = "SELECT * FROM cliente WHERE idCliente = ?";
 
     console.log("Entro")
-    console.log
+    //console.log
 
     db.query(q, [parseInt(req.body.idCliente)], (err, data) => {
         if (err) return res.status(500).json(err);
@@ -50,16 +63,27 @@ export const login = (req, res) => {
 
     //Validación de identidad del usuario ingresado
     db.query(q, [req.body.idusuario], (err, data) => {
-        if (err) return res.status(500).json("Ha pasado algo ", err);
+        if (err) return res.status(500).json("Ha pasado algo al conectar con la base de datos");
         if (data.length === 0) return res.status(404).json("¡Usuario no encontrado!");
 
         //Verificación de contrasena
         const isPasswordCorrect = bcrypt.compareSync(req.body.contrasenausuario, data[0].contrasenausuario);
-        
+
         if (!isPasswordCorrect) return res.status(400).json("¡Contraseña incorrecta!");
 
         const token = jwt.sign({ id: data[0].idusuario }, "jwtkey");
         const { contrasenausuario, ...other } = data[0];
+
+        usuario_log.idusuario = data[0].idusuario;
+        usuario_log.nombreusuario = data[0].nombreusuario;
+        usuario_log.contrasenausuario = data[0].contrasenausuario;
+        usuario_log.correousuario = data[0].correousuario;
+        usuario_log.direccionusuario = data[0].direccionusuario;
+        usuario_log.telefonousuario = data[0].telefonousuario;
+        usuario_log.contrasenausuario = data[0].contrasenausuario;
+        usuario_log.identificadorpregusuario = data[0].identificadorpregusuario;
+        usuario_log.respuestapregusuario = data[0].respuestapregusuario;
+        usuario_log.tipousuario = data[0].tipousuario;
 
         res.cookie("access_token", token, {
             httpOnly: true
@@ -70,7 +94,7 @@ export const login = (req, res) => {
 };
 
 export const logout = (req, res) => {
-    res.clearCookie("access_token",{
+    res.clearCookie("access_token", {
         sameSite: "none",
         secure: true
     }).status(200).json("Sesion cerrada con exito");

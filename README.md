@@ -1,4 +1,4 @@
-# Mochi Exprsess
+# Mochi Expres
 A web platform that allows users to request the shipment of packages and view their progress. It includes three main views: customer mode, delivery mode and administrator mode.
 
 Currently is under development
@@ -19,11 +19,6 @@ Here is a working live demo :  https://.../
 ### Information System
 ![](https://i.ibb.co/vzN5jbj/Captura-de-pantalla-2023-10-07-100654.png)
 
-
-## Mobile support
-The WebApp is compatible with devices of all sizes and all OS's, and consistent improvements are being made.
-
-![](https://i.ibb.co/ZdZ0xsq/Captura-de-pantalla-2023-10-07-100143.png)
 
 
 ## [Usage](https://.../) 
