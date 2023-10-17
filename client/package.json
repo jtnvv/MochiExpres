@@ -44,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://mochiexpress-backend.onrender.com:10000/api/"
+  "proxy": "https://mochiexpress-backend.onrender.com/api"
 }
