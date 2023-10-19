@@ -7,13 +7,11 @@ import usersRoutes from "./model/usuarios.js";
 import authRecoverRoutes from "./model/auth_pass.js";
 import cookieParser from "cookie-parser";
 import { PORT } from "./config.js";
-import cors from "cors";
 
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
 
-app.use(cors())
 app.use("/api/cliente", clienteRoutes)
 app.use("/api/admins", adminRoutes)
 app.use("/api/repartidores", repartidorRoutes)
