@@ -11,6 +11,7 @@ import RecuperacionContrasena3 from "./pages/RecuperacionContrasena3";
 
 import Registro from "./pages/Registro";
 import Clientes from "./pages/Clientes";
+import ClientesInfo from "./pages/ClientesInfo";
 import Repartidores from "./pages/Repartidores";
 import ConsultarPedidos from "./pages/ConsultarPedidos";
 import Envios from "./pages/Envios";
@@ -57,6 +58,11 @@ const router = createBrowserRouter([
     path: "/Clientes",
     element: 
       <Clientes />,
+  },
+  {
+    path: "/ClientesInfo",
+    element: 
+      <ClientesInfo />,
   },
   {
     path: "/Consultar-Pedidos",
