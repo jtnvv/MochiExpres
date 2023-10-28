@@ -8,14 +8,16 @@ import * as RiIcons from "react-icons/ri";
 import { AuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import { selClient } from "./Clientes";
 
 const ClientesInfo = () => {
 
-    const { currentUser } = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);   
+
     const [showModal, setShowModal] = useState(false);
 
     const [inputs, setInputs] = useState({
-        idusuario: currentUser?.idusuario,
+        idusuario: currentUser?.idusuario
 
     });
 
@@ -41,7 +43,7 @@ const ClientesInfo = () => {
                     <div className="divBodyPersonalInfo">
                         <div className="divLeftPersonalInfo">
                             <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
-                            <h2 className="usernameTxt">{currentUser?.nombreusuario}</h2>
+                            <h2 className="usernameTxt">{selClient[0].nombrecliente}</h2>
                             
                         </div>
                         <div className="divRightPersonalInfo">
@@ -51,19 +53,19 @@ const ClientesInfo = () => {
                                     <li>
                                         <div className="p">
                                             <p className="p-list">Número telefónico: </p>
-                                            <p className="content">{currentUser?.telefonousuario}</p>
+                                            <p className="content">{selClient[0].telefonocliente}</p>
                                         </div>
                                     </li><br />
                                     <li>
                                         <div className="p">
                                             <p className="p-list">Correo electrónico: </p>
-                                            <p className="content">{currentUser?.correousuario}</p>
+                                            <p className="content">{selClient[0].correocliente}</p>
                                         </div>
                                     </li><br />
                                     <li>
                                         <div className="p">
                                             <p className="p-list">Número identidad: </p>
-                                            <p className="content">{currentUser?.idusuario}</p>
+                                            <p className="content">{selClient[0].idCliente}</p>
                                         </div>
                                     </li><br />
                                     

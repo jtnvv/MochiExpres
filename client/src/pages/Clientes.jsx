@@ -1,18 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import InfoBar from "./InfoBar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Axios from "axios";
+import styled from 'styled-components';
+export const selClient = [];
 
-const Clientes = () => {
+
+function Clientes () {
+
+    const [clientsList, setClients] = useState([])
+
+    const getClients =()=>{
+        Axios.get("http://localhost:3005/clients").then((response)=>{
+        setClients(response.data);
+        console.log(typeof(response))
+    })
+    }
+
+    const [selectedClient, setSelectedClient] = useState([])
+
+    const currentClient =(Client) => {
+           selClient.pop();
+           selClient.push(Client)
+
+    }
+
+
+    
     return (
+        
         <div className="content-flex">
             <Sidebar/>
             <div className="divContent">
-                <InfoBar />
+                
                 <div className="ItemsContainer">
                     ola soy un cliente
-                    <Link to="/ClientesInfo" className="ClientesInfo"> Volver</Link>
+                    <Link to="/Home" className="ClientesInfo"> Volver</Link>
+                    <div className="lista">
+                    <button onClick={getClients}>cargar</button>
+                    {
+                                
+                                clientsList.map((val,key)=>{
+                                    return <li key={key}>
+                                    <div className="divBodyPersonalInfo">
+                                    
+                                    <h2 className="usernameTxt">
+                                        <Link to="/ClientesInfo" onClick={() => currentClient(val)}> {val.nombrecliente} </Link>  
+                                    </h2> 
+
+                                </div>
+                                </li>
+                                })
+                            }
+                    </div>
+                    <div>
+                        
+                    </div>
                 </div>
+                
             </div>
         </div>
     );
