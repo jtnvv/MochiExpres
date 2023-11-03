@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import InfoBar from "./InfoBar";
 import { Link, useNavigate } from "react-router-dom";
@@ -26,7 +26,9 @@ function Clientes () {
 
     }
 
-
+    useEffect(()=>{
+        getClients();
+    },[])
     
     return (
         
@@ -38,7 +40,7 @@ function Clientes () {
                     ola soy un cliente
                     <Link to="/Home" className="ClientesInfo"> Volver</Link>
                     <div className="lista">
-                    <button onClick={getClients}>cargar</button>
+                    
                     {
                                 
                                 clientsList.map((val,key)=>{
