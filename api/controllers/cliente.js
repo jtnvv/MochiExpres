@@ -16,7 +16,7 @@ export const paginaInicio = (req, res) => {
 }
 
 app.listen(3005,()=>{
-    console.log("Corriendo en 3005")
+    console.log("Corriendo en 3005, lista de clientes")
 })
 
 app.get("/clients", (req,res) => {

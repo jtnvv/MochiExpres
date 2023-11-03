@@ -13,6 +13,7 @@ import Registro from "./pages/Registro";
 import Clientes from "./pages/Clientes";
 import ClientesInfo from "./pages/ClientesInfo";
 import Repartidores from "./pages/Repartidores";
+import RepartidoresInfo from "./pages/RepartidoresInfo";
 import ConsultarPedidos from "./pages/ConsultarPedidos";
 import Envios from "./pages/Envios";
 import HabilitarSolicitud from "./pages/HabilitarSolicitud";
@@ -88,6 +89,11 @@ const router = createBrowserRouter([
       <Repartidores />
     ,
     
+  },
+  {
+    path: "/RepartidoresInfo",
+    element: 
+      <RepartidoresInfo />,
   },
   {
   path: "/Home",
