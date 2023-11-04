@@ -2,10 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
 .app {
-    .container {            
+    .container {
         height: 100%;
-        margin:0;
+        margin: 0;
         overflow-y: hidden;
+
         //login
         .auth {
 
@@ -155,6 +156,7 @@
                 }
             }
         }
+
         .register {
 
             display: flex;
@@ -166,20 +168,20 @@
             background-image: url("./img/login-bg.png");
             background-size: cover;
             background-position: center;
-            
+
             .register__bg {
                 padding: 150px 90px;
-                background-color: rgb(247,212,193,0.5);
+                background-color: rgb(247, 212, 193, 0.5);
                 border-radius: 50px;
                 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
                 position: absolute;
-                right: 30px;                
+                right: 30px;
                 height: 50vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: left;
-                
+
 
                 h1 {
                     margin: 0;
@@ -195,8 +197,9 @@
                     flex-direction: column;
                     padding: 20px;
                     margin: 0;
-                    background-color:rgb(247,212,193,0);
+                    background-color: rgb(247, 212, 193, 0);
                     height: 50vh;
+
                     input {
                         padding: 10px;
                         border: 2px solid #3289A0;
@@ -227,10 +230,11 @@
                     }
 
                     .register__bg__text {
-                        font-family: Coiny, cursive;;
+                        font-family: Coiny, cursive;
+                        ;
                         font-size: 24px;
                         color: rgb(74, 72, 70);
-                        margin-bottom: 5px;   
+                        margin-bottom: 5px;
                     }
 
                     .register__bg__error {
@@ -238,7 +242,7 @@
                         font-family: Comfortaa, cursive;
                         font-size: 15px;
                         color: red;
-                        margin-top: 5px;                        
+                        margin-top: 5px;
                     }
                 }
             }
@@ -284,10 +288,11 @@
 
             }
 
-           
-            }
+
+        }
+
         //Info. personal
-        .content-flex{
+        .content-flex {
             //border: 1px solid #000;
             //height: auto;
             //min-height: 100%;
@@ -296,22 +301,25 @@
             padding-bottom: 0px;
             padding-right: 10px;
             display: flex;
-            background: rgb(50,137,160);
-            background: linear-gradient(170deg, rgba(50,137,160,1) 0%, rgba(58,126,125,1) 52%, rgba(247,212,193,1) 100%);
-            
-            .divContent{
+            background: rgb(50, 137, 160);
+            background: linear-gradient(170deg, rgba(50, 137, 160, 1) 0%, rgba(58, 126, 125, 1) 52%, rgba(247, 212, 193, 1) 100%);
+
+            .divContent {
                 height: 100%;
                 width: 100%;
-                .ItemsContainer{
+
+                .ItemsContainer {
                     height: 80vh;
                     width: 100%;
                     margin-top: 30px;
                 }
-                .ItemsContainer-PersonalInfo{
+
+                .ItemsContainer-PersonalInfo {
                     height: 90vh;
                     width: 100%;
                     margin-top: 30px;
-                    .divHeaderPersonalInfo{
+
+                    .divHeaderPersonalInfo {
                         height: 8%;
                         background-color: transparent;
                         margin-bottom: 10px;
@@ -319,27 +327,32 @@
                         justify-content: space-between;
                         align-items: center;
                         color: white;
-                        p{                        
+
+                        p {
                             cursor: pointer;
                             font-size: 20px;
                             margin-left: 10%;
                         }
-                        .photo{
+
+                        .photo {
                             width: 300px;
                             display: flex;
                             align-items: center;
                             justify-content: space-evenly;
                         }
-                        .photo img{
+
+                        .photo img {
                             height: 50px;
                             width: 50px;
                             border-radius: 30px;
                             margin: 0;
                         }
-                        .IoIconsPersonalInfo{
+
+                        .IoIconsPersonalInfo {
                             color: white;
                         }
-                        .divVolverInfoBar{
+
+                        .divVolverInfoBar {
                             display: flex;
                             font-family: Comfortaa, cursive;
                             color: white;
@@ -347,38 +360,46 @@
 
                         }
                     }
-                    .divBodyPersonalInfo{
+
+                    .divBodyPersonalInfo {
                         display: flex;
                         flex-direction: row;
+                        margin-left: 5vw;
+                        margin-right: 5vw;
                         height: 90%;
+                        width: 90%;
                         border-radius: 30px;
                         background-color: white;
                         align-items: center;
                         overflow: hidden;
-                        .divLeftPersonalInfo{
+
+                        .divLeftPersonalInfo {
                             height: 80%;
                             width: 30%;
                             margin-left: 30px;
                             display: block;
-                            h2{
+
+                            h2 {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
                                 width: 100%;
-                                margin-top: 10px;                       
+                                margin-top: 10px;
                                 font-size: 30px;
                                 font-family: Coiny, cursive;
                                 color: rgb(51, 51, 51);
                             }
-                            input{
+
+                            input {
                                 border-radius: 10px;
                                 border: 2px solid #63b5cc;
                                 align-items: center;
                                 font-family: Coiny, cursive;
                                 font-size: 15px;
-                                color: #3289A0; 
+                                color: #3289A0;
                             }
-                            .imgLeftPersonalInfo{
+
+                            .imgLeftPersonalInfo {
                                 height: 60%;
                                 width: 60%;
                                 border-radius: 100px;
@@ -387,30 +408,35 @@
                                 object-fit: contain;
                                 object-fit: cover;
                             }
-                            Input{
+
+                            Input {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                width: 80%;                      
+                                width: 80%;
                                 font-size: 25px;
                                 margin-top: -20px;
                                 margin-left: 35px;
                                 font-family: Coiny, cursive;
                                 color: rgb(51, 51, 51);
                             }
-                            .imgLeftPersonalInfo:hover{
+
+                            .imgLeftPersonalInfo:hover {
                                 filter: brightness(120%);
                             }
                         }
-                        .divRightPersonalInfo{
+
+                        .divRightPersonalInfo {
                             height: 80%;
                             width: 63%;
                             margin-left: 30px;
                             padding: 10px 10px 10px 10px;
                             display: block;
                             overflow-y: scroll;
-                            .top{
-                                height:65%;
+
+                            .top {
+                                height: 30vw;
+
                                 .tittle {
                                     margin: 0;
                                     font-size: 50px;
@@ -420,45 +446,108 @@
                                     align-items: center;
                                     justify-content: center;
                                 }
+
                                 ul {
                                     padding-left: 2rem;
-                                    list-style-image: url("./img/yellow-circle.png");    
-                                    li{
+                                    list-style-image: url("./img/yellow-circle.png");
+
+                                    li {
                                         width: 90%;
-                                        .p{
+
+                                        .p {
                                             display: flex;
                                             width: 100%;
-                                            Input{
+                                            
+
+                                            Input {
                                                 border-radius: 10px;
                                                 border: 2px solid #63b5cc;
                                                 align-items: center;
                                                 font-family: Coiny, cursive;
                                                 font-size: 15px;
                                                 color: #3289A0;
-                                            } 
-                                            select{
+                                            }
+
+                                            select {
                                                 border-radius: 10px;
                                                 border: 2px solid #63b5cc;
                                                 align-items: center;
                                                 font-family: Coiny, cursive;
                                                 font-size: 15px;
                                                 color: #3289A0;
-                                                option{
-                                                        border-radius: 10px;
-                                                        border: 2px solid #63b5cc;
-                                                        align-items: center;
-                                                        font-family: Comfortaa, cursive;
-                                                        font-size: 15px;
-                                                        color: #3289A0;
+
+                                                option {
+                                                    border-radius: 10px;
+                                                    border: 2px solid #63b5cc;
+                                                    align-items: center;
+                                                    font-family: Comfortaa, cursive;
+                                                    font-size: 15px;
+                                                    color: #3289A0;
                                                 }
-                                            } 
-                                            .p-list{
+                                            }
+
+                                            .p-error{
+                                                display: flex;
+                                                width: 100%;
+                                                margin-bottom: 2.3vw;
+                                            }
+
+                                            .p-list {
                                                 font-size: 20px;
                                                 font-family: Coiny;
                                                 color: rgb(51, 51, 51);
-                                                margin: 0;     
+                                                margin: 0;
                                             }
-                                            .content{
+
+                                            .tooltip {
+                                                position: relative;
+                                                display: inline-block;
+                                                display: flex;
+                                                justify-content: flex-end;
+                                                margin-left: auto;
+                                            }
+
+                                            .tooltip .tooltiptext {
+                                                visibility: hidden;
+                                                width: 300px;
+                                                min-width: 350px;
+                                                background-color: #f8d4c4;
+                                                color: rgb(51, 51, 51);
+                                                text-align: center;
+                                                border-radius: 6px;
+                                                padding: .5rem;
+                                                position: absolute;
+                                                z-index: 1;
+                                                bottom: 110%;
+                                                left: 65%;
+                                                margin-left: -60px;
+                                                font-family: Coiny;
+                                                transform: translateX(-50%);
+                                            }
+
+                                            .tooltip .tooltiptext::after {
+                                                content: "";
+                                                position: absolute;
+                                                top: 100%;
+                                                left: 10%;
+                                                margin-left: -5px;
+                                                border-width: 5px;
+                                                border-style: solid;
+                                                border-color: #f8d4c4 transparent transparent transparent;
+                                            }
+
+                                            .tooltip:hover .tooltiptext {
+                                                visibility: visible;
+                                            }
+
+                                            
+
+                                            .p-list-error {
+                                                position: absolute;
+                                                margin-top: 20px;
+                                            }
+
+                                            .content {
                                                 margin: 0;
                                                 font-size: 20px;
                                                 width: 50%;
@@ -468,52 +557,61 @@
                                                 font-family: Comfortaa, cursive;
                                                 color: rgb(51, 51, 51);
                                             }
-                                            Input{
+
+                                            Input {
                                                 display: flex;
-                                                justify-content: center;
+                                                justify-content: flex-end;
                                                 align-items: center;
-                                                width: 60%;                      
+                                                width: 25vw;
                                                 font-size: 20px;
-                                                margin-left: 35px;
-                                                font-family: Coiny, cursive;
-                                                color: rgb(51, 51, 51);
-                                            } Select{
-                                                display: flex;
-                                                justify-content: center;
-                                                align-items: center;
-                                                width: 61%;                      
-                                                font-size: 20px;
-                                                margin-left: 35px;
-                                                margin-top: 2px;
-                                                margin-bottom: 5px;
+                                                margin-left: auto;
                                                 font-family: Coiny, cursive;
                                                 color: rgb(51, 51, 51);
                                             }
-                                           
-                                        }     
+
+                                            Select {
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: flex-end;
+                                                width: 25.5vw;
+                                                font-size: 20px;
+                                                margin-left: auto;
+                                                margin-top: 5px;
+                                                margin-bottom: 5px;
+                                                height: 2.5vw;
+                                                align-items: center;
+                                                font-family: Coiny, cursive;
+                                                color: rgb(51, 51, 51);
+                                            }
+
+                                        }
                                     }
                                 }
                             }
-                            .bottom{
-                                height:35%;
+
+                            .bottom {
+                                height: 35%;
                                 justify-content: space-evenly;
-                                .flex{
+
+                                .flex {
                                     display: flex;
-                                    justify-content: space-evenly;    
-                                    .div{
+                                    justify-content: space-evenly;
+
+                                    .div {
                                         width: 200px;
                                         height: 110px;
                                         margin-top: 10px;
                                         display: block;
-                                        
-                                        p{
+
+                                        p {
                                             font-size: 15px;
                                             width: 100%;
                                             text-align: center;
                                             font-family: Comfortaa, cursive;
                                             color: rgb(51, 51, 51);
-                                        }    
-                                        button{
+                                        }
+
+                                        button {
                                             border: none;
                                             border-radius: 30px;
                                             background-color: #F7D4C1;
@@ -521,131 +619,150 @@
                                             width: 100%;
                                             height: 40px;
                                             cursor: pointer;
-                                            font-size: 20px;                                    
+                                            font-size: 20px;
                                             font-family: Coiny, cursive;
                                         }
                                     }
-                                }  
-                            }.bottomRegister{
-                                height:35%;
+                                }
+                            }
+
+                            .bottomRegister {
+                                height: 35%;
                                 justify-content: space-evenly;
-                                .flex{
+
+                                .flex {
                                     display: flex;
-                                    justify-content: space-evenly;    
-                                    .div{
+                                    justify-content: space-evenly;
+
+                                    .div {
                                         width: 200px;
                                         height: 110px;
                                         margin-top: 120px;
                                         display: block;
-                                        p{
+
+                                        p {
                                             font-size: 15px;
                                             width: 110%;
                                             text-align: center;
                                             font-family: Comfortaa, cursive;
                                             color: rgb(51, 51, 51);
-                                        }    
-                                        button{
+                                        }
+
+                                        button {
                                             border-radius: 30px;
                                             background-color: #F7D4C1;
                                             color: #3289A0;
                                             width: 110%;
                                             height: 40px;
                                             cursor: pointer;
-                                            font-size: 20px;                                    
+                                            font-size: 20px;
                                             font-family: Coiny, cursive;
                                         }
                                     }
-                                }  
+                                }
                             }
                         }
                     }
+
                     @media (max-width: 1110px) {
                         .divBodyPersonalInfo {
-                          flex-direction: column;
-                          .divLeftPersonalInfo{
-                            display: flex;
-                            height: 30%;
-                            width: 90%;
-                            margin-left: 10%;
-                            margin-right: 10%;
-                            align-items: center;
-                            .imgLeftPersonalInfo{
-                                height: 40%;
-                                width: 40%;
-                                border-radius: 100px;
-                                margin-left: 5%;
-                                object-fit: cover;
-                                object-fit: contain;
-                            } 
-                            .usernameTxt{
+                            flex-direction: column;
+
+                            .divLeftPersonalInfo {
                                 display: flex;
-                                justify-content: center;
+                                height: 30%;
+                                width: 90%;
+                                margin-left: 10%;
+                                margin-right: 10%;
                                 align-items: center;
-                                width: 100%;
-                                margin-left:20px;
-                                margin-top: 10px;                       
-                                font-size: 20px;
-                                font-family: Coiny, cursive;
-                                color: rgb(51, 51, 51);
+
+                                .imgLeftPersonalInfo {
+                                    height: 40%;
+                                    width: 40%;
+                                    border-radius: 100px;
+                                    margin-left: 5%;
+                                    object-fit: cover;
+                                    object-fit: contain;
+                                }
+
+                                .usernameTxt {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    width: 100%;
+                                    margin-left: 20px;
+                                    margin-top: 10px;
+                                    font-size: 20px;
+                                    font-family: Coiny, cursive;
+                                    color: rgb(51, 51, 51);
+                                }
+
+                                .rolTxt {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    width: 100%;
+                                    margin-top: 10px;
+                                    font-size: 20px;
+                                    font-family: Coiny, cursive;
+                                    color: rgb(51, 51, 51);
+
+                                }
                             }
-                            .rolTxt{
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                width: 100%;
-                                margin-top: 10px;                       
-                                font-size: 20px;
-                                font-family: Coiny, cursive;
-                                color: rgb(51, 51, 51);
-                                
+
+                            .divRightPersonalInfo {
+                                height: 80%;
+                                width: 90%;
+                                margin-left: 30px;
+                                padding: 10px 10px 10px 10px;
+                                display: block;
+
+                                .top {
+                                    overflow-y: scroll;
+                                }
                             }
-                          }
-                          .divRightPersonalInfo{
-                            height: 80%;
-                            width: 90%;
-                            margin-left: 30px;
-                            padding: 10px 10px 10px 10px;
-                            display: block;
-                            .top{
-                                overflow-y: scroll;
-                            }
-                          }
                         }
-                      }  
+                    }
                 }
             }
         }
-        .content-flex-infobar{
+
+        .content-flex-infobar {
             margin-top: 20px;
             display: flex;
             border-radius: 25px;
             background-color: white;
-            width: 100% ;
+            width: 100%;
             height: 60px;
             flex-direction: row-reverse;
             align-items: center;
-            .InfoBarImg{
+
+            .InfoBarImg {
                 height: 55px;
                 width: 55px;
                 margin-right: 10px;
-                .imgPersonalInfo{
+
+                .imgPersonalInfo {
                     height: 100%;
                     width: 100%;
                     border-radius: 50px;
                 }
             }
-            .InfoBarImg:hover{
+
+            .InfoBarImg:hover {
                 filter: brightness(120%)
             }
         }
-        .Sidebar{
+
+        .Sidebar {
             top: 0;
             position: sticky;
             z-index: 0;
             height: 100%;
             width: 7rem;
             margin-right: 10px;
-            .Dashboard{
+
+            .Dashboard {
                 background-color: #c1dce3b9;
                 opacity: 0.9;
                 height: 100vh;
@@ -653,51 +770,63 @@
                 outline: none;
                 box-shadow: none;
                 overflow: hidden;
-                .IconColor{
-                    color:rgb(34, 34, 34);
+
+                .IconColor {
+                    color: rgb(34, 34, 34);
                 }
-                .IconColor:hover{
-                    color:#3289A0;
+
+                .IconColor:hover {
+                    color: #3289A0;
                 }
-                .IconLogo{
+
+                .IconLogo {
                     font-size: 55px;
                 }
+
                 ul {
                     list-style: none;
                     padding: 1rem 2rem;
-                    li{
+
+                    li {
                         margin-bottom: 1rem;
                     }
                 }
-                .Salida{
+
+                .Salida {
                     font-size: 37px;
+
                     ul {
                         list-style: none;
                         padding: 1rem 2rem;
-                        li{
+
+                        li {
                             margin-bottom: 1rem;
                         }
                     }
                 }
             }
-        } 
+        }
+
         @media (max-width: 1110px) {
-            .content-flex{
+            .content-flex {
                 display: block;
                 height: 110vh;
             }
-            .Sidebar{
+
+            .Sidebar {
                 top: 1px;
                 width: 100vw;
                 height: 100px;
                 display: flex;
-                .Dashboard{     
+
+                .Dashboard {
                     width: 100vw;
                     display: flex;
                     height: 100px;
                     align-items: center;
                     justify-content: space-between;
-                    ul{
+
+                    ul {
                         width: 80%;
                         display: flex;
                         margin: 0;
@@ -708,17 +837,19 @@
                     }
                 }
             }
-          }
-          @media (max-width: 1110px) {
-            .Sidebar .Dashboard .Salida ul{
+        }
+
+        @media (max-width: 1110px) {
+            .Sidebar .Dashboard .Salida ul {
                 padding: 0;
             }
-          }
-        .VentanaModel{
-            .IconClose{
+        }
+
+        .VentanaModel {
+            .IconClose {
                 font-size: 20px;
             }
-            
+
         }
     }
 }

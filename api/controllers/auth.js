@@ -24,8 +24,9 @@ export const registerClients = (req, res) => {
     console.log("Entro")
     //console.log
 
-    db.query(q, [parseInt(req.body.idCliente)], (err, data) => {
+    db.query(q, [req.body.idCliente], (err, data) => {
         if (err) return res.status(500).json(err);
+        console.log(err);
         if (data.length) return res.status(409).json("El usuario ya esta registrado");
 
         //Encriptar contraseña
