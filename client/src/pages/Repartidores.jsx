@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-export const selDealer = [];
+export const repartidorSeleccionado = [];
 
 
 function Repartidores() {
@@ -10,14 +10,10 @@ function Repartidores() {
     const [repartidoresList, setRepartidores] = useState([]);
     const { getRepartidores } = useContext(AuthContext);
     //const { repartidores } = useContext(AuthContext);
-
-
-
-    // const [selectedDealer, setSelectedDealer] = useState([])
-
-    const currentDealer = (Dealer) => {
-        selDealer.pop();
-        selDealer.push(Dealer)
+    
+    const currentRepartidor = (repartidor) => {
+        repartidorSeleccionado.pop();
+        repartidorSeleccionado.push(repartidor);
 
     }
 
@@ -58,7 +54,7 @@ function Repartidores() {
                                     <div className="divBodyPersonalInfo">
                                         <h1>{val.nombrerepartidor}</h1>
                                         <h2 className="usernameTxt">
-                                            <Link to="/RepartidoresInfo" onClick={() => currentDealer(val)}> {val.nombrerepartidor} </Link>
+                                            <Link to="/RepartidoresInfo" onClick={() => currentRepartidor(val)}> {val.nombrerepartidor} </Link>
                                         </h2>
                                     </div>
                                 );

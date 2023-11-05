@@ -87,6 +87,11 @@ export const AuthContexProvider = ({ children }) => {
     return res.data;
   }
 
+  const getClientes = async () => {
+    const res = await axios.get("/clientes/getClientes");
+    return res.data;
+  }
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
@@ -100,7 +105,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores }}>
+    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes }}>
       {children}
     </AuthContext.Provider>
   );

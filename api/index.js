@@ -12,7 +12,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 
-app.use("/api/cliente",clienteRoutes)
+app.use("/api/clientes",clienteRoutes)
 app.use("/api/admins",adminRoutes)
 app.use("/api/repartidores",repartidorRoutes)
 app.use("/api/auth",authRoutes)

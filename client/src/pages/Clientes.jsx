@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import InfoBar from "./InfoBar";
+import { AuthContext } from "../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
-import Axios from "axios";
-import styled from 'styled-components';
 export const selClient = [];
 
 
 function Clientes () {
 
-    const [clientsList, setClients] = useState([])
+    const [clientsList, setClients] = useState([]);
+    const { getClientes } = useContext(AuthContext);
 
     const getClients =()=>{
         Axios.get("http://localhost:3005/clients").then((response)=>{
