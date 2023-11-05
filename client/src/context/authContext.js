@@ -10,7 +10,7 @@ export const AuthContexProvider = ({ children }) => {
   );
 
   const [currentTypeUser, setCurrentTypeUser] = useState(
-
+    JSON.parse(localStorage.getItem("typeuser")) || null
   );
 
   const [currentIn, setCurrentIn] = useState(
@@ -95,6 +95,10 @@ export const AuthContexProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
+
+  useEffect(() => {
+    localStorage.setItem("typeuser", JSON.stringify(currentTypeUser));
+  }, [currentTypeUser]);
 
   useEffect(() => {
     localStorage.setItem("in", JSON.stringify(currentIn));
