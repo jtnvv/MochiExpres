@@ -10,7 +10,7 @@ function Repartidores() {
     const [repartidoresList, setRepartidores] = useState([]);
     const { getRepartidores } = useContext(AuthContext);
     //const { repartidores } = useContext(AuthContext);
-    
+
     const currentRepartidor = (repartidor) => {
         repartidorSeleccionado.pop();
         repartidorSeleccionado.push(repartidor);
@@ -51,12 +51,15 @@ function Repartidores() {
                         {
                             repartidoresList.map((val) => {
                                 return (
-                                    <div className="divBodyPersonalInfo">
-                                        <h1>{val.nombrerepartidor}</h1>
-                                        <h2 className="usernameTxt">
-                                            <Link to="/RepartidoresInfo" onClick={() => currentRepartidor(val)}> {val.nombrerepartidor} </Link>
-                                        </h2>
-                                    </div>
+                                    <React.Fragment key = {val.idrepartidor}>
+                                        <div className="divBodyPersonalInfo">
+                                            <h1>{val.nombrerepartidor}</h1>
+                                            <h2 className="usernameTxt">
+                                                <Link to="/RepartidoresInfo" onClick={() => currentRepartidor(val)}> {val.nombrerepartidor} </Link>
+                                            </h2>
+                                        </div>
+                                    </React.Fragment>
+
                                 );
                             })
                         }
