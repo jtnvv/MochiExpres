@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -13,6 +13,7 @@ const Actualiza = () => {
 
     const { currentUser, setCurrentUser } = useContext(AuthContext);
     const { currentNew, setCurrentNew } = useContext(AuthContext);
+    const [shouldNavigate, setShouldNavigate] = useState(false);
 
     const [inputs, setInputs] = useState({
         idusuario: currentUser?.idusuario,
@@ -45,7 +46,8 @@ const Actualiza = () => {
             // await getinfouser(inputs);
             console.log("Haz actualizado correctamente get");
             await getinfouser(inputs);
-            navigate("/Personal-Info");
+            setShouldNavigate(true);
+            
 
             //setCurrentUser(res2.data[0]);
 
@@ -54,6 +56,12 @@ const Actualiza = () => {
         }
 
     }
+
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigate("/Personal-Info");
+        }
+    }, [shouldNavigate]);
 
     return (
         <div className="content-flex">
