@@ -7,7 +7,7 @@ import { compararContrasena } from "../components/compararContrasena.js";
 const RecuperacionContrasena3 = () => {
 
     const { currentIn } = useContext(AuthContext);
-
+    const [shouldNavigate, setShouldNavigate] = useState(false);
     const [inputs, setInputs] = useState({
         idusuario: currentIn?.idusuario,
         tipousuario: currentIn?.tipousuario,
@@ -68,13 +68,19 @@ const RecuperacionContrasena3 = () => {
             try {
                 //await axios.post("/auth/login", inputs);
                 await auth_recov3(inputs);
-                navigate("/Login");
+                setShouldNavigate(true);
             } catch (err) {
                 setError(err.response.data);
                 console.log(err.response.data);
             }
         }
     };
+
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigate("/Login");
+        }
+    }, [shouldNavigate]);
 
     return (
         <div className="register">

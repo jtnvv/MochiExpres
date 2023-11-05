@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as IoIcons from "react-icons/io5";
 import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";
@@ -7,6 +7,7 @@ import axios from "axios";
 
 const Registro = () => {
 
+    const [shouldNavigate, setShouldNavigate] = useState(false);
     const [inputs, setInputs] = useState({
         idCliente: "",
         nombrecliente: "",
@@ -40,7 +41,7 @@ const Registro = () => {
             if (validarUsuario(inputs.idCliente)) {
                 const res = await axios.post("/auth/register", inputs);
                 console.log("Ha salido bien :D ", res);
-                navigate("/login");
+                setShouldNavigate(true);
             } else {
                 setError("El identificador debe contener las condiciones necesarias");
                 return;
@@ -49,7 +50,15 @@ const Registro = () => {
             setError(err.response.data);
         }
 
-    }
+    };
+
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigate("/login");
+        }
+    }, [shouldNavigate]);
+
+
 
     return (
         <div className="content-flex">

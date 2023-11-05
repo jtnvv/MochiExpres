@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import people from "../img/login-people.png";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
@@ -11,7 +11,7 @@ const RecuperacionContrasena1 = () => {
     });
 
     const [err, setError] = useState(null);
-
+    const [shouldNavigate, setShouldNavigate] = useState(false);
     const navigate = useNavigate();
 
     const { auth_recov1 } = useContext(AuthContext);
@@ -54,13 +54,19 @@ const RecuperacionContrasena1 = () => {
             try {
                 //await axios.post("/auth/login", inputs);
                 await auth_recov1(inputs);
-                navigate("/Recuperacion-Contrasena2");
+                setShouldNavigate(true);
             } catch (err) {
                 setError(err.response.data);
                 console.log(err.response.data);
             }
         }
     };
+
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigate("/Recuperacion-Contrasena2");
+        }
+    }, [shouldNavigate]);
 
     return (
         <div className="register">
