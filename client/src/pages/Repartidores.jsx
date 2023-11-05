@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
+import ModuloRepartidor from "./ModuloRepartidor"
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-export const repartidorSeleccionado = [];
+import * as BsIcons from "react-icons/bs";
+export const selDealer = [];
 
 
 function Repartidores() {
@@ -11,9 +13,13 @@ function Repartidores() {
     const { getRepartidores } = useContext(AuthContext);
     //const { repartidores } = useContext(AuthContext);
 
-    const currentRepartidor = (repartidor) => {
-        repartidorSeleccionado.pop();
-        repartidorSeleccionado.push(repartidor);
+
+
+    const [selectedDealer, setSelectedDealer] = useState([])
+
+    const currentDealer = (Dealer) => {
+        selDealer.pop();
+        selDealer.push(Dealer)
 
     }
 
@@ -32,43 +38,77 @@ function Repartidores() {
 
     }, []);
 
-    // useEffect(() => {
-    //     //console.log("Aqui esta la respuesta");
-    //     //console.log(repartidoresList);
-    // }, [repartidoresList]);
+    useEffect(() => {
+        console.log("Aqui esta la respuesta");
+        console.log(repartidoresList);
+    }, [repartidoresList]);
+
+    const [divStyle, setDivStyle] = useState({ });
+    const [clicked, setClicked] = useState(false);
+    const [modalStyle, setModalStyle] = useState({ });
+    const [clickedModal, setClickedModal] = useState(false);
+    
+    
+    const handleButtonClick = () => {
+      if (!clicked){
+        setDivStyle({ visibility: 'visible' });
+      }else{
+        setDivStyle({ visibility: 'hidden' });
+      }
+      setClicked(!clicked);
+    };
+    const showModal = () => {
+        if (!clickedModal){
+            setModalStyle({ visibility: 'visible' });
+        }else{
+            setModalStyle({ visibility: 'hidden' });
+        }
+        setClickedModal(!clickedModal);
+      };
 
     return (
 
         <div className="content-flex">
             <Sidebar />
             <div className="divContent">
-
                 <div className="ItemsContainer">
-                    ola soy un repartidor
-                    <Link to="/Home" className="ClientesInfo"> Volver</Link>
-                    <div className="lista">
-
-                        {
-                            repartidoresList.map((val) => {
-                                return (
-                                    <React.Fragment key = {val.idrepartidor}>
-                                        <div className="divBodyPersonalInfo">
-                                            <h1>{val.nombrerepartidor}</h1>
-                                            <h2 className="usernameTxt">
-                                                <Link to="/RepartidoresInfo" onClick={() => currentRepartidor(val)}> {val.nombrerepartidor} </Link>
-                                            </h2>
-                                        </div>
-                                    </React.Fragment>
-
-                                );
-                            })
-                        }
+                    
+                    <div className="BarraRepartidor">
+                        <div className="containerButtonsRepartidor">
+                            <button className="buttonRepartidorStyle" >Agregar Repartidor</button>
+                            <button className="buttonRepartidorStyle" onClick={handleButtonClick}>Eliminar Repartidor</button>
+                        </div>
+                        <div className="containerBusquedaRepartidor">
+                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Repartidor"/>
+                            <div className="InfoBarImg">
+                                <img className="imgPersonalInfo"  src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                            </div>
+                        </div>
                     </div>
-                    <div>
-
+                    <div className="lista">{
+                        repartidoresList.map((val) => {
+                            return (
+                                <div className="ModuloRepartidorContainer">                                
+                                    <div className="eliminarModulo" onClick={showModal} style={divStyle}>X</div>
+                                    <Link to="/RepartidoresInfo" onClick={() => currentDealer(val)} style={{ textDecoration: 'none' }}> 
+                                        <ModuloRepartidor nombre={val.nombrerepartidor}  />
+                                    </Link>
+                                </div>
+                            );
+                        })
+                    }
                     </div>
                 </div>
-
+            </div>
+            <div className="modalEliminarRepartidorContenedor" style={modalStyle}>
+                <div className="containerModalEliminarRepartidor2">
+                    <div className="eliminarModalRepartidor" onClick={showModal}>X</div>
+                    <div className="modalEliminarRepartidor">
+                        <h3>¿Estás seguro de eliminar al repartidor?</h3>
+                        <p>Al eliminar al repartidor se borraran todos sus envíos hechos</p>
+                        <button>Eliminar</button>
+                    </div>
+                </div>
             </div>
         </div>
     );
