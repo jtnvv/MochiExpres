@@ -9,6 +9,7 @@ import * as FcIcons from "react-icons/fc";
 import { AuthContext } from "../context/authContext";
 const Sidebar = () => {
 
+    const { currentTypeUser } = useContext(AuthContext);
     const { currentUser, logout } = useContext(AuthContext);
 
     return (
@@ -18,34 +19,70 @@ const Sidebar = () => {
                     <li>
 
                         <Link to="/Home" className="Inicio">
-                            <FcIcons.FcInTransit className="IconLogo"/> 
+                            <FcIcons.FcInTransit className="IconLogo" />
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/Consultar-Pedidos" className="Consultar pedidos">
-                            <BiIcons.BiSolidShoppingBags className="IconColor" />
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/Habilitar-Solicitud" className="Habilitar Solicitudes">
-                            <MdIcons.MdNotificationAdd className="IconColor" />
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/Repartidores" className="Repartidores">
-                            <FaIcons.FaTruckArrowRight className="IconColor" />
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/Clientes" className="Clientes">
-                            <BiIcons.BiSolidHappyBeaming className="IconColor" />
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/Envios" className="Envios">
-                            <PiIcons.PiPackageFill className="IconColor" />
-                        </Link>
-                    </li>
+
+                    {currentTypeUser === "administrador" ? (
+                        <>
+                            <li>
+                                <Link to="/Consultar-Pedidos" className="Consultar pedidos">
+                                    <BiIcons.BiSolidShoppingBags className="IconColor" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/Habilitar-Solicitud" className="Habilitar Solicitudes">
+                                    <MdIcons.MdNotificationAdd className="IconColor" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/Repartidores" className="Repartidores">
+                                    <FaIcons.FaTruckArrowRight className="IconColor" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/Clientes" className="Clientes">
+                                    <BiIcons.BiSolidHappyBeaming className="IconColor" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/Envios" className="Envios">
+                                    <PiIcons.PiPackageFill className="IconColor" />
+                                </Link>
+                            </li>
+                        </>
+
+                    ) : currentTypeUser === "repartidor" ? (
+                        <>
+                            <li>
+                                <Link to="/Consultar-Pedidos" className="Consultar pedidos">
+                                    <BiIcons.BiSolidShoppingBags className="IconColor" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/Clientes" className="Clientes">
+                                    <BiIcons.BiSolidHappyBeaming className="IconColor" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/Envios" className="Envios">
+                                    <PiIcons.PiPackageFill className="IconColor" />
+                                </Link>
+                            </li>
+                        </>
+
+                    ) : (
+                        <>
+                            <li>
+                                <Link to="/Consultar-Pedidos" className="Consultar pedidos">
+                                    <BiIcons.BiSolidShoppingBags className="IconColor" />
+                                </Link>
+                            </li>
+                        </>
+
+                    )
+                    }
+
                 </ul>
                 <div className="Salida">
                     <ul style={{ listStyleType: "none" }}>
