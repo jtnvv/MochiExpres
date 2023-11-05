@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as IoIcons from "react-icons/io5";
 import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";

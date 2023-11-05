@@ -9,6 +9,10 @@ export const AuthContexProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
+  const [currentTypeUser, setCurrentTypeUser] = useState(
+
+  );
+
   const [currentIn, setCurrentIn] = useState(
     JSON.parse(localStorage.getItem("in")) || null
   );
@@ -17,17 +21,17 @@ export const AuthContexProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("new")) || null
   );
 
-  
-
 
   const login = async (inputs) => {
     const res = await axios.post("/auth/login", inputs);
     setCurrentUser(res.data);
+    setCurrentTypeUser(res.data.tipousuario);
   };
 
   const logout = async (inputs) => {
     await axios.post("/auth/logout");
     setCurrentUser(null);
+    setCurrentTypeUser(null);
   };
 
   const auth_recov1 = async (inputs) => {
@@ -96,7 +100,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores }}>
+    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores }}>
       {children}
     </AuthContext.Provider>
   );

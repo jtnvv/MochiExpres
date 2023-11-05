@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import InfoBar from "./InfoBar";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import styled from 'styled-components';
 import { AuthContext } from "../context/authContext";
 export const selDealer = [];
 
@@ -16,7 +13,7 @@ function Repartidores() {
 
 
 
-    const [selectedDealer, setSelectedDealer] = useState([])
+    // const [selectedDealer, setSelectedDealer] = useState([])
 
     const currentDealer = (Dealer) => {
         selDealer.pop();
