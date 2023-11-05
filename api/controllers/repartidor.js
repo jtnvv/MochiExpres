@@ -48,26 +48,18 @@ export const getRepartidores = (req, res) => {
 
 
 export const registerRepartidores = (req, res) => {
-         
         //Verificar si el usuario ya existe
-    
         const q = "SELECT * FROM repartidor WHERE idRepartidor = ?";
-    
         console.log("Entro")
         //console.log
-    
         db.query(q, [req.body.idRepartidor], (err, data) => {
             if (err) return res.status(500).json(err);
             console.log(err);
             if (data.length) return res.status(409).json("El registrador ya esta registrado");
-    
             //Encriptar contraseña
-    
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(req.body.contrasenaRepartidor, salt);
-    
             const q = "INSERT INTO repartidor(`idrepartidor`,`nombrerepartidor`,`correorepartidor`,`direccionrepartidor`,`telefonorepartidor`,`contrasenarepartidor`,`identificadorpregrepar`,`respuestapregrepar`) values (?)";
-    
             const values = [
                 req.body.idRepartidor,
                 req.body.nombreRepartidor,
