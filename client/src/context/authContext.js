@@ -3,7 +3,6 @@ import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-export let repartidores = [];
 
 export const AuthContexProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
@@ -78,11 +77,9 @@ export const AuthContexProvider = ({ children }) => {
 
   const getRepartidores = async () => {
     const res = await axios.get("/repartidores/getRepartidores");
-    // repartidores.push(res.data);
-    // console.log(repartidores);
 
-    console.log("Aqui empiexaaaa");
-    console.log(res.data);
+    //console.log("Aqui empiexaaaa");
+    //console.log(res.data);
     return res.data;
   }
 

@@ -39,10 +39,10 @@ function Repartidores() {
 
     }, []);
 
-    useEffect(() => {
-        console.log("Aqui esta la respuesta");
-        console.log(repartidoresList);
-    }, [repartidoresList]);
+    // useEffect(() => {
+    //     //console.log("Aqui esta la respuesta");
+    //     //console.log(repartidoresList);
+    // }, [repartidoresList]);
 
     return (
 

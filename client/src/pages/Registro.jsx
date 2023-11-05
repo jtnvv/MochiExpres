@@ -33,12 +33,17 @@ const Registro = () => {
         e.preventDefault();
         console.log(inputs);
         try {
+            if(!inputs.idCliente || !inputs.nombrecliente || !inputs.correocliente || !inputs.direccioncliente || !inputs.telefonocliente || !inputs.contrasenacliente || !inputs.identificadorpregcliente || !inputs.respuestapregcliente){
+                setError("Por favor llene todos los campos");
+                return;
+            }
             if (validarUsuario(inputs.idCliente)) {
                 const res = await axios.post("/auth/register", inputs);
                 console.log("Ha salido bien :D ", res);
                 navigate("/login");
             } else {
                 setError("El identificador debe contener las condiciones necesarias");
+                return;
             }
         } catch (err) {
             setError(err.response.data);
@@ -60,7 +65,7 @@ const Registro = () => {
                             <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
                             <h2 className="usernameTxt">Nombre de Usuario</h2>
                             <input required type="text" placeholder="Nuevo nombre" name="nombrecliente" onChange={handleChange} />
-                            <h2 className="rolTxt">"Rol"</h2>
+                            <h2 className="rolTxt">Cliente</h2>
                         </div>
                         <div className="divRightPersonalInfo">
                             <div className="top">
