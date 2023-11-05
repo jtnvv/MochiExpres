@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import people from "../img/login-people.png";
 //import axios from "axios";
 import { useContext } from "react";
@@ -12,6 +12,7 @@ const Login = () => {
     });
 
     const [err, setError] = useState(null);
+    const [shouldNavigate, setShouldNavigate] = useState(false);
 
     const navigate = useNavigate();
 
@@ -31,12 +32,18 @@ const Login = () => {
             try {
                 //await axios.post("/auth/login", inputs);
                 await login(inputs);
-                navigate("/Home");
+                setShouldNavigate(true);
             } catch (err) {
                 setError(err.response.data);
             }
         }
     };
+
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigate("/Home");
+        }
+    }, [shouldNavigate]);
 
     return (
         <div className="auth">

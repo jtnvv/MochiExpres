@@ -41,11 +41,14 @@ function Clientes() {
                         {
                             clientesList.map((val) => {
                                 return (
-                                    <div className="divBodyPersonalInfo">
-                                        <h2 className="usernameTxt">
-                                            <Link to="/ClientesInfo" onClick={() => currentCliente(val)}> {val.nombrecliente} </Link>
-                                        </h2>
-                                    </div>
+                                    <React.Fragment key={val.idCliente}>
+                                        <div className="divBodyPersonalInfo">
+                                            <h2 className="usernameTxt">
+                                                <Link to="/ClientesInfo" onClick={() => currentCliente(val)}> {val.nombrecliente} </Link>
+                                            </h2>
+                                        </div>
+                                    </React.Fragment>
+
                                 );
                             })
                         }
