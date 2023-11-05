@@ -82,8 +82,8 @@ const PersonalInfo = () => {
                 handleCloseModal();
                 navigate("/Personal-Info");
             }catch(e){
-                setError(err.response.data);
-                console.log(err.response.data);
+                setError(e.response.data);
+                console.log(e.response.data);
             }
                 
         }

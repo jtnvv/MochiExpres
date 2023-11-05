@@ -3,6 +3,8 @@ import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
+export let repartidores = [];
+
 export const AuthContexProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
@@ -15,6 +17,8 @@ export const AuthContexProvider = ({ children }) => {
   const [currentNew, setCurrentNew] = useState(
     JSON.parse(localStorage.getItem("new")) || null
   );
+
+  
 
 
   const login = async (inputs) => {
@@ -72,6 +76,16 @@ export const AuthContexProvider = ({ children }) => {
     return res.data;
   }
 
+  const getRepartidores = async () => {
+    const res = await axios.get("/repartidores/getRepartidores");
+    // repartidores.push(res.data);
+    // console.log(repartidores);
+
+    console.log("Aqui empiexaaaa");
+    console.log(res.data);
+    return res.data;
+  }
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
@@ -85,7 +99,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass }}>
+    <AuthContext.Provider value={{ currentUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores }}>
       {children}
     </AuthContext.Provider>
   );
