@@ -25,7 +25,15 @@ const Home = () => {
                 <div className="divContent">
                     <InfoBar />
                     <div className="ItemsContainer">
-                        Esta es la pagina de inicio del cliente :D
+                        <div className="ItemsContainer__construccion">
+                            <div className="ItemsContainer__img_construccion">
+                                <img src="https://i.imgur.com/Lfs0XUC.png"></img>
+                            </div>
+                            <div className="ItemsContainer__texto_construccion">
+                                <h1>En construcción</h1>
+                                <p>Esta sección se encuentra en construcción</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
