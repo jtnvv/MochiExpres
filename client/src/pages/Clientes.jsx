@@ -3,64 +3,58 @@ import Sidebar from "./Sidebar";
 import InfoBar from "./InfoBar";
 import { AuthContext } from "../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
-export const selClient = [];
+export const clienteSeleccionado = [];
 
 
-function Clientes () {
+function Clientes() {
 
-    const [clientsList, setClients] = useState([]);
+    const [clientesList, setClientes] = useState([]);
     const { getClientes } = useContext(AuthContext);
 
-    const getClients =()=>{
-        Axios.get("http://localhost:3005/clients").then((response)=>{
-        setClients(response.data);
-        console.log(typeof(response))
-    })
+    const currentCliente = (cliente) => {
+        clienteSeleccionado.pop();
+        clienteSeleccionado.push(cliente);
     }
 
-    const [selectedClient, setSelectedClient] = useState([])
+    useEffect(() => {
+        const obtenerClientes = async () => {
+            try {
+                const res = await getClientes();
+                setClientes(res);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        obtenerClientes();
+    }, [])
 
-    const currentClient =(Client) => {
-           selClient.pop();
-           selClient.push(Client)
-
-    }
-
-    useEffect(()=>{
-        getClients();
-    },[])
-    
     return (
-        
+
         <div className="content-flex">
-            <Sidebar/>
+            <Sidebar />
             <div className="divContent">
-                
+
                 <div className="ItemsContainer">
                     ola soy un cliente
                     <Link to="/Home" className="ClientesInfo"> Volver</Link>
                     <div className="lista">
-                    
-                    {
-                                
-                                clientsList.map((val,key)=>{
-                                    return <li key={key}>
+                        {
+                            clientesList.map((val) => {
+                                return (
                                     <div className="divBodyPersonalInfo">
-                                    
-                                    <h2 className="usernameTxt">
-                                        <Link to="/ClientesInfo" onClick={() => currentClient(val)}> {val.nombrecliente} </Link>  
-                                    </h2> 
-
-                                </div>
-                                </li>
-                                })
-                            }
+                                        <h2 className="usernameTxt">
+                                            <Link to="/ClientesInfo" onClick={() => currentCliente(val)}> {val.nombrecliente} </Link>
+                                        </h2>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                     <div>
-                        
+
                     </div>
                 </div>
-                
+
             </div>
         </div>
     );
