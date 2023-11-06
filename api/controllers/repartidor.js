@@ -85,7 +85,7 @@ export const deleteRepartidor = (res, req) => {
     jwt.verify(token, "jwtkey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!");
         
-        const repartidorId = req.body.idRepartidor;
+        const repartidorId = req.body.idrepartidor;
 
         const q = "DELETE FROM repartidor WHERE idrepartidor = ?";
 
