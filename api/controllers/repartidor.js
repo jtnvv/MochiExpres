@@ -86,6 +86,8 @@ export const deleteRepartidor = (req, res) => {
         if (err) return res.status(403).json("Token is not valid!");
         
         let repartidorId = req.params.idrepartidor;
+        console.log("Aqui ", clienteId);
+        if (clienteId === "") return res.status(403).json("No se ha enviado el id del repartidor");
 
         const q = "DELETE FROM repartidor WHERE idrepartidor = ?";
 
