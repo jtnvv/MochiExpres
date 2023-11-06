@@ -22,11 +22,16 @@ import "./index.css";
 import PersonalInfo from "./pages/PersonalInfo";
 import Actualiza from "./pages/ActualizacionInfo";
 import Home from "./pages/Home";
+import AgregarRepartidor from "./pages/AgregarRepartidores";
 import EnviosInfo from "./pages/EnviosInfo";
 const router = createBrowserRouter([
   {
     path: "/",
     element:<Login />,
+  },
+  {
+    path: "/AgregarRepartidor",
+    element:<AgregarRepartidor/>,
   },
   {
     path: "/Actualiza-personal-Info",
