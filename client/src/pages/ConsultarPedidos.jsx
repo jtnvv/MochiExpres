@@ -11,6 +11,7 @@ const ConsultarPedidos = () => {
 
     const [clientesList, setClientes] = useState([]);
     const [enviosList, setEnviosList] = useState([]);
+    const [envioSeleccionado, setEnvioSeleccionado] = useState([]);
     const { getClientes } = useContext(AuthContext);
     const { getEnviosCliente } = useContext(AuthContext);
 
@@ -74,7 +75,7 @@ const ConsultarPedidos = () => {
     };
     const showModal = (idCliente) => {
         if (!clickedModal) {
-            setIdentificador({ idCliente: idCliente});
+            setIdentificador({ idCliente: idCliente });
             setModalStyle({ visibility: 'visible' });
 
         } else {
@@ -84,10 +85,22 @@ const ConsultarPedidos = () => {
     };
 
     useEffect(() => {
-        if(identificador.idCliente !== ""){
+        if (identificador.idCliente !== "") {
             obtenerEnviosCliente();
         }
-    },[identificador]);
+    }, [identificador]);
+
+    const handleEnvioSeleccionado = (event) => {
+        const selectedId = event.target.value;
+        console.log(enviosList);
+        const selectedEnvio = enviosList.filter((envio) => envio.idenvio == selectedId);
+        setEnvioSeleccionado(selectedEnvio);
+        console.log("Se selecciono: ", selectedEnvio);
+    }
+
+    useEffect(() => {
+        console.log(envioSeleccionado);
+    }, [envioSeleccionado]);
 
     return (
         <div className="content-flex">
@@ -126,9 +139,20 @@ const ConsultarPedidos = () => {
                 <div className="containerModalEliminarRepartidor2">
                     <div className="eliminarModalConsulta" onClick={showModal}>X</div>
                     <div className="modalConsultarPedido">
-                        <div className="row">
+                        <div className="row_selection">
                             <h3>ID</h3>
-                            <input type="text" disabled className="textareaInput" />
+                            <select onChange={handleEnvioSeleccionado}>
+                                {enviosList.map((envio) => {
+                                    return (
+                                        <React.Fragment key={envio.idenvio}>
+                                            <option key={envio.idenvio} value={envio.idenvio}>
+                                                {envio.idenvio}
+                                            </option>
+                                        </React.Fragment>
+                                    );
+
+                                })}
+                            </select>
                         </div>
                         <div className="row">
                             <h3>Fecha envío</h3>

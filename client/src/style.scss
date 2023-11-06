@@ -290,16 +290,18 @@
 
 
         }
-        .ModuloRepartidor{
+
+        .ModuloRepartidor {
             height: 300px;
             width: 300px;
             border-radius: 30px;
-            background-color:  #c4dde3;
+            background-color: #c4dde3;
             border: solid 3px white;
             display: flexbox;
             justify-content: center;
             align-items: center;
-            .ModuloRepartidor_DivImagen{
+
+            .ModuloRepartidor_DivImagen {
                 height: 200px;
                 width: 200px;
                 border-radius: 100%;
@@ -307,27 +309,31 @@
                 margin-left: 50px;
                 margin-top: 20px;
                 border: solid white 3px;
-                .ModuloRepartidor_ImagenPerfil{
+
+                .ModuloRepartidor_ImagenPerfil {
                     height: 100%;
                     width: 100%;
                     overflow: hidden;
                 }
             }
-            .ModuloRepartidor_Titulo{
+
+            .ModuloRepartidor_Titulo {
                 font-family: Coiny, cursive;
-                font-size:medium;
+                font-size: medium;
                 display: flex;
                 justify-content: center;
                 margin-top: 20px;
                 color: #4A4846;
             }
         }
-        .ModuloRepartidor:hover{
+
+        .ModuloRepartidor:hover {
             transform: translateY(-3px);
             box-shadow: 0 4px 17px white;
-            
+
         }
-        .BarraRepartidor{
+
+        .BarraRepartidor {
             margin-top: 20px;
             margin-bottom: 20px;
             display: flex;
@@ -337,29 +343,31 @@
             height: 60px;
             align-items: center;
             justify-content: space-around;
-            .containerButtonsRepartidor{    
+
+            .containerButtonsRepartidor {
                 display: flex;
                 align-items: center;
                 height: 100%;
                 width: 50%;
                 justify-content: space-around;
-                .styleH3Clientes{
+
+                .styleH3Clientes {
                     color: #3289A0;
                     font-family: Coiny, cursive;
                     font-size: 30px;
                     margin-right: 30px;
                 }
             }
-            
-            .containerBusquedaRepartidor{
+
+            .containerBusquedaRepartidor {
                 display: flex;
                 align-items: center;
                 height: 100%;
                 width: 50%;
-                justify-content: space-evenly  ;
+                justify-content: space-evenly;
             }
 
-            .BusquedaRepartidor{
+            .BusquedaRepartidor {
                 height: 70%;
                 width: 60%;
                 border: solid black 1px;
@@ -370,7 +378,8 @@
                 color: black;
                 font-family: Coiny, cursive;
             }
-            .buttonRepartidorStyle{
+
+            .buttonRepartidorStyle {
                 padding-left: 20px;
                 padding-right: 20px;
                 cursor: pointer;
@@ -379,8 +388,9 @@
                 margin-right: 30px;
                 background-color: #a7c1c8;
                 color: #4A4846;
-                font-family: Coiny, cursive;    
+                font-family: Coiny, cursive;
             }
+
             .InfoBarImg {
                 padding-left: 10px;
                 padding-right: 20px;
@@ -400,21 +410,24 @@
             }
 
         }
-        .lista{
+
+        .lista {
             height: 85vh;
             width: 100%;
             display: flex;
             flex-wrap: wrap;
             overflow-y: auto;
             justify-content: center;
-            align-items: center;    
+            align-items: center;
             margin-bottom: 50px;
-            .ModuloRepartidorContainer{
+
+            .ModuloRepartidorContainer {
                 margin-left: 10px;
                 margin-right: 50px;
                 border-radius: 30px;
                 margin-bottom: 30px;
-                .eliminarModulo{
+
+                .eliminarModulo {
                     height: 40px;
                     width: 40px;
                     display: flex;
@@ -431,16 +444,18 @@
                     border: solid 1px white;
                     visibility: hidden;
                 }
-                .eliminarModulo:hover{
+
+                .eliminarModulo:hover {
                     background-color: white;
                     color: black;
                 }
             }
         }
-        .modalConsultarContenedor{
+
+        .modalConsultarContenedor {
             height: 100vh;
             width: 100vw;
-            background-color: rgb(0,0,0, 0.6);
+            background-color: rgb(0, 0, 0, 0.6);
             visibility: hidden;
             position: absolute;
             z-index: 1;
@@ -448,7 +463,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            .modalConsultarPedido{
+
+            .modalConsultarPedido {
                 border: solid gray 3px;
                 background-color: white;
                 opacity: 1.4;
@@ -456,11 +472,14 @@
                 display: block;
                 padding-left: 30px;
                 padding-right: 30px;
-                border-radius: 30px;   
-                padding-top: 10px;
-                .row{
+                border-radius: 30px;
+                padding-top: 30px;
+                padding-bottom: 30px;
+
+                .row_selection {
                     display: flex;
-                    h3{
+
+                    h3 {
                         background-color: #F4BB3A;
                         margin: 0;
                         height: 50px;
@@ -472,47 +491,91 @@
                         border-radius: 20px 0px 0px 20px;
                         font-family: Coiny, cursive;
                     }
-                    .textareaInput{
+
+                    select{
+                        margin:0;
+                        
+                        width: 100%;
+                        height: 50px;
+                        font-family: Coiny, cursive;
+                        border-radius: 0px 20px 20px 0px;
+
+                    }
+
+                    option{
+                        font-family: Comfortaa, cursive;
+                        padding: 1vh;
+                        
+                    }
+
+                }
+
+
+
+
+
+                .row {
+                    display: flex;
+
+                    h3 {
+                        background-color: #F4BB3A;
+                        margin: 0;
+                        height: 50px;
+                        width: 150px;
+                        border: solid gray 2px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 20px 0px 0px 20px;
+                        font-family: Coiny, cursive;
+                    }
+
+                    .textareaInput {
                         margin: 0;
                         width: 100%;
                         height: 50px;
                         font-family: Coiny, cursive;
-                        border-radius: 0px 20px 20px 0px ;
+                        border-radius: 0px 20px 20px 0px;
 
                     }
                 }
-                h3{
+
+                h3 {
                     margin-top: 30px;
                     font-family: Coiny, cursive;
                     color: #4A4846;
                     text-align: center;
                 }
-                p{
+
+                p {
                     margin-top: 20px;
                     color: #4A4846;
                     text-align: center;
                     font-family: Comfortaa, cursive;
                 }
-                button{
+
+                button {
                     margin-top: 40px;
                     font-family: Coiny, cursive;
                     border: solid black 2px;
                     border-radius: 50px;
                     height: 40px;
                     width: 200px;
-                    background-color:#3289A0;
+                    background-color: #3289A0;
                     color: white;
-                    margin-left: 23%;  
-                    font-size: large;                      
+                    margin-left: 23%;
+                    font-size: large;
                 }
-                button:hover{
+
+                button:hover {
                     transform: translateY(-3px);
                     transition: 0.2s;
-                    box-shadow: 0 4px 17px black;    
-                    cursor: pointer;                
+                    box-shadow: 0 4px 17px black;
+                    cursor: pointer;
                 }
             }
-            .eliminarModalConsulta{
+
+            .eliminarModalConsulta {
                 height: 40px;
                 width: 40px;
                 display: flex;
@@ -529,23 +592,25 @@
                 border: solid 1px white;
                 font-family: Coiny, cursive;
             }
-            .eliminarModalConsulta:hover{
+
+            .eliminarModalConsulta:hover {
                 background-color: white;
                 color: black;
             }
         }
-        .modalEliminarRepartidorContenedor{
+
+        .modalEliminarRepartidorContenedor {
             height: 100vh;
             width: 100vw;
-            background-color: rgb(0,0,0, 0);
+            background-color: rgb(0, 0, 0, 0);
             visibility: hidden;
             position: absolute;
             z-index: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            
-            .modalEliminarRepartidor{
+
+            .modalEliminarRepartidor {
                 background-color: white;
                 opacity: 1.4;
                 height: 260px;
@@ -554,39 +619,44 @@
                 padding-left: 30px;
                 padding-right: 30px;
                 border: solid gray 2px;
-                border-radius: 30px;    
-                h3{
+                border-radius: 30px;
+
+                h3 {
                     margin-top: 30px;
                     font-family: Coiny, cursive;
                     color: #4A4846;
                     text-align: center;
                 }
-                p{
+
+                p {
                     margin-top: 20px;
                     color: #4A4846;
                     text-align: center;
                     font-family: Comfortaa, cursive;
                 }
-                button{
+
+                button {
                     margin-top: 40px;
                     font-family: Coiny, cursive;
                     border: solid black 2px;
                     border-radius: 50px;
                     height: 40px;
                     width: 200px;
-                    background-color:#3289A0;
+                    background-color: #3289A0;
                     color: white;
-                    margin-left: 23%;  
-                    font-size: large;                      
+                    margin-left: 23%;
+                    font-size: large;
                 }
-                button:hover{
+
+                button:hover {
                     transform: translateY(-3px);
                     transition: 0.2s;
-                    box-shadow: 0 4px 17px black;    
-                    cursor: pointer;                
+                    box-shadow: 0 4px 17px black;
+                    cursor: pointer;
                 }
             }
-            .eliminarModalRepartidor{
+
+            .eliminarModalRepartidor {
                 height: 40px;
                 width: 40px;
                 display: flex;
@@ -603,21 +673,23 @@
                 border: solid 1px white;
                 font-family: Coiny, cursive;
             }
-            .eliminarModalRepartidor:hover{
+
+            .eliminarModalRepartidor:hover {
                 background-color: white;
                 color: black;
             }
 
         }
 
-        .modalEnvioContenedor{
+        .modalEnvioContenedor {
             height: 100%;
             width: 100%;
             z-index: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            .modalEnvioContenedor2{
+
+            .modalEnvioContenedor2 {
                 opacity: 1.4;
                 height: 80vh;
                 width: 80vw;
@@ -628,55 +700,59 @@
                 padding-left: 30px;
                 padding-right: 30px;
                 border-radius: 30px;
-                
-                .id{
+
+                .id {
                     display: block;
                     width: 310px;
-                    .idEnvio{
+
+                    .idEnvio {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        font-size: 25px;                            
+                        font-size: 25px;
                         font-family: Coiny, cursive;
                         border: solid 1px black;
                         border-radius: 30px;
                         background-color: #C4DDE3;
                         color: orange;
                     }
-                    .info{                 
+
+                    .info {
                         font-family: Coiny, cursive;
                         border: solid 1px black;
                         border-radius: 30px;
                         background-color: #C4DDE3;
                         margin-top: 20px;
                         padding-bottom: 20px;
-                        .status{
+
+                        .status {
                             margin-left: 80px;
                             text-align: center;
                             height: 40px;
                             width: 150px;
                             border-radius: 30px;
                             font-family: Coiny, cursive;
-                            
+
                         }
                     }
-                } 
-                
-                .tarifaDescripcion{
-                    .tarifa{
+                }
+
+                .tarifaDescripcion {
+                    .tarifa {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        font-size: 25px;                            
+                        font-size: 25px;
                         font-family: Coiny, cursive;
                         border: solid 1px black;
                         border-radius: 30px;
                         background-color: #C4DDE3;
                         color: #4A4846;
-                        
+
                     }
-                    .Descripcion{
-                        display: block;            
+
+                    .Descripcion {
+                        display: block;
                         font-family: Coiny, cursive;
                         height: 410px;
                         width: 280px;
@@ -685,23 +761,24 @@
                         background-color: #C4DDE3;
                         margin-top: 20px;
 
-                        .descripcionText{
+                        .descripcionText {
                             margin-left: 20px;
                             border-radius: 30px;
                             width: 70%;
                             height: 60%;
                             text-align: start;
-                            text-wrap: wrap ;
+                            text-wrap: wrap;
                             color: #4A4846;
                             font-family: Coiny, cursive;
-                            padding:20px;
+                            padding: 20px;
                             background-color: white;
                             resize: none;
                         }
                     }
                 }
-                .personalInfo{
-                    display: block;            
+
+                .personalInfo {
+                    display: block;
                     font-family: Coiny, cursive;
                     height: 410px;
                     width: 280px;
@@ -710,20 +787,23 @@
                     background-color: #C4DDE3;
                     margin-top: 20px;
                     padding-top: 20px;
-                    .status{
+
+                    .status {
                         margin-left: 60px;
                         text-align: center;
                         height: 40px;
                         width: 150px;
                         border-radius: 30px;
                         font-family: Coiny, cursive;
-                        
+
                     }
-                    .personalInfoImage{
+
+                    .personalInfoImage {
                         height: 200px;
                         width: 200px;
                         margin-left: 40px;
-                        img{
+
+                        img {
                             height: 100%;
                             width: 100%;
                             border-radius: 100%;
@@ -731,47 +811,54 @@
                         }
                     }
                 }
-                h3{
+
+                h3 {
                     margin-top: 30px;
                     font-family: Coiny, cursive;
                     color: #4A4846;
                     text-align: center;
                 }
-                p{
+
+                p {
                     margin-top: 20px;
                     color: #4A4846;
                     text-align: center;
                     font-family: Comfortaa, cursive;
                 }
-                button{
+
+                button {
                     margin-top: 30px;
                     font-family: Coiny, cursive;
                     border: solid black 2px;
                     border-radius: 50px;
                     height: 40px;
                     width: 200px;
-                    background-color:#3289A0;
+                    background-color: #3289A0;
                     color: white;
                     margin-left: 15%;
                     font-size: large;
                 }
-                button:hover{
+
+                button:hover {
                     transform: translateY(-3px);
                     transition: 0.2s;
-                    box-shadow: 0 4px 17px black;    
-                    cursor: pointer;                
+                    box-shadow: 0 4px 17px black;
+                    cursor: pointer;
                 }
             }
-            .card{
+
+            .card {
                 margin-top: 10px;
             }
-            .card:hover{
+
+            .card:hover {
                 transform: translateY(-3px);
                 transition: 0.2s;
-                box-shadow: 0 4px 17px black;  
+                box-shadow: 0 4px 17px black;
 
             }
-            .eliminarModalRepartidor{
+
+            .eliminarModalRepartidor {
                 height: 40px;
                 width: 40px;
                 display: flex;
@@ -788,17 +875,20 @@
                 border: solid 1px white;
                 font-family: Coiny, cursive;
             }
-            .eliminarModalRepartidor:hover{
+
+            .eliminarModalRepartidor:hover {
                 background-color: white;
                 color: black;
             }
 
         }
+
         @media (max-width: 1110px) {
-            .modalEnvioContenedor{
+            .modalEnvioContenedor {
                 overflow-y: scroll;
             }
         }
+
         //Info. personal
         .content-flex {
             //border: 1px solid #000;
@@ -842,10 +932,10 @@
                     width: 100%;
                     height: 100%;
                     align-items: center;
-                    
+
                 }
 
-                .ItemsContainer__img_construccion img{
+                .ItemsContainer__img_construccion img {
                     width: 90%;
                     justify-content: end;
                 }
@@ -856,28 +946,30 @@
                     text-shadow: #f8d4c4 0.1em 0.1em 0.1em
                 }
 
-                .ItemsContainer__texto_construccion p{
+                .ItemsContainer__texto_construccion p {
                     font-size: 3vh;
                     font-family: Comfortaa, cursive;
                 }
 
-                .ItemsContainer__texto_construccion h1{
+                .ItemsContainer__texto_construccion h1 {
                     font-size: 8vh;
                     font-family: Coiny;
                 }
 
-                .ItemsContainerEnvio{
-                    width: 100%; 
-                    .ModuloEnvioBarra{
+                .ItemsContainerEnvio {
+                    width: 100%;
+
+                    .ModuloEnvioBarra {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
-                        align-items: center;  
+                        align-items: center;
                         width: 100%;
                         cursor: pointer;
                         margin-top: 30px;
                     }
                 }
+
                 .ItemsContainer-PersonalInfo {
                     height: 90vh;
                     width: 100%;
@@ -1021,7 +1113,7 @@
                                         .p {
                                             display: flex;
                                             width: 100%;
-                                            
+
 
                                             Input {
                                                 border-radius: 10px;
@@ -1050,7 +1142,7 @@
                                                 }
                                             }
 
-                                            .p-error{
+                                            .p-error {
                                                 display: flex;
                                                 width: 100%;
                                                 margin-bottom: 2.3vw;
@@ -1104,7 +1196,7 @@
                                                 visibility: visible;
                                             }
 
-                                            
+
 
                                             .p-list-error {
                                                 position: absolute;
@@ -1290,7 +1382,8 @@
                 }
             }
         }
-        .content-flex-module-Envio{
+
+        .content-flex-module-Envio {
             margin-top: 20px;
             display: flex;
             border-radius: 25px;
@@ -1299,21 +1392,26 @@
             height: 80px;
             justify-content: space-evenly;
             align-items: center;
-            h2,h3{
+
+            h2,
+            h3 {
                 color: #4A4846;
                 font-family: Coiny, cursive;
-            
+
             }
-            h2{
+
+            h2 {
                 color: orange;
             }
-            .fecha{
-                font-size:smaller;
+
+            .fecha {
+                font-size: smaller;
                 display: block;
                 height: 100%;
                 padding: 0;
                 margin: 0;
-                h3{                
+
+                h3 {
                     color: #4A4846;
                     padding: 0;
                     margin: 0;
@@ -1321,6 +1419,7 @@
 
                 }
             }
+
             .InfoBarImg {
                 height: 55px;
                 width: 55px;
@@ -1337,6 +1436,7 @@
                 filter: brightness(120%)
             }
         }
+
         .content-flex-infobar {
             margin-top: 20px;
             display: flex;
