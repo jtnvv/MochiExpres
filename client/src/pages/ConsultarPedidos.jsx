@@ -77,7 +77,7 @@ const ConsultarPedidos = () => {
         if (!clickedModal) {
             setIdentificador({ idCliente: idCliente });
             setModalStyle({ visibility: 'visible' });
-
+            setEnvioSeleccionado({});
         } else {
             setModalStyle({ visibility: 'hidden' });
         }
