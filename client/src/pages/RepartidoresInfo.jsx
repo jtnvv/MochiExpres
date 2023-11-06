@@ -8,7 +8,7 @@ import * as RiIcons from "react-icons/ri";
 import { AuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { repartidorSeleccionado } from "./Repartidores";
+import { selDealer } from "./Repartidores";
 
 const RepartidoresInfo = () => {
 
@@ -43,7 +43,7 @@ const RepartidoresInfo = () => {
                     <div className="divBodyPersonalInfo">
                         <div className="divLeftPersonalInfo">
                             <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
-                            <h2 className="usernameTxt">{repartidorSeleccionado[0].nombrerepartidor}</h2>
+                            <h2 className="usernameTxt">{selDealer[0].nombrerepartidor}</h2>
                             
                         </div>
                         <div className="divRightPersonalInfo">
@@ -53,19 +53,19 @@ const RepartidoresInfo = () => {
                                     <li>
                                         <div className="p">
                                             <p className="p-list">Número telefónico: </p>
-                                            <p className="content">{repartidorSeleccionado[0].telefonorepartidor}</p>
+                                            <p className="content">{selDealer[0].telefonorepartidor}</p>
                                         </div>
                                     </li><br />
                                     <li>
                                         <div className="p">
                                             <p className="p-list">Correo electrónico: </p>
-                                            <p className="content">{repartidorSeleccionado[0].correorepartidor}</p>
+                                            <p className="content">{selDealer[0].correorepartidor}</p>
                                         </div>
                                     </li><br />
                                     <li>
                                         <div className="p">
                                             <p className="p-list">Número identidad: </p>
-                                            <p className="content">{repartidorSeleccionado[0].idrepartidor}</p>
+                                            <p className="content">{selDealer[0].idrepartidor}</p>
                                         </div>
                                     </li><br />
                                     
