@@ -79,13 +79,13 @@ export const registerRepartidores = (req, res) => {
 }
 
 
-export const deleteRepartidor = (res, req) => {
+export const deleteRepartidor = (req, res) => {
     const token = req.cookies.access_token;
     if(!token) return res.status(401).json("No estas autorizado");
     jwt.verify(token, "jwtkey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!");
         
-        const repartidorId = req.body.idrepartidor;
+        let repartidorId = req.params.idrepartidor;
 
         const q = "DELETE FROM repartidor WHERE idrepartidor = ?";
 
