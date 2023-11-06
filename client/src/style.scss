@@ -885,7 +885,49 @@
                     width: 100%;
                     margin-top: 30px;
                 }
-                
+
+                .ItemsContainer__construccion {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 1fr;
+                    gap: 0px 0px;
+                    margin-bottom: 8vh;
+                    margin-left: 5vh;
+                    margin-right: 5vh;
+                    height: 100%;
+                    align-items: center;
+                    grid-template-areas:
+                        "img_construccion texto_construccion";
+                }
+
+                .ItemsContainer__img_construccion {
+                    grid-area: img_construccion;
+                    width: 100%;
+                    height: 100%;
+                    align-items: center;
+                    
+                }
+
+                .ItemsContainer__img_construccion img{
+                    width: 90%;
+                    justify-content: end;
+                }
+
+                .ItemsContainer__texto_construccion {
+                    grid-area: texto_construccion;
+                    color: #fff;
+                    text-shadow: #f8d4c4 0.1em 0.1em 0.1em
+                }
+
+                .ItemsContainer__texto_construccion p{
+                    font-size: 3vh;
+                    font-family: Comfortaa, cursive;
+                }
+
+                .ItemsContainer__texto_construccion h1{
+                    font-size: 8vh;
+                    font-family: Coiny;
+                }
                 .ItemsContainerEnvio{
                     width: 100%; 
                     .ModuloEnvioBarra{
