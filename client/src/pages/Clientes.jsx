@@ -83,11 +83,6 @@ function Clientes() {
         }
 
     }
-
-
-    
-
-
     // useEffect(() => {
     //     if(clickedModal){
     //         setIdentificador({idCliente: identificador});

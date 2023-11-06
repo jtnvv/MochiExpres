@@ -2,6 +2,16 @@ import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+export const getEnvios = (req, res) => {
+    const q = "SELECT * FROM envio";
+    //console.log("Entro");
+    db.query(q, (err, data) => {
+        if (err) return res.status(500).json(err);
+        //console.log(err);
+        if (data.length == 0) return res.status(409).json("No hay envíos registrados");
+        return res.status(200).json(data);
+    });
+}
 
 export const getEnviosCliente = (req, res) => {
     const q = "SELECT e.idenvio, e.descripcionpaquete, e.estadoenvio, e.tarifaenvio, e.fechaenvioentregado, e.fechaenviorealizado, e.destinoenvio, e.idrepartidor, e.idsolicitudenvio, s.tarifasolicitud, s.pesopaquete, s.idCliente FROM (envio e JOIN solicitudenvio s ON e.idsolicitudenvio = s.idsolicitudenvio) WHERE s.idCliente = ?";

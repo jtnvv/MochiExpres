@@ -1,38 +1,81 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Sidebar from "./Sidebar";
 import ModuloEnvio from "./ModuloEnvio";
-const Envios = () => {
-    
-    const [datos, setDatos] = useState({
-        id: "",
-        nombre: "",
-        fechaEnvioRealizado: "",
-        fechaEnvioEntregado: "",
-        repartidor: "",
-        tarifa: ""
-      });
-      const [redirigir, setRedirigir] = useState(false);
-    
-      const actualizarDatos = (id, nombre, fechaEnvioRealizado, fechaEnvioEntregado, tarifa) => {
-        setDatos({
-          id,
-          nombre,
-          fechaEnvioRealizado,
-          fechaEnvioEntregado,
-          tarifa
+import { AuthContext } from "../context/authContext";
+import { clienteSeleccionado } from "./Clientes";
+
+export const envioSeleccionado = [];
+
+function Envios() {
+
+    const [enviosList, setEnvios] = useState([]);
+    const { getEnvios } = useContext(AuthContext);
+
+    const [identificador, setIdentificador] = useState({
+        idenvio: ""
+    });
+
+    useEffect(() => {
+        console.log(identificador);
+    });
+
+    const [err, setError] = useState(null);
+
+    const currentEnvio = (envio) => {
+        envioSeleccionado.pop();
+        envioSeleccionado.push(envio);
+    }
+
+    useEffect(() => {
+        const obtenerEnvios = async () => {
+            try {
+                const res = await getEnvios();
+                setEnvios(res);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        obtenerEnvios();
+    });
+
+    const [envioSeleccionado, setEnvioSeleccionado] = useState({
+        idenvio: "",
+        descripcionpaquete: "",
+        estadoenvio: "",
+        tarifaenvio: "",
+        fechaenvioentregado: "",
+        fechaenviorealizado: "",
+        destinoenvio: "",
+        idrepartidor: "",
+        idsolicitudenvio: ""
+    });
+    const [redirigir, setRedirigir] = useState(false);
+
+    const actualizarDatos = (id, descripcion, estado, tarifa, fechaentrega, fechacreacion, destino, idrepartidor, idsolicitud) => {
+        setEnvioSeleccionado({
+            id,
+            descripcion,
+            estado,
+            tarifa,
+            fechaentrega,
+            fechacreacion,
+            destino,
+            idrepartidor,
+            idsolicitud
         });
         setRedirigir(true);
-      };
-    
-      useEffect(() => {
+    };
+
+    useEffect(() => {
         if (redirigir) {
-          const url = `/EnviosInfo?id=${datos.id}&nombre=${datos.nombre}&fechaEnvioRealizado=${datos.fechaEnvioRealizado}&fechaEnvioEntregado=${datos.fechaEnvioEntregado}&repartidor=${datos.repartidor}&tarifa=${datos.tarifa}`;
-          window.location.href = url;
+            const url = `/EnviosInfo?idenvio=${envioSeleccionado.idenvio}&descripcionpaquete=${envioSeleccionado.descripcionpaquete}&estadoenvio=${envioSeleccionado.estadoenvio}&tarifaenvio=${envioSeleccionado.tarifaenvio}&fechaenvioentregado=${envioSeleccionado.fechaenvioentregado}&fechaenviorealizado=${datos.fechaenviorealizado}&destinoenvio=${datos.destinoenvio}&idrepartidor=${datos.idrepartidor}&idsolicitud=${datos.idsolicitud}`;
+            window.location.href = url;
         }
-      }, [redirigir, datos]);
+    }, [redirigir, envioSeleccionado]);
+
     return (
         <div className="content-flex">
-            <Sidebar/>
+            <Sidebar />
             <div className="divContent">
                 <div className="ItemsContainerEnvio">
                     <div className="BarraRepartidor">
@@ -40,27 +83,29 @@ const Envios = () => {
                             <h3 className="styleH3Clientes">Envíos</h3>
                         </div>
                         <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Envío"/>
+                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Envío" />
                             <div className="InfoBarImg">
-                                <img className="imgPersonalInfo"  src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                                <img className="imgPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
                             </div>
                         </div>
                     </div>
-                    <div className="ModuloEnvioBarra" onClick={() => actualizarDatos("170703","Andersson","17/06/03","17/07/03","17000.0")}>
-                        <ModuloEnvio  id={"170703"} nombre={"Andersson"} fechaEnvioRealizado={"17/06/03"} 
-                            fechaEnvioEntregado={"17/07/03"} repartidor={"Ivana"} tarifa={"17000.0"} />    
-                    </div>
-                        
-                    <div className="ModuloEnvioBarra" onClick={() => actualizarDatos("240404","Ivana","24/04/04","24/05/04","19000.90")}>
-                        <ModuloEnvio id={"240404"} nombre={"Ivana"} fechaEnvioRealizado={"24/04/04"} 
-                        fechaEnvioEntregado={"24/05/04"} repartidor={"Kelly"} tarifa={"19000.90"} />    
-                    </div>
-                        
-                    <div className="ModuloEnvioBarra" onClick={() => actualizarDatos("190900","Hernan","19/04/77","19/07/77","47000.54")}>
-                        <ModuloEnvio  id={"190900"} nombre={"Hernan"} fechaEnvioRealizado={"19/04/77"} 
-                        fechaEnvioEntregado={"19/07/77"} repartidor={"Catalina"} tarifa={"47000.54"} />    
-                    </div>
-                    
+                    {
+                        enviosList.map((envio) => {
+                            return (
+                                <React.Fragment key={envio.idenvio}>
+                                    <div className="ModuloEnvioBarra" onClick={() => actualizarDatos(envio.idenvio, envio.descripcionpaquete, envio.estadoenvio, envio.tarifaenvio, envio.fechaenvioentregado, envio.fechaenviorealizado, envio.destinoenvio, envio.idrepartidor, envio.idsolicitud)}>
+                                        <ModuloEnvio id={envio.idenvio} nombre={envio.descripcionpaquete} fechaEnvioRealizado={envio.fechaenviorealizado}
+                                            fechaEnvioEntregado={envio.fechaenvioentregado} repartidor={envio.idrepartidor} tarifa={envio.tarifaenvio} />
+                                    </div>
+                                </React.Fragment>
+                            );
+
+                        })
+                    }
+
+
+
+
                 </div>
             </div>
         </div>
