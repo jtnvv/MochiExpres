@@ -812,7 +812,70 @@
             display: flex;
             background: rgb(50, 137, 160);
             background: linear-gradient(170deg, rgba(50, 137, 160, 1) 0%, rgba(58, 126, 125, 1) 52%, rgba(247, 212, 193, 1) 100%);
-
+            
+            
+                .divContentHAdmin{
+                    height: 100vh;
+                    width: 100vw;
+                    .containerBusquedaRepartidor{
+                        justify-content: end;
+                    }
+                    .ItemsContainerHAdmin{
+                        height: 80vh;
+                        width: 100%;
+                        margin-top: 30px;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        align-items: center;
+                        .NombreH, .ConsultarPedidosH, .HabilitarSH, .RepartidoresH, .ClientesH, .EnviosH{
+                            height: 45%;
+                            width: 20%;
+                            border-radius: 30px;
+                            margin-right: 5%;
+                            margin-left: 5%;
+                            margin-bottom: 5%;
+                            background: #c4dde3;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-wrap: wrap;
+    
+                            .image{
+                                height: 65%;
+                                width: 65%;
+                                border-radius: 100%;
+                                overflow: hidden;
+                                img{
+                                    height: 100%;
+                                    width: 100%;
+                                }
+                            }
+                            h3{
+                                width: 100%;
+                                font-family: Coiny, cursive;
+                                font-size: 27px;
+                                color: #4A4846;
+                                text-align: center;
+                                margin: 0;
+                            }
+                            .IconColorH{
+                                width: 55%;
+                                height: 55%;
+                            }
+                            &:hover{
+                                transform: translateY(-3px);
+                                box-shadow: 0 4px 17px white;
+                                .IconColorH{
+                                    color:#3289A0;
+                                }
+                                h3{
+                                    color:#3289A0;
+                                }
+                            }
+                        }
+                    }
+                }
             .divContent {
                 height: 100%;
                 width: 100%;
@@ -822,6 +885,7 @@
                     width: 100%;
                     margin-top: 30px;
                 }
+                
                 .ItemsContainerEnvio{
                     width: 100%; 
                     .ModuloEnvioBarra{
