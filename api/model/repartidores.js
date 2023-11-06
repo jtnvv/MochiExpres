@@ -8,7 +8,7 @@ const router = express.Router();
 //router.get("/hola", paginaInicio);
 router.get("/getRepartidores", getRepartidores);
 router.post("/register", registerRepartidores);
-router.delete("/deleteRepartidor", deleteRepartidor);
+router.delete("/deleteRepartidor/:idRepartidor", deleteRepartidor);
 
 
 export default router

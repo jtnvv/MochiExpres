@@ -87,8 +87,8 @@ export const AuthContexProvider = ({ children }) => {
     return res.data;
   }
 
-  const deleteRepartidor = async (inputs) => {
-    const res = await axios.delete("/repartidores/deleteRepartidor", inputs);
+  const deleteRepartidor = async (idRepartidor) => {
+    const res = await axios.delete(`/repartidores/deleteRepartidor/${idRepartidor}`, idRepartidor);
     //console.log("Aqui empiexaaaa");
     console.log(res.data);
   }
