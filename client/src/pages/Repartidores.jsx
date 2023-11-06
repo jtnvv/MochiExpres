@@ -3,7 +3,6 @@ import Sidebar from "./Sidebar";
 import ModuloRepartidor from "./ModuloRepartidor"
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-import * as BsIcons from "react-icons/bs";
 export const repartidorSeleccionado = [];
 
 
@@ -11,11 +10,18 @@ function Repartidores() {
 
     const [repartidoresList, setRepartidores] = useState([]);
     const { getRepartidores } = useContext(AuthContext);
+    const { deleteRepartidor } = useContext(AuthContext);
     //const { repartidores } = useContext(AuthContext);
 
+    const [identificador, setIdentificador] = useState({
+        idrepartidor:""
+    });
 
+    useEffect(() => {
+        console.log(identificador);
+    }, [identificador]);
 
-    const [selectedDealer, setSelectedDealer] = useState([])
+    const [err, setError] = useState(null);
 
     const currentRepartidor = (repartidor) => {
         repartidorSeleccionado.pop();
@@ -38,10 +44,10 @@ function Repartidores() {
 
     }, []);
 
-    useEffect(() => {
-        console.log("Aqui esta la respuesta");
-        console.log(repartidoresList);
-    }, [repartidoresList]);
+    // useEffect(() => {
+    //     console.log("Aqui esta la respuesta");
+    //     console.log(repartidoresList);
+    // }, [repartidoresList]);
 
     const [divStyle, setDivStyle] = useState({});
     const [clicked, setClicked] = useState(false);
@@ -57,14 +63,30 @@ function Repartidores() {
         }
         setClicked(!clicked);
     };
-    const showModal = () => {
+    const showModal = (idrepartidor) => {
         if (!clickedModal) {
             setModalStyle({ visibility: 'visible' });
+            console.log(idrepartidor);
+            setIdentificador({idrepartidor: idrepartidor});
+            console.log(identificador);
         } else {
             setModalStyle({ visibility: 'hidden' });
         }
         setClickedModal(!clickedModal);
     };
+
+    const handleEliminarRepartidor = async (e) => {
+        try{
+            console.log("Identificador: ", identificador);
+            if(identificador.idrepartidor !== null){
+                const res = await deleteRepartidor(identificador.idrepartidor);
+                console.log("Ha salido bien :D", res);
+                window.location.reload();
+            }
+        }catch(err){
+            setError(err.response.data);
+        }
+    }
 
     return (
 
@@ -88,13 +110,25 @@ function Repartidores() {
                     <div className="lista">{
                         repartidoresList.map((val) => {
                             return (
-                                <React.Fragment key = {val.idrepartidor}>
+                                <React.Fragment key={val.idrepartidor}>
                                     <div className="ModuloRepartidorContainer">
-                                        <div className="eliminarModulo" onClick={showModal} style={divStyle}>X</div>
+                                        <div className="eliminarModulo" onClick={() => showModal(val.idrepartidor)} style={divStyle}>X</div>
                                         <Link to="/RepartidoresInfo" onClick={() => currentRepartidor(val)} style={{ textDecoration: 'none' }}>
                                             <ModuloRepartidor nombre={val.nombrerepartidor} />
                                         </Link>
                                     </div>
+
+                                    <div className="modalEliminarRepartidorContenedor" style={modalStyle}>
+                                        <div className="containerModalEliminarRepartidor2">
+                                            <div className="eliminarModalRepartidor" onClick={() => showModal(val.idrepartidor)}>X</div>
+                                            <div className="modalEliminarRepartidor">
+                                                <h3>¿Estás seguro de eliminar al repartidor?</h3>
+                                                <p>Al eliminar al repartidor se borraran todos sus envíos hechos</p>
+                                                <button onClick={handleEliminarRepartidor}>Eliminar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </React.Fragment>
 
                             );
@@ -103,16 +137,7 @@ function Repartidores() {
                     </div>
                 </div>
             </div>
-            <div className="modalEliminarRepartidorContenedor" style={modalStyle}>
-                <div className="containerModalEliminarRepartidor2">
-                    <div className="eliminarModalRepartidor" onClick={showModal}>X</div>
-                    <div className="modalEliminarRepartidor">
-                        <h3>¿Estás seguro de eliminar al repartidor?</h3>
-                        <p>Al eliminar al repartidor se borraran todos sus envíos hechos</p>
-                        <button>Eliminar</button>
-                    </div>
-                </div>
-            </div>
+
         </div>
     );
 };

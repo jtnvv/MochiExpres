@@ -130,7 +130,7 @@ function Clientes() {
                                             <div className="modalEliminarRepartidor">
                                                 <h3>¿Estás seguro de eliminar al cliente?</h3>
                                                 <p>Al eliminar al cliente, sus solicitudes y envíos serán eliminados</p>
-                                                <button onClick={() => handleEliminarCliente()}>Eliminar</button>
+                                                <button onClick={handleEliminarCliente}>Eliminar</button>
                                             </div>
                                         </div>
                                     </div>
