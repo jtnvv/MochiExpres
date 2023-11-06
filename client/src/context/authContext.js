@@ -104,6 +104,18 @@ export const AuthContexProvider = ({ children }) => {
     console.log(res.data);
   }
 
+  const deleteEnviosCliente = async (idCliente) => {
+    const res = await axios.delete(`/envios/deleteEnviosCliente/${idCliente}`);
+    //console.log("Aqui empiexaaaa");
+    console.log(res.data);
+  }
+
+  const deleteSolicitudesCliente = async (idCliente) => {
+    const res = await axios.delete(`/solicitudesenvio/deleteSolicitudesCliente/${idCliente}`);
+    //console.log("Aqui empiexaaaa");
+    console.log(res.data);
+  }
+
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
@@ -122,7 +134,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente }}>
+    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente }}>
       {children}
     </AuthContext.Provider>
   );
