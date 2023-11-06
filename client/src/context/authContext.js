@@ -108,6 +108,11 @@ export const AuthContexProvider = ({ children }) => {
     return res.data;
   }
 
+  const getClienteSol = async (idsolicitud) => {
+    const res = await axios.get(`/clientes/getClienteSol/${idsolicitud}`);
+    return res.data;
+  }
+
   const deleteCliente = async (idCliente) => {
     const res = await axios.delete(`/clientes/deleteCliente/${idCliente}`);
     //console.log("Aqui empiexaaaa");
@@ -159,7 +164,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnvios, getRepartidor, getCliente}}>
+    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnvios, getRepartidor, getCliente, getClienteSol}}>
       {children}
     </AuthContext.Provider>
   );

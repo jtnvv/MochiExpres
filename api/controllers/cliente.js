@@ -29,6 +29,17 @@ export const getClienteId = (req, res) => {
     });
 }
 
+export const getClienteSolId = (req, res) => {
+    const q = "SELECT c.idCliente, c.nombrecliente, c.correocliente, c.direccioncliente, c.telefonocliente, c.contrasenacliente, c.identificadorpregcliente, c.respuestapregcliente, c.tipousuario, s.idsolicitudenvio FROM (cliente c JOIN solicitudenvio s ON (c.idCliente = s.idCliente)) WHERE idsolicitudenvio = ?";
+
+    db.query(q, [req.params.idsolicitudenvio], (err, data) => {
+        if (err) return res.status(500).json(err);
+        console.log(err);
+        if (data.length == 0) return res.status(409).json("No hay clientes registrados");
+        return res.status(200).json(data[0]);
+    });
+}
+
 export const deleteCliente = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("No estas autorizado");
