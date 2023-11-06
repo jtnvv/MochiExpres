@@ -35,6 +35,8 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { deleteEnvio } from './envio.js';
+import { deleteSolicitudEnvio } from './solicitudenvio.js';
 
 export const getClientes = (req, res) => {
     const q = "SELECT * FROM cliente";
@@ -63,6 +65,10 @@ export const deleteCliente = (req, res) => {
         const q = "DELETE FROM cliente WHERE idCliente = ?";
 
         db.query(q, [clienteId], (err, data) => {
+            const mensajeEnvio = deleteEnvio(clienteId);
+            console.log(mensajeEnvio);
+            const mensajeSolicitud = deleteSolicitudEnvio(clienteId);
+            console.log(mensajeSolicitud);
             if (err) return res.status(403).json("No puedes borrar este cliente");
             return res.status(200).json("Cliente borrado con exito");
         });
