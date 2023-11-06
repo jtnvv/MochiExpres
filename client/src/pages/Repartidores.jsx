@@ -4,7 +4,7 @@ import ModuloRepartidor from "./ModuloRepartidor"
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import * as BsIcons from "react-icons/bs";
-export const selDealer = [];
+export const repartidorSeleccionado = [];
 
 
 function Repartidores() {
@@ -17,9 +17,9 @@ function Repartidores() {
 
     const [selectedDealer, setSelectedDealer] = useState([])
 
-    const currentDealer = (Dealer) => {
-        selDealer.pop();
-        selDealer.push(Dealer)
+    const currentRepartidor = (repartidor) => {
+        repartidorSeleccionado.pop();
+        repartidorSeleccionado.push(repartidor);
 
     }
 
@@ -90,7 +90,7 @@ function Repartidores() {
                             return (
                                 <div className="ModuloRepartidorContainer">                                
                                     <div className="eliminarModulo" onClick={showModal} style={divStyle}>X</div>
-                                    <Link to="/RepartidoresInfo" onClick={() => currentDealer(val)} style={{ textDecoration: 'none' }}> 
+                                    <Link to="/RepartidoresInfo" onClick={() => currentRepartidor(val)} style={{ textDecoration: 'none' }}> 
                                         <ModuloRepartidor nombre={val.nombrerepartidor}  />
                                     </Link>
                                 </div>

@@ -60,7 +60,7 @@ const ClientesInfo = () => {
                                     </li><br />
                                     <li>
                                         <div className="p">
-                                            <p className="p-list">Número identidad: </p>
+                                            <p className="p-list">Identificador de usuario: </p>
                                             <p className="content">{clienteSeleccionado[0].idCliente}</p>
                                         </div>
                                     </li><br />

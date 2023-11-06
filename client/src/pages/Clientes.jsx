@@ -2,33 +2,36 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import InfoBar from "./InfoBar";
 import { Link, useNavigate } from "react-router-dom";
-import Axios from "axios";
-import styled from 'styled-components';
+import { useContext } from "react";
 import ModuloClientes from "./ModuloClientes";
-export const selClient = [];
+import { AuthContext } from "../context/authContext";
+export const clienteSeleccionado = [];
 
 
 function Clientes () {
 
-    const [clientsList, setClients] = useState([])
-
-    const getClients =()=>{
-        Axios.get("http://localhost:3005/clients").then((response)=>{
-        setClients(response.data);
-        console.log(typeof(response))
-    })
-    }
+    const [clientesList, setClientes] = useState([])
+    const { getClientes } = useContext(AuthContext);
+    
 
     const [selectedClient, setSelectedClient] = useState([])
 
-    const currentClient =(Client) => {
-           selClient.pop();
-           selClient.push(Client)
+    const currentCliente =(Client) => {
+        clienteSeleccionado.pop();
+        clienteSeleccionado.push(Client)
 
     }
 
     useEffect(()=>{
-        getClients();
+        const obtenerClientes = async () =>{
+            try{
+                const res = await getClientes();
+                setClientes(res);
+            }catch(err){
+                console.log(err);
+            }
+        };
+        obtenerClientes();
     },[])
     
     const [divStyle, setDivStyle] = useState({ });
@@ -73,12 +76,12 @@ function Clientes () {
                         </div>
                     </div>
                     <div className="lista">{
-                        clientsList.map((val,key)=>{
+                        clientesList.map((val)=>{
                             return(
 
                                 <div className="ModuloRepartidorContainer">                                
                                     <div className="eliminarModulo" onClick={showModal} style={divStyle}>X</div>
-                                    <Link to="/ClientesInfo" onClick={() => currentClient(val)} style={{ textDecoration: 'none' }}> 
+                                    <Link to="/ClientesInfo" onClick={() => currentCliente(val)} style={{ textDecoration: 'none' }}> 
                                         <ModuloClientes nombre={val.nombrecliente}  />
                                     </Link>
                                 </div>
