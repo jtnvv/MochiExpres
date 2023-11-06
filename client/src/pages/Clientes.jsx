@@ -74,7 +74,7 @@ function Clientes() {
             if(identificador.idCliente !== null){
                 const res = await deleteCliente(identificador.idCliente);
                 console.log("Ha salido bien :D ", res);
-                //window.location.reload();
+                window.location.reload();
             }else{
                 console.log("Ha salido mal :c ");
             }
@@ -84,14 +84,8 @@ function Clientes() {
 
     }
 
-    const handleSeleccionarEliminar = (id) => {
-        setIdentificador({idCliente: id});
-        console.log("Identificador : ", identificador);
-    }
 
-    const funcionSimultanea = (idCliente) => {
-        showModal(idCliente);
-    }
+    
 
 
     // useEffect(() => {
