@@ -22,6 +22,7 @@ import "./index.css";
 import PersonalInfo from "./pages/PersonalInfo";
 import Actualiza from "./pages/ActualizacionInfo";
 import Home from "./pages/Home";
+import EnviosInfo from "./pages/EnviosInfo";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +65,11 @@ const router = createBrowserRouter([
     path: "/ClientesInfo",
     element: 
       <ClientesInfo />,
+  },
+  {
+    path: "/EnviosInfo",
+    element: 
+      <EnviosInfo />,
   },
   {
     path: "/Consultar-Pedidos",
