@@ -90,17 +90,19 @@ const ConsultarPedidos = () => {
         }
     }, [identificador]);
 
+    useEffect(() => {
+    }, [envioSeleccionado]);
+
     const handleEnvioSeleccionado = (event) => {
         const selectedId = event.target.value;
         console.log(enviosList);
-        const selectedEnvio = enviosList.filter((envio) => envio.idenvio == selectedId);
-        setEnvioSeleccionado(selectedEnvio);
-        console.log("Se selecciono: ", selectedEnvio);
+        const selectedEnvio = enviosList.find((envio) => envio.idenvio === selectedId);
+        setEnvioSeleccionado(selectedEnvio || {});
+        console.log("Se selecciono: ", envioSeleccionado);
     }
 
-    useEffect(() => {
-        console.log(envioSeleccionado);
-    }, [envioSeleccionado]);
+
+
 
     return (
         <div className="content-flex">
@@ -142,6 +144,9 @@ const ConsultarPedidos = () => {
                         <div className="row_selection">
                             <h3>ID</h3>
                             <select onChange={handleEnvioSeleccionado}>
+                                <option key="0" value="0">
+                                    Selecciona una opción
+                                </option>
                                 {enviosList.map((envio) => {
                                     return (
                                         <React.Fragment key={envio.idenvio}>
@@ -150,33 +155,32 @@ const ConsultarPedidos = () => {
                                             </option>
                                         </React.Fragment>
                                     );
-
                                 })}
                             </select>
                         </div>
                         <div className="row">
                             <h3>Fecha envío</h3>
-                            <input type="text" disabled className="textareaInput" />
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.fechaenviorealizado || ''} />
                         </div>
                         <div className="row">
                             <h3>Fecha entrega</h3>
-                            <input type="text" disabled className="textareaInput" />
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.fechaenvioentregado || ''} />
                         </div>
                         <div className="row">
                             <h3>Estado</h3>
-                            <input type="text" disabled className="textareaInput" />
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.estadoenvio || ''} />
                         </div>
                         <div className="row">
                             <h3>Tarifa</h3>
-                            <input type="text" disabled className="textareaInput" />
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.tarifasolicitud || ''} />
                         </div>
                         <div className="row">
                             <h3>Peso</h3>
-                            <input type="text" disabled className="textareaInput" />
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.pesopaquete || ''} />
                         </div>
                         <div className="row">
                             <h3>Descripción</h3>
-                            <input type="text" disabled className="textareaInput" />
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.descripcionpaquete || ''} />
                         </div>
                     </div>
                 </div>
