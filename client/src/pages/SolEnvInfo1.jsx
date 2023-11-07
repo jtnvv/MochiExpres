@@ -82,12 +82,17 @@ const SolEnvInfo1 = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="Sol-env1__bg">
-                        <h2>Cliente: </h2><p>{nombreCliente}</p>
-                        <h2>Peso del paquete: </h2><p>{senvioSeleccionado[0].pesopaquete} kg</p>
-                        <h2>Descipcion de la solicitud: </h2><p>{senvioSeleccionado[0].descripcionsolicitud}</p>
-                        <h2>Destino de la solicitud: </h2><p>{senvioSeleccionado[0].destinosolicitud}</p>
-                        <h2>Crear Envio</h2>
+                </div>
+                <div className="Sol-env1__bg">
+                    <h2>Cliente: </h2><p>{nombreCliente}</p><br />
+                    <h2>Peso del paquete: </h2><p>{senvioSeleccionado[0].pesopaquete} kg</p><br />
+                    <h2>Descipcion de la solicitud: </h2><p>{senvioSeleccionado[0].descripcionsolicitud}</p><br />
+                    <h2>Destino de la solicitud: </h2><p>{senvioSeleccionado[0].destinosolicitud}</p><br />
+                </div>
+                <div className="Sol-env1__bgt">
+                    <h2 className="Sol-env1__bg__crearenvio">Crear Envio</h2>
+                    <div className="seleccionar">
+                        <h2>Asignar <br></br>Repartidor:</h2>
                         <select name="repartidoractual" className="status" onChange={handleRepartidorSeleccionado}>
                             <option>No asignado</option>
                             {
@@ -105,6 +110,7 @@ const SolEnvInfo1 = () => {
                         </select>
                         <Link to="/SolEnvInfo2"><button className="btn btn-primary">Continuar</button></Link>
                     </div>
+
                 </div>
             </div>
         </div>
