@@ -1,11 +1,13 @@
 import React from "react";
 import { AuthContext } from "../context/authContext";
 import { useContext, useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from "./Sidebar";
 import { envioSeleccionado } from "./Envios";
 import { getEstado, obtenerValorEstado } from "../components/estadosEnvio.js";
 const EnviosInfo = () => {
+
+    const {updateEnvioEstado, updateEnvioRepartidor} = useContext(AuthContext);
 
     const [nombreCliente, setNombreCliente] = useState("");
     const [nombreRepartidor, setNombreRepartidor] = useState("");
@@ -13,13 +15,25 @@ const EnviosInfo = () => {
     const [repartidoresList, setRepartidoresList] = useState([]);
     const [repartidorSeleccionado, setRepartidorSeleccionado] = useState([]);
     const [estadoactualenvio, setEstadoEnvio] = useState("");
+    const [err, setError] = useState(null);
+    const [shouldNavigate, setShouldNavigate] = useState(false);
+
+    const navigate = useNavigate();
+
+    const [inputs, setInputs] = useState({
+        idenvio: envioSeleccionado[0].idenvio,
+        estadoenvio: envioSeleccionado[0].estadoenvio,
+        idrepartidor: envioSeleccionado[0].idrepartidor,
+    });
 
     const handleEstadoEnvioChange = (event) => {
         setEstadoEnvio(event.target.value);
-        //console.log("Se selecciono: ", estadoactualenvio);
+        
+        console.log("Se selecciono: ", estadoactualenvio);
     };
     const { getClienteSol } = useContext(AuthContext);
     const { getRepartidor } = useContext(AuthContext);
+
 
     useEffect(() => {
         const obtenerRepartidores = async () => {
@@ -40,6 +54,7 @@ const EnviosInfo = () => {
         console.log(repartidoresList);
         const reparSele = repartidoresList.find((repartidor) => repartidor.idrepartidor === (idrepartidor));
         setRepartidorSeleccionado(reparSele || {});
+        
         console.log("Se selecciono: ",reparSele);
     }
 
@@ -48,11 +63,13 @@ const EnviosInfo = () => {
     }, [repartidoresList]);
 
     useEffect(() => {
-
+        setInputs(prev =>({...prev, idrepartidor: repartidorSeleccionado.idrepartidor}));
     }, [repartidorSeleccionado]);
 
     useEffect(() => {
         console.log("Se selecciono: ", estadoactualenvio);
+        let estado = getEstado(parseInt(estadoactualenvio));
+        setInputs(prev =>({...prev, estadoenvio: estado}));
     }, [estadoactualenvio]);
 
     useEffect(() => {
@@ -87,7 +104,27 @@ const EnviosInfo = () => {
         obtenerRepartidor();
     }, [nombreRepartidor]);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(inputs);
 
+        try{
+            await updateEnvioEstado(inputs);
+            console.log("Se actualizo el estado");
+            await updateEnvioRepartidor(inputs);
+            console.log("Se actualizo el repartidor");
+
+            setShouldNavigate(true);
+        }catch(err){
+            setError(err.response.data);
+        }
+    }
+
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigate("/Envios");
+        }
+    }, [shouldNavigate]);
 
     return (
         <div className="content-flex">
@@ -156,7 +193,8 @@ const EnviosInfo = () => {
                                             })
                                         }
                                     </select>
-                                    <button >Actualizar</button>
+                                    {err && <p className="register__bg__error"> {err}</p>}
+                                    <button type="submit" onClick={handleSubmit}>Actualizar</button>
                                 </div>
                             </div>
                         </div>

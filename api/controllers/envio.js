@@ -59,8 +59,8 @@ export const deleteEnvio = (req, res) => {
 
 export const updateEnvioEstado = (req, res) => {
     const values = [
-        req.body.idenvio,
         req.body.estadoenvio,
+        req.body.idenvio,
     ]
 
     const q = "UPDATE envio SET estadoenvio = ? WHERE idenvio = ?";
@@ -73,8 +73,8 @@ export const updateEnvioEstado = (req, res) => {
 
 export const updateEnvioRepartidor = (req, res) => {
     const values = [
-        req.body.idenvio,
         req.body.idrepartidor,
+        req.body.idenvio,
     ]
 
     const q = "UPDATE envio SET idrepartidor = ? WHERE idenvio = ?";
