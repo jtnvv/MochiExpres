@@ -14,7 +14,7 @@ function Repartidores() {
     //const { repartidores } = useContext(AuthContext);
 
     const [identificador, setIdentificador] = useState({
-        idrepartidor:""
+        idrepartidor: ""
     });
 
     useEffect(() => {
@@ -67,7 +67,7 @@ function Repartidores() {
         if (!clickedModal) {
             setModalStyle({ visibility: 'visible' });
             console.log(idrepartidor);
-            setIdentificador({idrepartidor: idrepartidor});
+            setIdentificador({ idrepartidor: idrepartidor });
             console.log(identificador);
         } else {
             setModalStyle({ visibility: 'hidden' });
@@ -76,18 +76,18 @@ function Repartidores() {
     };
 
     const handleEliminarRepartidor = async (e) => {
-        try{
+        try {
             console.log("Identificador: ", identificador);
-            if(identificador.idrepartidor !== null){
+            if (identificador.idrepartidor !== null) {
                 const res = await deleteRepartidor(identificador.idrepartidor);
                 console.log("Ha salido bien :D", res);
                 window.location.reload();
             }
-        }catch(err){
+        } catch (err) {
             setError(err.response.data);
         }
     }
-    const handleRedirect = () => {  navigate("/AgregarRepartidor")  };
+    const handleRedirect = () => { navigate("/AgregarRepartidor") };
 
     return (
 
@@ -104,7 +104,7 @@ function Repartidores() {
                         <div className="containerBusquedaRepartidor">
                             <input type="text" className="BusquedaRepartidor" placeholder="Buscar Repartidor" />
                             <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
                     </div>

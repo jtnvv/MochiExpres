@@ -7,7 +7,7 @@ import { envioSeleccionado } from "./Envios";
 import { getEstado, obtenerValorEstado } from "../components/estadosEnvio.js";
 const EnviosInfo = () => {
 
-    const {updateEnvioEstado, updateEnvioRepartidor} = useContext(AuthContext);
+    const { updateEnvioEstado, updateEnvioRepartidor } = useContext(AuthContext);
 
     const [nombreCliente, setNombreCliente] = useState("");
     const [nombreRepartidor, setNombreRepartidor] = useState("");
@@ -28,7 +28,7 @@ const EnviosInfo = () => {
 
     const handleEstadoEnvioChange = (event) => {
         setEstadoEnvio(event.target.value);
-        
+
         console.log("Se selecciono: ", estadoactualenvio);
     };
     const { getClienteSol } = useContext(AuthContext);
@@ -47,15 +47,15 @@ const EnviosInfo = () => {
         };
         obtenerRepartidores();
     }, []);
-    
+
 
     const handleRepartidorSeleccionado = (e) => {
         const idrepartidor = e.target.value;
         console.log(repartidoresList);
         const reparSele = repartidoresList.find((repartidor) => repartidor.idrepartidor === (idrepartidor));
         setRepartidorSeleccionado(reparSele || {});
-        
-        console.log("Se selecciono: ",reparSele);
+
+        console.log("Se selecciono: ", reparSele);
     }
 
     useEffect(() => {
@@ -63,13 +63,13 @@ const EnviosInfo = () => {
     }, [repartidoresList]);
 
     useEffect(() => {
-        setInputs(prev =>({...prev, idrepartidor: repartidorSeleccionado.idrepartidor}));
+        setInputs(prev => ({ ...prev, idrepartidor: repartidorSeleccionado.idrepartidor }));
     }, [repartidorSeleccionado]);
 
     useEffect(() => {
         console.log("Se selecciono: ", estadoactualenvio);
         let estado = getEstado(parseInt(estadoactualenvio));
-        setInputs(prev =>({...prev, estadoenvio: estado}));
+        setInputs(prev => ({ ...prev, estadoenvio: estado }));
     }, [estadoactualenvio]);
 
     useEffect(() => {
@@ -109,14 +109,14 @@ const EnviosInfo = () => {
         e.preventDefault();
         console.log(inputs);
 
-        try{
+        try {
             await updateEnvioEstado(inputs);
             console.log("Se actualizo el estado");
             await updateEnvioRepartidor(inputs);
             console.log("Se actualizo el repartidor");
 
             setShouldNavigate(true);
-        }catch(err){
+        } catch (err) {
             setError(err.response.data);
         }
     }
@@ -139,7 +139,7 @@ const EnviosInfo = () => {
                         <div className="containerBusquedaRepartidor">
                             <input type="text" className="BusquedaRepartidor" placeholder="Buscar Envío" />
                             <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
                     </div>
@@ -180,35 +180,35 @@ const EnviosInfo = () => {
                                             </div>
                                             <h3>Repartidor</h3>
                                             <select name="repartidoractual" className="status" onChange={handleRepartidorSeleccionado}>
-                                            <option key={envioSeleccionado[0].idrepartidor || "0"} value={envioSeleccionado[0].idrepartidor || "0"}>
-                                                {nombreRepartidor.nombrerepartidor || "No asignado"}
-                                            </option>
-                                            {   
-                                                repartidoresList.map((val) => {
+                                                <option key={envioSeleccionado[0].idrepartidor || "0"} value={envioSeleccionado[0].idrepartidor || "0"}>
+                                                    {nombreRepartidor.nombrerepartidor || "No asignado"}
+                                                </option>
+                                                {
+                                                    repartidoresList.map((val) => {
 
-                                                    return (
-                                                        <React.Fragment key={val.idrepartidor}>
-                                                            <option key={val.idrepartidor} value={val.idrepartidor}>
-                                                                {val.nombrerepartidor}
-                                                            </option>
-                                                        </React.Fragment>
-                                                    );
-                                                })
-                                            }
-                                        </select>
+                                                        return (
+                                                            <React.Fragment key={val.idrepartidor}>
+                                                                <option key={val.idrepartidor} value={val.idrepartidor}>
+                                                                    {val.nombrerepartidor}
+                                                                </option>
+                                                            </React.Fragment>
+                                                        );
+                                                    })
+                                                }
+                                            </select>
                                             {err && <p className="register__bg__error"> {err}</p>}
                                             <button type="submit" onClick={handleSubmit}>Actualizar</button>
                                         </div>
                                     </div>
                                     <div className="direccion">
                                         <h3>
-                                           Dirección
-                                        </h3> 
+                                            Dirección
+                                        </h3>
                                         <p>Cra 506 #70-1 Barrio San Martín, Cúcuta</p>
                                     </div>
                                 </div>
-                                
-                               
+
+
                             </div>
                         </div>
                     </div>

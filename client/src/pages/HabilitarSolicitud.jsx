@@ -48,7 +48,7 @@ const HabilitarSolicitud = () => {
                         <div className="containerBusquedaRepartidor">
                             <input type="text" className="BusquedaRepartidor" placeholder="Buscar solicitud envío" />
                             <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
                     </div>

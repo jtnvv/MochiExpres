@@ -12,7 +12,7 @@ import { clienteSeleccionado } from "./Clientes";
 
 const ClientesInfo = () => {
 
-    const { currentUser } = useContext(AuthContext);   
+    const { currentUser } = useContext(AuthContext);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -33,49 +33,49 @@ const ClientesInfo = () => {
 
     return (
         <div className="content-flex">
-            <Sidebar/>
+            <Sidebar />
             <div className="divContent">
                 <InfoBar />
                 <div className="ItemsContainer">
-                <div className="divContent">
-                <div className="ItemsContainer-PersonalInfo">
+                    <div className="divContent">
+                        <div className="ItemsContainer-PersonalInfo">
 
-                    <div className="divBodyPersonalInfo">
-                        <div className="divLeftPersonalInfo">
-                            <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
-                            <h2 className="usernameTxt">{clienteSeleccionado[0].nombrecliente}</h2>
-                            
-                        </div>
-                        <div className="divRightPersonalInfo">
-                            <div className="top">
-                                <h1 className="tittle">Datos del cliente</h1>
-                                <ul>
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Número telefónico: </p>
-                                            <p className="content">{clienteSeleccionado[0].telefonocliente}</p>
-                                        </div>
-                                    </li><br />
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Correo electrónico: </p>
-                                            <p className="content">{clienteSeleccionado[0].correocliente}</p>
-                                        </div>
-                                    </li><br />
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Identificador de usuario: </p>
-                                            <p className="content">{clienteSeleccionado[0].idCliente}</p>
-                                        </div>
-                                    </li><br />
-                                    
-                                </ul>
+                            <div className="divBodyPersonalInfo">
+                                <div className="divLeftPersonalInfo">
+                                    <img className="imgLeftPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                                    <h2 className="usernameTxt">{clienteSeleccionado[0].nombrecliente}</h2>
+
+                                </div>
+                                <div className="divRightPersonalInfo">
+                                    <div className="top">
+                                        <h1 className="tittle">Datos del cliente</h1>
+                                        <ul>
+                                            <li>
+                                                <div className="p">
+                                                    <p className="p-list">Número telefónico: </p>
+                                                    <p className="content">{clienteSeleccionado[0].telefonocliente}</p>
+                                                </div>
+                                            </li><br />
+                                            <li>
+                                                <div className="p">
+                                                    <p className="p-list">Correo electrónico: </p>
+                                                    <p className="content">{clienteSeleccionado[0].correocliente}</p>
+                                                </div>
+                                            </li><br />
+                                            <li>
+                                                <div className="p">
+                                                    <p className="p-list">Identificador de usuario: </p>
+                                                    <p className="content">{clienteSeleccionado[0].idCliente}</p>
+                                                </div>
+                                            </li><br />
+
+                                        </ul>
+                                    </div>
+
+                                </div>
                             </div>
-
                         </div>
                     </div>
-                </div>
-            </div>
                 </div>
             </div>
         </div>
