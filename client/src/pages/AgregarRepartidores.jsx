@@ -18,8 +18,8 @@ const AgregarRepartidores = () => {
         direccionrepartidor: "",
         telefonorepartidor: "",
         contrasenarepartidor: "",
-        identificadorpregrepartidor: "",
-        respuestapregrepartidor: "",
+        identificadorpregrepar: "",
+        respuestapregrepar: "",
     });
 
     const [contrasena, setContrasena] = useState('');
@@ -35,6 +35,9 @@ const AgregarRepartidores = () => {
         }
        
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+        setInputs((prev) => ({ ...prev, contrasenarepartidor: contrasena }));
+        setInputs((prev) => ({ ...prev, respuestapregrepar: "Por definir" }));
+
 
     }
 
@@ -42,7 +45,7 @@ const AgregarRepartidores = () => {
         e.preventDefault();
         console.log(inputs);
         try {
-            if (!inputs.idrepartidor || !inputs.nombrerepartidor || !inputs.correorepartidor || !inputs.direccionrepartidor || !inputs.telefonorepartidor || !inputs.contrasenarepartidor || !inputs.identificadorpregrepartidor || !inputs.respuestapregrepartidor) {
+            if (!inputs.idrepartidor || !inputs.nombrerepartidor || !inputs.correorepartidor || !inputs.direccionrepartidor || !inputs.telefonorepartidor || !inputs.contrasenarepartidor || !inputs.identificadorpregrepar || !inputs.respuestapregrepar) {
                 setError("Por favor llene todos los campos");
             }
 
@@ -94,6 +97,12 @@ const AgregarRepartidores = () => {
                                                     <input type="text" name="telefonorepartidor" placeholder="0000000000" onChange={handleChange}  />
                                                 </div>
                                             </li><br />
+                                            <li>
+                                                <div className="p">
+                                                    <p className="p-list">Dirección:</p>
+                                                    <input type="text" name="direccionrepartidor" placeholder="Calle/Av/Cra..." onChange={handleChange}  />
+                                                </div>
+                                            </li><br />
 
                                             <li>
                                                 <div className="p">
@@ -119,13 +128,13 @@ const AgregarRepartidores = () => {
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Pregunta de seguridad: </p>
-                                                    <select name="identificadorpregrepartidor" onChange={handleChange}>
+                                                    <select name="identificadorpregrepar" onChange={handleChange}>
                                                         <option value="0">Escoge una pregunta de seguridad</option>
                                                         <option value="1">{getPreguntaSeguridad(1)}</option>
                                                         {/* <option value="2">{getPreguntaSeguridad(2)}</option>
                                                         <option value="3">{getPreguntaSeguridad(3)}</option> */}
                                                     </select>
-                                                    <input type="text" placeholder="Por definir" onChange={handleChange} name="respuestapregrepartidor" readOnly/>
+                                                    <input type="text" placeholder="Por definir" onChange={handleChange} name="respuestapregrepar" readOnly/>
                                                 </div>
                                             </li><br />
                                         </ul>
