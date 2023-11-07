@@ -56,3 +56,31 @@ export const deleteEnvio = (req, res) => {
     });
 
 }
+
+export const updateEnvioEstado = (req, res) => {
+    const values = [
+        req.body.idenvio,
+        req.body.estadoenvio,
+    ]
+
+    const q = "UPDATE envio SET estadoenvio = ? WHERE idenvio = ?";
+
+    db.query(q, values, (err, data) => {
+        if (err) return res.status(500).json(err);
+        return res.status(200).json("Estado envío actualizado con éxito");
+    });
+}
+
+export const updateEnvioRepartidor = (req, res) => {
+    const values = [
+        req.body.idenvio,
+        req.body.idrepartidor,
+    ]
+
+    const q = "UPDATE envio SET idrepartidor = ? WHERE idenvio = ?";
+
+    db.query(q, values, (err, data) => {
+        if (err) return res.status(500).json(err);
+        return res.status(200).json("Repartidor envío actualizado con éxito");
+    });
+}

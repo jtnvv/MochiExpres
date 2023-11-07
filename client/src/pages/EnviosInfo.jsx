@@ -116,7 +116,7 @@ const EnviosInfo = () => {
                                         <h3>Fecha envío realizado</h3>
                                         <p>{envioSeleccionado[0].fechaenviorealizado}</p>
                                         <h3>Fecha envío entregado</h3>
-                                        <p>{envioSeleccionado[0].fechaenvioentregado}</p>
+                                        <p>{envioSeleccionado[0].fechaenvioentregado || "Pendiente"}</p>
                                         <h3>Estado</h3>
                                         <select name="estadoenvioactual" className="status" onChange={handleEstadoEnvioChange}>
                                             <option value={obtenerValorEstado(envioSeleccionado[0].estadoenvio)}>{getEstado(obtenerValorEstado(envioSeleccionado[0].estadoenvio))}</option>
@@ -154,10 +154,9 @@ const EnviosInfo = () => {
                                                     </React.Fragment>
                                                 );
                                             })
-                                        
                                         }
                                     </select>
-                                    <button>Actualizar</button>
+                                    <button >Actualizar</button>
                                 </div>
                             </div>
                         </div>
