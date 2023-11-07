@@ -1758,6 +1758,54 @@
                 .Hab-solicitud {
                     font-family: Coiny, cursive;
                 }
+
+                //aqui es
+                .Sol-env2__bg {
+                    background-color: rgba(255, 255, 255, 0.784);
+                    border-radius: 25px;
+                    padding: 3%;
+
+                    button {
+                        margin-top: 40px;
+                        font-family: Coiny, cursive;
+                        border-radius: 50px;
+                        height: 40px;
+                        width: 200px;
+                        background-color: #3289A0;
+                        color: white;
+                        margin-left: 23%;
+                        font-size: large;
+                        cursor: pointer
+                    }
+
+                    .Sol-env2__bg__tarifa {
+                        background-color: #fff;
+                        border-radius: 35px;
+                        width: 75%;
+
+                        button {
+                            margin-top: 0px;
+                            font-family: Coiny, cursive;
+                            border-radius: 35px;
+                            height: 80px;
+                            width: 300px;
+                            background-color: #3289A0;
+                            color: white;
+                            margin-left: 17%;
+                            font-size: 200%;
+                            cursor: pointer
+                        }
+
+                        p {
+                            display: inline-block;
+                            border: #000 solid 2px;
+                            margin-left: 17%;
+                            font-family: Coiny, cursive;
+                            font-size: 200%;
+                        }
+
+                    }
+                }
             }
 
 
