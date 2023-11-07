@@ -6,12 +6,10 @@ import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 
 const AgregarRepartidores = () => {
 
-    //const [shouldNavigate, setShouldNavigate] = useState(false);
 
     const [inputs, setInputs] = useState({
         idrepartidor: "",
@@ -28,7 +26,6 @@ const AgregarRepartidores = () => {
 
     const [err, setError] = useState(null);
 
-    //const navigate = useNavigate();
 
     const { registerRepartidor } = useContext(AuthContext);
 
@@ -52,8 +49,6 @@ const AgregarRepartidores = () => {
             if (validarUsuario(inputs.idrepartidor)) {
                 const res = await registerRepartidor(inputs);
                 console.log("Ha salido bien :D ", res);
-                //navigate("/Personal-Info");
-                //setShouldNavigate(true);
             } else {
                 setError("El identificador debe contener las condiciones necesarias");
                 return;
@@ -66,13 +61,6 @@ const AgregarRepartidores = () => {
 
     }
 
-    
-
-    // useEffect(() => {
-    //     if (shouldNavigate) {
-    //         navigate("/Personal-Info");
-    //     }
-    // }, [shouldNavigate]);
 
     return (
         <div className="content-flex">
