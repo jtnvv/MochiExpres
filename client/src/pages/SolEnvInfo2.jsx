@@ -1,23 +1,24 @@
 import React from "react";
 import { AuthContext } from "../context/authContext";
 import { useContext, useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from "./Sidebar";
 import { senvioSeleccionado } from "./HabilitarSolicitud";
 import { repartidorSeleccionadoexp } from "./SolEnvInfo1";
 import { generarIdEnvio } from "../components/generarIdEnvio.js";
 import { Link } from "react-router-dom";
-
+import {retornarFecha} from "../components/retornarFecha.js";
 
 const SolEnvInfo2 = () => {
 
+    const navigate = useNavigate();
     const [inputs] = useState({
         idenvio: generarIdEnvio(),
         descripcionpaquete: senvioSeleccionado[0].descripcionsolicitud,
         estadoenvio: "En bodega",
         tarifaenvio: senvioSeleccionado[0].tarifasolicitud,
         fechaenvioentregado: null,
-        fechaenviorealizado: senvioSeleccionado[0].fechasolicitud,
+        fechaenviorealizado: retornarFecha(senvioSeleccionado[0].fechasolicitud),
         destinoenvio: senvioSeleccionado[0].destinosolicitud,
         idrepartidor: repartidorSeleccionadoexp[0],
         idsolicitudenvio: senvioSeleccionado[0].idsolicitudenvio,
@@ -36,15 +37,26 @@ const SolEnvInfo2 = () => {
             }
             else {
                 console.log(inputs);
-                // const res = await createEnvio(inputs);
-                // alert("Envio habilitado con éxito");
-                // window.location.reload();
+                const res = await createEnvio(inputs);
+                console.log(res);
+                alert("Envio habilitado con éxito");
+                setDireccionar(true);
+                //window.location.reload();
             }
         } catch (err) {
             setError(err.response.data);
         }
 
     }
+
+
+    const [direccionar, setDireccionar] = useState("");
+
+    useEffect(() => {
+        if(direccionar){
+            navigate("/Home");
+        }
+    },[direccionar]);
     return (
         <div className="content-flex">
             <Sidebar />
