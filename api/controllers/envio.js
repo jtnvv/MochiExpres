@@ -2,6 +2,32 @@ import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+export const createEnvio = (req, res) => {
+    const q1 = "SELECT * FROM envio WHERE idenvio = ?";
+    console.log("Entro");
+    db.query(q1, [req.body.idenvio], (err, data) => {
+        if (err) return res.status(500).json(err);
+        if (data.length) return res.status(409).json("El envío ya existe");
+        const q2 = "INSERT INTO envio(`idenvio`,`descripcionpaquete`,`estadoenvio`,`tarifaenvio`,`fechaenvioentregado`,`fechaenviorealizado`,`destinoenvio`,`idrepartidor`,`idsolicitudenvio`) values (?)";
+        const values = [
+            req.body.idenvio,
+            req.body.descripcionpaquete,
+            req.body.estadoenvio,
+            req.body.tarifaenvio,
+            req.body.fechaenvioentregado,
+            req.body.fechaenviorealizado,
+            req.body.destinoenvio,
+            req.body.idrepartidor,
+            req.body.idsolicitudenvio,
+        ]
+        db.query(q2, [values], (err, data) => {
+            if (err) return res.json(err);
+            return res.status(200).json("Envío creado con éxito");
+        });
+    });
+}
+
+
 export const getEnvios = (req, res) => {
     const q = "SELECT * FROM envio";
     //console.log("Entro");

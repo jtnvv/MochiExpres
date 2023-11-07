@@ -1,5 +1,5 @@
 import express from 'express';
-import { deleteEnvio, getEnviosCliente, getEnvios, updateEnvioEstado, updateEnvioRepartidor } from '../controllers/envio.js';
+import { deleteEnvio, getEnviosCliente, getEnvios, updateEnvioEstado, updateEnvioRepartidor, createEnvio } from '../controllers/envio.js';
 
 const router = express.Router();
 
@@ -8,6 +8,7 @@ router.get("/getEnviosCliente/:idCliente", getEnviosCliente);
 router.delete("/deleteEnviosCliente/:idCliente", deleteEnvio);
 router.post("/updateEnvioEstado", updateEnvioEstado);
 router.post("/updateEnvioRepartidor", updateEnvioRepartidor);
+router.post("/createEnvio", createEnvio);
 
 
 export default router;
