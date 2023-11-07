@@ -34,7 +34,6 @@ export const deleteSolicitudEnvio = (req, res) => {
         });
     });
 }
-
 export const getSolicitudId = (req, res) => {
     const q = "SELECT cliente.idCliente, cliente.nombrecliente FROM solicitudenvio JOIN cliente ON solicitudenvio.idCliente = cliente.idCliente WHERE idsolicitudenvio= ? ";
     console.log(req.params);

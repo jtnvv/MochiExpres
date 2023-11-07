@@ -6,7 +6,6 @@ const ModuloSolicitudEnvio = (props) => {
         <div className="content-flex-module-SolicitudEnvio" >
             <h2>{props.idsolicitudenvio}</h2>
             <h3>Ver Info -&gt; </h3>
-
         </div>
     );
 };

@@ -8,6 +8,7 @@ import { repartidorSeleccionadoexp } from "./SolEnvInfo1";
 import { getEstado, obtenerValorEstado } from "../components/estadosEnvio.js";
 import { Link } from "react-router-dom";
 
+
 const SolEnvInfo2 = () => {
     return (
         <div className="content-flex">

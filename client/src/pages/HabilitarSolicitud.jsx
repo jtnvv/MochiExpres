@@ -13,7 +13,6 @@ const HabilitarSolicitud = () => {
     const [identificador, setIdentificador] = useState({
         idsolicitudenvio: ""
     });
-
     useEffect(() => {
         console.log(identificador);
     }, [identificador]);

@@ -3,6 +3,7 @@ import { deleteSolicitudEnvio, getSolicitudesEnvio, getSolicitudId } from '../co
 
 const router = express.Router();
 
+
 router.get("/getSolicitudesEnvio", getSolicitudesEnvio);
 router.get("/getSolicitudId/:idsolicitudenvio", getSolicitudId);
 router.delete("/deleteSolicitudesCliente/:idCliente", deleteSolicitudEnvio);

@@ -44,8 +44,7 @@ const SolEnvInfo1 = () => {
             repartidorSeleccionadoexp.push(reparSele.idrepartidor || {});
             console.log("Se selecciono: ", reparSele.idrepartidor);
         }
-    }
-
+    };
     useEffect(() => {
 
     }, [repartidoresList]);
