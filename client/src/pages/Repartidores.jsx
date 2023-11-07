@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import ModuloRepartidor from "./ModuloRepartidor"
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 export const repartidorSeleccionado = [];
 
@@ -53,7 +53,7 @@ function Repartidores() {
     const [clicked, setClicked] = useState(false);
     const [modalStyle, setModalStyle] = useState({});
     const [clickedModal, setClickedModal] = useState(false);
-
+    const navigate = useNavigate();
 
     const handleButtonClick = () => {
         if (!clicked) {
@@ -87,6 +87,7 @@ function Repartidores() {
             setError(err.response.data);
         }
     }
+    const handleRedirect = () => {  navigate("/AgregarRepartidor")  };
 
     return (
 
@@ -97,7 +98,7 @@ function Repartidores() {
 
                     <div className="BarraRepartidor">
                         <div className="containerButtonsRepartidor">
-                            <button className="buttonRepartidorStyle" >Agregar Repartidor</button>
+                            <button className="buttonRepartidorStyle" onClick={handleRedirect}>Agregar Repartidor</button>
                             <button className="buttonRepartidorStyle" onClick={handleButtonClick}>Eliminar Repartidor</button>
                         </div>
                         <div className="containerBusquedaRepartidor">
