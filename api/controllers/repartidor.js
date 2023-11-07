@@ -34,24 +34,25 @@ export const registerRepartidores = (req, res) => {
         //Verificar si el usuario ya existe
         const q = "SELECT * FROM repartidor WHERE idRepartidor = ?";
         console.log("Entro")
+        console.log(req.body);
         //console.log
-        db.query(q, [req.body.idRepartidor], (err, data) => {
+        db.query(q, [req.body.idrepartidor], (err, data) => {
             if (err) return res.status(500).json(err);
             //console.log(err);
             if (data.length) return res.status(409).json("El registrador ya esta registrado");
             //Encriptar contraseña
             const salt = bcrypt.genSaltSync(10);
-            const hash = bcrypt.hashSync(req.body.contrasenaRepartidor, salt);
+            const hash = bcrypt.hashSync(req.body.contrasenarepartidor, salt);
             const q = "INSERT INTO repartidor(`idrepartidor`,`nombrerepartidor`,`correorepartidor`,`direccionrepartidor`,`telefonorepartidor`,`contrasenarepartidor`,`identificadorpregrepar`,`respuestapregrepar`) values (?)";
             const values = [
-                req.body.idRepartidor,
-                req.body.nombreRepartidor,
-                req.body.correoRepartidor,
-                req.body.direccionRepartidor,
-                req.body.telefonoRepartidor,
+                req.body.idrepartidor,
+                req.body.nombrerepartidor,
+                req.body.correorepartidor,
+                req.body.direccionrepartidor,
+                req.body.telefonorepartidor,
                 hash,
-                req.body.identificadorPregRepar,
-                req.body.respuestaPregRepar,
+                req.body.identificadorpregrepar,
+                req.body.respuestapregrepar,
             ]
     
             db.query(q, [values], (err, data) => {
