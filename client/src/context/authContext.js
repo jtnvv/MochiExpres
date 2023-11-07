@@ -79,12 +79,22 @@ export const AuthContexProvider = ({ children }) => {
     return res.data;
   }
 
+  const registrarCliente = async (inputs) => {
+    const res = await axios.post("/auth/register", inputs);
+    console.log(res.data);
+  }
+
   const getRepartidores = async () => {
     const res = await axios.get("/repartidores/getRepartidores");
 
     //console.log("Aqui empiexaaaa");
     //console.log(res.data);
     return res.data;
+  }
+
+  const registerRepartidor = async (inputs) => {
+    const res = await axios.post("/repartidores/register", inputs);
+    console.log(res.data);
   }
 
   const getRepartidor = async (idrepartidor) => {
@@ -174,7 +184,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor}}>
+    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor, registrarCliente, registerRepartidor}}>
       {children}
     </AuthContext.Provider>
   );

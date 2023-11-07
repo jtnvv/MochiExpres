@@ -1,42 +1,42 @@
-import React from "react";
 import Sidebar from "./Sidebar";
+import '../style.scss';
 import InfoBar from "./InfoBar";
-import * as IoIcons from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { validarUsuario } from "../components/validarUsuario.js";
 import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 
 const AgregarRepartidores = () => {
 
-    const { currentUser, setCurrentUser } = useContext(AuthContext);
-    const { currentNew, setCurrentNew } = useContext(AuthContext);
-    const [shouldNavigate, setShouldNavigate] = useState(false);
+    //const [shouldNavigate, setShouldNavigate] = useState(false);
 
     const [inputs, setInputs] = useState({
-        idrepartidor: currentUser?.idrepartidor,
-        nombrerepartidor: currentUser?.nombrerepartidor,
-        correorepartidor: currentUser?.correorepartidor,
-        conrtasenarepartidor: currentUser?.conrtasenarepartidor,
-        contrasena2repartidor: currentUser?.contrasena2repartidor,
-        telefonorepartidor: currentUser?.telefonorepartidor,
-
-        identificadorpregrepartidor: currentUser?.identificadorpregrepartidor,
-
-        respuestapregrepartidor: currentUser?.respuestapregrepartidor,
+        idrepartidor: "",
+        nombrerepartidor: "",
+        correorepartidor: "",
+        direccionrepartidor: "",
+        telefonorepartidor: "",
+        contrasenarepartidor: "",
+        identificadorpregrepartidor: "",
+        respuestapregrepartidor: "",
     });
+
+    const [contrasena, setContrasena] = useState('');
 
     const [err, setError] = useState(null);
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
-    const { update, getinfouser } = useContext(AuthContext);
+    const { registerRepartidor } = useContext(AuthContext);
 
     const handleChange = (e) => {
-
+        if (e.target.name === "nombrerepartidor") {
+            setContrasena(e.target.value);
+        }
+       
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
     }
@@ -45,15 +45,20 @@ const AgregarRepartidores = () => {
         e.preventDefault();
         console.log(inputs);
         try {
-            await update(inputs);
+            if (!inputs.idrepartidor || !inputs.nombrerepartidor || !inputs.correorepartidor || !inputs.direccionrepartidor || !inputs.telefonorepartidor || !inputs.contrasenarepartidor || !inputs.identificadorpregrepartidor || !inputs.respuestapregrepartidor) {
+                setError("Por favor llene todos los campos");
+            }
 
-            // await getinfouser(inputs);
-            console.log("Haz actualizado correctamente get");
-            await getinfouser(inputs);
-            setShouldNavigate(true);
+            if (validarUsuario(inputs.idrepartidor)) {
+                const res = await registerRepartidor(inputs);
+                console.log("Ha salido bien :D ", res);
+                //navigate("/Personal-Info");
+                //setShouldNavigate(true);
+            } else {
+                setError("El identificador debe contener las condiciones necesarias");
+                return;
+            }
 
-
-            //setCurrentUser(res2.data[0]);
 
         } catch (err) {
             setError(err.response.data);
@@ -61,11 +66,13 @@ const AgregarRepartidores = () => {
 
     }
 
-    useEffect(() => {
-        if (shouldNavigate) {
-            navigate("/Personal-Info");
-        }
-    }, [shouldNavigate]);
+    
+
+    // useEffect(() => {
+    //     if (shouldNavigate) {
+    //         navigate("/Personal-Info");
+    //     }
+    // }, [shouldNavigate]);
 
     return (
         <div className="content-flex">
@@ -73,8 +80,7 @@ const AgregarRepartidores = () => {
             <div className="divContent">
 
                 <InfoBar />
-                <div className="ItemsContainer">
-                    <div className="divContent">
+                
                         <div className="ItemsContainer-PersonalInfo">
 
                             <div className="divBodyPersonalInfo">
@@ -85,51 +91,53 @@ const AgregarRepartidores = () => {
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Nombre:</p>
-                                                    <input type="text" placeholder={currentUser?.nombrerepartidor} onChange={handleChange} name="nombrerepartidor" />
+                                                    <input type="text" name="nombrerepartidor" placeholder="Nombre Apellido" onChange={handleChange}  />
                                                 </div>
                                             </li><br />
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Correo electrónico:</p>
-                                                    <input type="text" placeholder={currentUser?.correorepartidor} onChange={handleChange} name="correorepartidor" />
+                                                    <input type="text" name="correorepartidor" placeholder="correo@dominio.com" onChange={handleChange}  />
                                                 </div>
                                             </li><br />
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Número telefónico:</p>
-                                                    <input type="text" placeholder={currentUser?.telefonorepartidor} onChange={handleChange} name="telefonorepartidor" />
+                                                    <input type="text" name="telefonorepartidor" placeholder="0000000000" onChange={handleChange}  />
                                                 </div>
                                             </li><br />
 
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Identificador de usuario:</p>
-                                                    <input type="text" placeholder={currentUser?.idrepartidor} onChange={handleChange} name="idrepartidor" />
+                                                    <div className="tooltip">
+                                                        <input type="text" placeholder="Username123" name="idrepartidor" onChange={handleChange} />
+                                                        <div className="p-list-error">
+
+                                                        </div>
+                                                        <span className="tooltiptext">Debe ser alfanumérico, no tener espacios, no caracteres especiales y por lo menos una letra minúscula y mayúscula.</span>
+
+                                                    </div>
                                                 </div>
                                             </li><br />
 
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Contraseña: </p>
-                                                    <input type="text" placeholder={currentUser?.contrasenarepartidor} onChange={handleChange} name="contrasenarepartidor" />
+                                                    <input type="text" placeholder='' onChange={handleChange} name="contrasenarepartidor" value={contrasena} readOnly/>
                                                 </div> </li><br />
-                                            <li>
-                                                <div className="p">
-                                                    <p className="p-list">Confirmar contraseña: </p>
-                                                    <input type="text" placeholder={currentUser?.contrasena2repartidor} onChange={handleChange} name="contrasena2repartidor" />
-                                                </div>
-                                            </li><br />
+
 
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Pregunta de seguridad: </p>
                                                     <select name="identificadorpregrepartidor" onChange={handleChange}>
-                                                        <option value={currentUser?.identificadorpregrepartidor}>{getPreguntaSeguridad(currentUser?.identificadorpregrepartidor)}</option>
+                                                        <option value="0">Escoge una pregunta de seguridad</option>
                                                         <option value="1">{getPreguntaSeguridad(1)}</option>
-                                                        <option value="2">{getPreguntaSeguridad(2)}</option>
-                                                        <option value="3">{getPreguntaSeguridad(3)}</option>
+                                                        {/* <option value="2">{getPreguntaSeguridad(2)}</option>
+                                                        <option value="3">{getPreguntaSeguridad(3)}</option> */}
                                                     </select>
-                                                    <input type="text" placeholder={currentUser?.respuestapregrepartidor} onChange={handleChange} name="respuestapregrepartidor" />
+                                                    <input type="text" placeholder="Por definir" onChange={handleChange} name="respuestapregrepartidor" readOnly/>
                                                 </div>
                                             </li><br />
                                         </ul>
@@ -138,6 +146,7 @@ const AgregarRepartidores = () => {
                                         <div className="flex">
                                             <div className="div">
                                                 <p>En caso de pérdida de contraseña, elige una pregunta de recuperación de contraseña.</p>
+                                                {err && <p className="register__bg__error"> {err}</p>}
                                                 <button type="submit" onClick={handleSubmit}>Registrar!</button>
                                             </div>
 
@@ -146,8 +155,7 @@ const AgregarRepartidores = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    
             </div>
         </div>
 
