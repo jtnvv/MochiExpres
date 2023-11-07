@@ -738,7 +738,39 @@
                         }
                     }
                 }
-
+                .contenedorTarifaInfo{
+                    display:block;
+                    width: 700px;
+                    height:90vh;
+                    .tarifaInfo{
+                        display:flex;
+                        flex-wrap: wrap;
+                        justify-content: space-evenly;
+                        height: 70%;
+                        width: 100%;
+                    }
+                    .direccion{
+                        width: 100%;
+                        height: 20%;
+                        display:flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                        margin-top: 10px;
+                        border-radius: 30px;
+                        background-color: #C4DDE3;
+                        h3{
+                            font-family: Coiny, cursive;
+                            font-size: 15px;
+                            color: #4A4846;
+                        }
+                        p{
+                            font-family: Comfortaa, cursive;
+                            color: #4A4846;
+                            font-size: 14px;
+                        }
+                    }
+                }
                 .tarifaDescripcion {
                     .tarifa {
                         display: flex;
@@ -1782,7 +1814,7 @@
                 border-radius: 25px;
                 background-color: #c4dde3;
                 width: 40vw;
-<<<<<<< HEAD
+
                 height: 100px;
                 justify-content: space-evenly;
                 align-items: center;
@@ -1790,7 +1822,7 @@
                 h2,
                 h3 {
                     color: #b99067;
-=======
+
                 height: 80px;
                 justify-content: space-evenly;
                 align-items: center;
@@ -1798,18 +1830,18 @@
                 
                 h3 {
                     color: #4A4846;
->>>>>>> 316b0d1fb5955dae977f480ddac65b6f35b925c6
+
                     font-family: Coiny, cursive;
 
                 }
 
                 h2 {
-<<<<<<< HEAD
+
                     color: rgb(97, 69, 18);
                 }
             }
 
-=======
+
                     color: orange;
                     font-family: Coiny, cursive;
                 }
@@ -1852,7 +1884,6 @@
 
 
 
->>>>>>> 316b0d1fb5955dae977f480ddac65b6f35b925c6
             .content-flex-infobar {
                 margin-top: 20px;
                 display: flex;
@@ -1979,4 +2010,3 @@
             }
         }
     }
-}

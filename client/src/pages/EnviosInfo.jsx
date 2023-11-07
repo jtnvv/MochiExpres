@@ -164,39 +164,51 @@ const EnviosInfo = () => {
                                         </select>
                                     </div>
                                 </div>
-                                <div className="tarifaDescripcion ">
-                                    <div className="tarifa card">$ {envioSeleccionado[0].tarifaenvio}</div>
-                                    <div className="Descripcion card">
-                                        <h3>Descripcion paquete</h3>
-                                        <textarea value={envioSeleccionado[0].descripcionpaquete} disabled name="" id="" cols="50" rows="30" className="descripcionText">
-                                        </textarea>
-                                    </div>
-                                </div>
-                                <div className="personalInfo card">
-                                    <div className="personalInfoImage">
-                                        <img src="https://i.imgur.com/bzO2izE.png" alt="profileFoto" />
-                                    </div>
-                                    <h3>Repartidor</h3>
-                                    <select name="repartidoractual" className="status" onChange={handleRepartidorSeleccionado}>
-                                        <option key={envioSeleccionado[0].idrepartidor || "0"} value={envioSeleccionado[0].idrepartidor || "0"}>
-                                            {nombreRepartidor.nombrerepartidor || "No asignado"}
-                                        </option>
-                                        {
-                                            repartidoresList.map((val) => {
+                                <div className="contenedorTarifaInfo">
+                                    <div className="tarifaInfo">
+                                        <div className="tarifaDescripcion ">
+                                            <div className="tarifa card">$ {envioSeleccionado[0].tarifaenvio}</div>
+                                            <div className="Descripcion card">
+                                                <h3>Descripcion paquete</h3>
+                                                <textarea value={envioSeleccionado[0].descripcionpaquete} disabled name="" id="" cols="50" rows="30" className="descripcionText">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div className="personalInfo card">
+                                            <div className="personalInfoImage">
+                                                <img src="https://i.imgur.com/bzO2izE.png" alt="profileFoto" />
+                                            </div>
+                                            <h3>Repartidor</h3>
+                                            <select name="repartidoractual" className="status" onChange={handleRepartidorSeleccionado}>
+                                            <option key={envioSeleccionado[0].idrepartidor || "0"} value={envioSeleccionado[0].idrepartidor || "0"}>
+                                                {nombreRepartidor.nombrerepartidor || "No asignado"}
+                                            </option>
+                                            {   
+                                                repartidoresList.map((val) => {
 
-                                                return (
-                                                    <React.Fragment key={val.idrepartidor}>
-                                                        <option key={val.idrepartidor} value={val.idrepartidor}>
-                                                            {val.nombrerepartidor}
-                                                        </option>
-                                                    </React.Fragment>
-                                                );
-                                            })
-                                        }
-                                    </select>
-                                    {err && <p className="register__bg__error"> {err}</p>}
-                                    <button type="submit" onClick={handleSubmit}>Actualizar</button>
+                                                    return (
+                                                        <React.Fragment key={val.idrepartidor}>
+                                                            <option key={val.idrepartidor} value={val.idrepartidor}>
+                                                                {val.nombrerepartidor}
+                                                            </option>
+                                                        </React.Fragment>
+                                                    );
+                                                })
+                                            }
+                                        </select>
+                                            {err && <p className="register__bg__error"> {err}</p>}
+                                            <button type="submit" onClick={handleSubmit}>Actualizar</button>
+                                        </div>
+                                    </div>
+                                    <div className="direccion">
+                                        <h3>
+                                           Dirección
+                                        </h3> 
+                                        <p>Cra 506 #70-1 Barrio San Martín, Cúcuta</p>
+                                    </div>
                                 </div>
+                                
+                               
                             </div>
                         </div>
                     </div>
