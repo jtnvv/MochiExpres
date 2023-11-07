@@ -82,13 +82,11 @@ const SolEnvInfo1 = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="Sol-env1__bg1">
+                    <div className="Sol-env1__bg">
                         <h2>Cliente: </h2><p>{nombreCliente}</p>
                         <h2>Peso del paquete: </h2><p>{senvioSeleccionado[0].pesopaquete} kg</p>
                         <h2>Descipcion de la solicitud: </h2><p>{senvioSeleccionado[0].descripcionsolicitud}</p>
                         <h2>Destino de la solicitud: </h2><p>{senvioSeleccionado[0].destinosolicitud}</p>
-                    </div>
-                    <div className="Sol-env__bg2">
                         <h2>Crear Envio</h2>
                         <select name="repartidoractual" className="status" onChange={handleRepartidorSeleccionado}>
                             <option>No asignado</option>
