@@ -78,7 +78,7 @@ const EnviosInfo = () => {
                 //console.log(envioSeleccionado[0]);
                 const res = await getClienteSol(envioSeleccionado[0].idsolicitudenvio);
                 setNombreCliente(res.nombrecliente);
-                console.log(res.nombrecliente);
+                //console.log(res.nombrecliente);
             } catch (err) {
                 console.log(err);
             }
@@ -89,10 +89,11 @@ const EnviosInfo = () => {
     useEffect(() => {
         const obtenerRepartidor = async () => {
             try {
-                if (envioSeleccionado.idrepartidor !== null) {
+                if (envioSeleccionado[0].idrepartidor !== null) {
+                    //console.log(envioSeleccionado[0].idrepartidor);
                     const res = await getRepartidor(envioSeleccionado[0].idrepartidor);
                     setNombreRepartidor(res);
-                    console.log(nombreRepartidor);
+                    //console.log(nombreRepartidor);
                 } else {
                     setNombreRepartidor("No asignado");
                 }

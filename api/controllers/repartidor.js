@@ -9,7 +9,7 @@ export const getRepartidores = (req, res) => {
 
     db.query(q, (err, data) => {
         if(err) return res.status(500).json(err);
-        console.log(err);
+        //console.log(err);
         if(data.length == 0) return res.status(409).json("No hay repartidores registrados");
         let respuesta = res.status(200).json(data);
         //console.log(respuesta);
@@ -22,9 +22,11 @@ export const getRepartidorId = (req, res) => {
 
     db.query(q, [req.params.idrepartidor], (err, data) => {
         if (err) return res.status(500).json(err);
-        console.log(err);
+        //console.log(err);
         if (data.length == 0) return res.json("No hay repartidores registrados");
-        return res.status(200).json(data);
+        let respuesta = res.status(200).json(data[0]);
+        //console.log(respuesta);
+        return respuesta;
     });
 }
 
@@ -35,7 +37,7 @@ export const registerRepartidores = (req, res) => {
         //console.log
         db.query(q, [req.body.idRepartidor], (err, data) => {
             if (err) return res.status(500).json(err);
-            console.log(err);
+            //console.log(err);
             if (data.length) return res.status(409).json("El registrador ya esta registrado");
             //Encriptar contraseña
             const salt = bcrypt.genSaltSync(10);
