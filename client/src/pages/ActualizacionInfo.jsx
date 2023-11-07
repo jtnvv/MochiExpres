@@ -46,7 +46,7 @@ const Actualiza = () => {
             console.log("Haz actualizado correctamente get");
             await getinfouser(inputs);
             setShouldNavigate(true);
-            
+
 
             //setCurrentUser(res2.data[0]);
 
@@ -71,12 +71,12 @@ const Actualiza = () => {
                         <Link to="/Personal-Info" className="divVolverInfoBar">
                             <IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" /> Volver</Link>
 
-                        <p className="photo">{currentUser?.nombreusuario}<img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="" /></p>
+                        <p className="photo">{currentUser?.nombreusuario}<img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" /></p>
 
                     </div>
                     <div className="divBodyPersonalInfo">
                         <div className="divLeftPersonalInfo">
-                            <img className="imgLeftPersonalInfo" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="" />
+                            <img className="imgLeftPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             <h2 className="usernameTxt">{currentUser?.nombreusuario}</h2>
                             <input type="text" placeholder="Nuevo nombre" onChange={handleChange} name="nombreusuario" />
                             <h2 className="rolTxt">"Rol: {currentUser?.tipousuario}"</h2>

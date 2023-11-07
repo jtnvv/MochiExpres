@@ -106,11 +106,11 @@ const PersonalInfo = () => {
                     <div className="ItemsContainer-PersonalInfo">
                         <div className="divHeaderPersonalInfo">
                             <p><IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" />Volver</p>
-                            <p className="photo">{currentUser?.nombreusuario}<img src="https://i.imgur.com/T9X0JHm.jpg" alt="" /></p>
+                            <p className="photo">{currentUser?.nombreusuario}<img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" /></p>
                         </div>
                         <div className="divBodyPersonalInfo">
                             <div className="divLeftPersonalInfo">
-                                <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                                <img className="imgLeftPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                                 <h2 className="usernameTxt">{currentUser?.nombreusuario}</h2>
                                 <h2 className="rolTxt">Rol: {currentUser?.tipousuario}</h2>
                             </div>
