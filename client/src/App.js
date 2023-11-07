@@ -24,18 +24,30 @@ import Actualiza from "./pages/ActualizacionInfo";
 import Home from "./pages/Home";
 import AgregarRepartidor from "./pages/AgregarRepartidores";
 import EnviosInfo from "./pages/EnviosInfo";
+import SolEnvInfo1 from "./pages/SolEnvInfo1";
+import SolEnvInfo2 from "./pages/SolEnvInfo2";
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<Login />,
+    element: <Login />,
+  },
+  {
+    path: "/SolEnvInfo1",
+    element:
+      <SolEnvInfo1 />,
+  },
+  {
+    path: "/SolEnvInfo2",
+    element:
+      <SolEnvInfo2 />,
   },
   {
     path: "/AgregarRepartidor",
-    element:<AgregarRepartidor/>,
+    element: <AgregarRepartidor />,
   },
   {
     path: "/Actualiza-personal-Info",
-    element:<Actualiza/>,
+    element: <Actualiza />,
   },
   {
     path: "/Login",
@@ -43,7 +55,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Personal-Info",
-    element:<PersonalInfo />,
+    element: <PersonalInfo />,
   },
   {
     path: "/Recuperacion-Contrasena1",
@@ -63,55 +75,55 @@ const router = createBrowserRouter([
   },
   {
     path: "/Clientes",
-    element: 
+    element:
       <Clientes />,
   },
   {
     path: "/ClientesInfo",
-    element: 
+    element:
       <ClientesInfo />,
   },
   {
     path: "/EnviosInfo",
-    element: 
+    element:
       <EnviosInfo />,
   },
   {
     path: "/Consultar-Pedidos",
-    element: 
+    element:
       <ConsultarPedidos />,
-    
+
   },
   {
     path: "/Envios",
-    element: 
+    element:
       <Envios />,
-    
+
   },
   {
     path: "/Habilitar-Solicitud",
-    element: 
+    element:
       <HabilitarSolicitud />,
-    
+
   },
   {
     path: "/Repartidores",
-    element: 
+    element:
       <Repartidores />
     ,
-    
+
   },
   {
     path: "/RepartidoresInfo",
-    element: 
+    element:
       <RepartidoresInfo />,
   },
   {
-  path: "/Home",
-  element: 
-    <Home />
-  ,
-  
+    path: "/Home",
+    element:
+      <Home />
+    ,
+
   },
 ]);
 
