@@ -52,6 +52,10 @@ const Registro = () => {
 
     };
 
+    const handleVolver = () => {
+        setShouldNavigate(true);
+    }
+
     useEffect(() => {
         if (shouldNavigate) {
             navigate("/login");
@@ -65,7 +69,7 @@ const Registro = () => {
             <div className="divContent">
                 <div className="ItemsContainer-PersonalInfo">
                     <div className="divHeaderPersonalInfo">
-                        <p><i><IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" /></i> Volver</p>
+                        <p><i><IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" onClick={handleVolver}/></i> Volver</p>
 
 
                     </div>

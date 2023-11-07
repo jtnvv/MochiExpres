@@ -30,7 +30,7 @@ const ModuloEnvio = (props) => {
                 if (props.idrepartidor !== null) {
                     const res = await getRepartidor(props.idrepartidor);
                     setNombreRepartidor(res.nombrerepartidor);
-                    console.log(nombreRepartidor);
+                    console.log("nombre del repa: ", res.nombrerepartidor);
                 }else{
                     setNombreRepartidor("No asignado");
                 }
@@ -40,7 +40,7 @@ const ModuloEnvio = (props) => {
             }
         };
         obtenerRepartidor();
-    }, [props.idrepartidor]);
+    }, [nombreRepartidor]);
 
     return (
         <div className="content-flex-module-Envio" >

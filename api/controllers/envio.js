@@ -19,7 +19,7 @@ export const getEnviosCliente = (req, res) => {
     console.log("Aquiiiii ", req.params.idCliente);
     db.query(q, [req.params.idCliente],(err, data) => {
         if (err) return res.status(500).json(err);
-        console.log(err);
+        //console.log(err);
         if (data.length == 0) return res.status(409).json("No hay envíos registrados");
         return res.status(200).json(data);
     });
@@ -59,8 +59,8 @@ export const deleteEnvio = (req, res) => {
 
 export const updateEnvioEstado = (req, res) => {
     const values = [
-        req.body.idenvio,
         req.body.estadoenvio,
+        req.body.idenvio,
     ]
 
     const q = "UPDATE envio SET estadoenvio = ? WHERE idenvio = ?";
@@ -73,8 +73,8 @@ export const updateEnvioEstado = (req, res) => {
 
 export const updateEnvioRepartidor = (req, res) => {
     const values = [
-        req.body.idenvio,
         req.body.idrepartidor,
+        req.body.idenvio,
     ]
 
     const q = "UPDATE envio SET idrepartidor = ? WHERE idenvio = ?";

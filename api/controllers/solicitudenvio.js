@@ -4,7 +4,16 @@ import jwt from 'jsonwebtoken';
 
 
 export const getSolicitudesEnvio = (req, res) => {
-    const q = "SELECT * FROM solicitudenvio";
+    const q = "select \
+    solicitudenvio.idsolicitudenvio, \
+    solicitudenvio.descripcionsolicitud,\
+    solicitudenvio.pesopaquete, \
+    solicitudenvio.tarifasolicitud, \
+    solicitudenvio.idsolicitudenvio,fechasolicitud, \
+    solicitudenvio.destinosolicitud, \
+    cliente.nombrecliente \
+    from solicitudenvio \
+    inner join cliente on solicitudenvio.idcliente = cliente.idcliente";
 
     console.log("Entro");
 
