@@ -4,7 +4,7 @@ A web platform that allows users to request the shipment of packages and view th
 Currently is under development
 
 ## Demo
-Here is a working live demo : ![here](https://04ed-2800-484-3677-4e00-3ca6-a3d4-3fd7-759e.ngrok-free.app/Home)
+Here is a working live demo : https://04ed-2800-484-3677-4e00-3ca6-a3d4-3fd7-759e.ngrok-free.app/Home
 
 ## Site
 
