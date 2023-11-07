@@ -27,11 +27,10 @@ const SolEnvInfo2 = () => {
                         </div>
                     </div>
                     <div>
-                        <p>{senvioSeleccionado[0].idCliente}</p>
-                        <p>{senvioSeleccionado[0].pesopaquete}</p>
-                        <p>{senvioSeleccionado[0].descripcionsolicitud}</p>
-                        <p>{senvioSeleccionado[0].destinosolicitud}</p>
-                        <p>{repartidorSeleccionadoexp[0]}</p>
+                        <h2>Calcular tarifa</h2>
+                        <p>{senvioSeleccionado[0].tarifasolicitud}</p>
+                        <button>Aceptar</button>
+                        <Link to="/Home"><button>Rechazar</button></Link>
                     </div>
                 </div>
             </div>
