@@ -155,6 +155,11 @@ export const AuthContexProvider = ({ children }) => {
     console.log(res.data);
   }
 
+  const createEnvio = async (inputs) => {
+    const res = await axios.post("/envios/createEnvio", inputs);
+    console.log(res.data);
+  }
+
   const getSolicitudesEnvio = async () => {
     const res = await axios.get("/solicitudesenvio/getSolicitudesEnvio");
     return res.data;
@@ -187,7 +192,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor, getSolicitudId }}>
+    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor, getSolicitudId, registerRepartidor, registrarCliente, createEnvio }}>
       {children}
     </AuthContext.Provider>
   );
