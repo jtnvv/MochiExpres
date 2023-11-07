@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import ModuloEnvio from "./ModuloEnvio";
 import { AuthContext } from "../context/authContext";
 import { clienteSeleccionado } from "./Clientes";
+import { Link } from "react-router-dom";
 
 export const envioSeleccionado = [];
 
@@ -21,10 +22,10 @@ function Envios() {
 
     const [err, setError] = useState(null);
 
-    // const currentEnvio = (envio) => {
-    //     envioSeleccionado.pop();
-    //     envioSeleccionado.push(envio);
-    // }
+    const currentEnvio = (envio) => {
+        envioSeleccionado.pop();
+        envioSeleccionado.push(envio);
+    }
 
     useEffect(() => {
         const obtenerEnvios = async () => {
@@ -39,49 +40,49 @@ function Envios() {
         obtenerEnvios();
     }, []);
 
-    const [envioSeleccionado, setEnvioSeleccionado] = useState({
-        idenvio: "",
-        descripcionpaquete: "",
-        estadoenvio: "",
-        tarifaenvio: "",
-        fechaenvioentregado: "",
-        fechaenviorealizado: "",
-        destinoenvio: "",
-        idrepartidor: "",
-        idsolicitudenvio: ""
-    });
-    const [redirigir, setRedirigir] = useState(false);
+    // const [envioSeleccionado, setEnvioSeleccionado] = useState({
+    //     idenvio: "",
+    //     descripcionpaquete: "",
+    //     estadoenvio: "",
+    //     tarifaenvio: "",
+    //     fechaenvioentregado: "",
+    //     fechaenviorealizado: "",
+    //     destinoenvio: "",
+    //     idrepartidor: "",
+    //     idsolicitudenvio: ""
+    // });
+    // const [redirigir, setRedirigir] = useState(false);
 
-    const actualizarDatos = (id, descripcion, estado, tarifa, fechaentrega, fechacreacion, destino, idrepartidor, idsolicitudenvio) => {
-        setEnvioSeleccionado({
-            id,
-            descripcion,
-            estado,
-            tarifa,
-            fechaentrega,
-            fechacreacion,
-            destino,
-            idrepartidor,
-            idsolicitudenvio
-        });
-        setRedirigir(true);
-    };
+    // const actualizarDatos = (id, descripcion, estado, tarifa, fechaentrega, fechacreacion, destino, idrepartidor, idsolicitudenvio) => {
+    //     setEnvioSeleccionado({
+    //         id,
+    //         descripcion,
+    //         estado,
+    //         tarifa,
+    //         fechaentrega,
+    //         fechacreacion,
+    //         destino,
+    //         idrepartidor,
+    //         idsolicitudenvio
+    //     });
+    //     setRedirigir(true);
+    // };
 
-    useEffect(() => {
-        if (redirigir) {
-            const url = `/EnviosInfo?
-            idenvio=${envioSeleccionado.idenvio}
-            &descripcionpaquete=${envioSeleccionado.descripcionpaquete}
-            &estadoenvio=${envioSeleccionado.estadoenvio}
-            &tarifaenvio=${envioSeleccionado.tarifaenvio}
-            &fechaenvioentregado=${envioSeleccionado.fechaenvioentregado}
-            &fechaenviorealizado=${envioSeleccionado.fechaenviorealizado}
-            &destinoenvio=${envioSeleccionado.destinoenvio}
-            &idrepartidor=${envioSeleccionado.idrepartidor}
-            &idsolicitudenvio=${envioSeleccionado.idsolicitudenvio}`;
-            window.location.href = url;
-        }
-    }, [redirigir, envioSeleccionado]);
+    // useEffect(() => {
+    //     if (redirigir) {
+    //         const url = `/EnviosInfo?
+    //         idenvio=${envioSeleccionado.idenvio}
+    //         &descripcionpaquete=${envioSeleccionado.descripcionpaquete}
+    //         &estadoenvio=${envioSeleccionado.estadoenvio}
+    //         &tarifaenvio=${envioSeleccionado.tarifaenvio}
+    //         &fechaenvioentregado=${envioSeleccionado.fechaenvioentregado}
+    //         &fechaenviorealizado=${envioSeleccionado.fechaenviorealizado}
+    //         &destinoenvio=${envioSeleccionado.destinoenvio}
+    //         &idrepartidor=${envioSeleccionado.idrepartidor}
+    //         &idsolicitudenvio=${envioSeleccionado.idsolicitudenvio}`;
+    //         window.location.href = url;
+    //     }
+    // }, [redirigir, envioSeleccionado]);
 
     return (
         <div className="content-flex">
@@ -104,29 +105,20 @@ function Envios() {
                             return (
                                 console.log("Aca: ",envio),
                                 <React.Fragment key={envio.idenvio}>
-                                    <div className="ModuloEnvioBarra" onClick={() => 
-                                    //id, descripcion, estado, tarifa, fechaentrega, fechacreacion, destino, idrepartidor, idsolicitud)
-                                        actualizarDatos(
-                                            envio.idenvio, 
-                                            envio.descripcionpaquete,
-                                            envio.estadoenvio, 
-                                            envio.tarifaenvio, 
-                                            envio.fechaenvioentregado, 
-                                            envio.fechaenviorealizado, 
-                                            envio.destinoenvio, 
-                                            envio.idrepartidor, 
-                                            envio.idsolicitudenvio)}>
-                                        <ModuloEnvio 
-                                        idenvio={envio.idenvio} 
-                                        descripcionpaquete={envio.descripcionpaquete}
-                                        estadoenvio={envio.estadoenvio} 
-                                        tarifaenvio={envio.tarifaenvio} 
-                                        fechaenvioentregado={envio.fechaenvioentregado} 
-                                        fechaenviorealizado={envio.fechaenviorealizado} 
-                                        destinoenvio={envio.destinoenvio}  
-                                        idrepartidor={envio.idrepartidor} 
-                                        idsolicitudenvio = {envio.idsolicitudenvio}
-                                        />
+                                    <div className="ModuloEnvioBarra">
+                                        <Link to="/EnviosInfo" onClick= { () => currentEnvio(envio)} style={{ textDecoration: 'none' }}>
+                                                <ModuloEnvio
+                                                    idenvio={envio.idenvio}
+                                                    descripcionpaquete={envio.descripcionpaquete}
+                                                    estadoenvio={envio.estadoenvio}
+                                                    tarifaenvio={envio.tarifaenvio}
+                                                    fechaenvioentregado={envio.fechaenvioentregado}
+                                                    fechaenviorealizado={envio.fechaenviorealizado}
+                                                    destinoenvio={envio.destinoenvio}
+                                                    idrepartidor={envio.idrepartidor}
+                                                    idsolicitudenvio={envio.idsolicitudenvio}
+                                                />
+                                        </Link>
                                     </div>
                                 </React.Fragment>
                             );
