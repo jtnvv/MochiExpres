@@ -1765,7 +1765,9 @@
                     border-radius: 25px;
                     padding: 3%;
 
+
                     button {
+                        margin-bottom: 25%;
                         margin-top: 40px;
                         font-family: Coiny, cursive;
                         border-radius: 50px;
@@ -1779,12 +1781,19 @@
                     }
 
                     .Sol-env2__bg__tarifa {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        align-content: center;
                         background-color: #fff;
                         border-radius: 35px;
                         width: 45%;
+                        margin: auto;
+                        margin-bottom: 5%;
 
                         button {
                             margin-top: 0px;
+                            margin-bottom: 0px;
                             font-family: Coiny, cursive;
                             border-radius: 35px;
                             height: 80px;
