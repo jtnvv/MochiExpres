@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const Actualiza = () => {
 
     const { currentUser, setCurrentUser } = useContext(AuthContext);
     const { currentNew, setCurrentNew } = useContext(AuthContext);
+    const [shouldNavigate, setShouldNavigate] = useState(false);
 
     const [inputs, setInputs] = useState({
         idusuario: currentUser?.idusuario,
@@ -45,7 +45,8 @@ const Actualiza = () => {
             // await getinfouser(inputs);
             console.log("Haz actualizado correctamente get");
             await getinfouser(inputs);
-            navigate("/Personal-Info");
+            setShouldNavigate(true);
+
 
             //setCurrentUser(res2.data[0]);
 
@@ -54,6 +55,12 @@ const Actualiza = () => {
         }
 
     }
+
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigate("/Personal-Info");
+        }
+    }, [shouldNavigate]);
 
     return (
         <div className="content-flex">
@@ -64,12 +71,12 @@ const Actualiza = () => {
                         <Link to="/Personal-Info" className="divVolverInfoBar">
                             <IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" /> Volver</Link>
 
-                        <p className="photo">{currentUser?.nombreusuario}<img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="" /></p>
+                        <p className="photo">{currentUser?.nombreusuario}<img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" /></p>
 
                     </div>
                     <div className="divBodyPersonalInfo">
                         <div className="divLeftPersonalInfo">
-                            <img className="imgLeftPersonalInfo" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="" />
+                            <img className="imgLeftPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             <h2 className="usernameTxt">{currentUser?.nombreusuario}</h2>
                             <input type="text" placeholder="Nuevo nombre" onChange={handleChange} name="nombreusuario" />
                             <h2 className="rolTxt">"Rol: {currentUser?.tipousuario}"</h2>

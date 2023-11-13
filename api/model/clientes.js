@@ -1,9 +1,11 @@
 import express from 'express';
-import { addCliente, paginaInicio } from '../controllers/cliente.js';
+import { getClientes, deleteCliente, getClienteId, getClienteSolId} from '../controllers/cliente.js';
 
 const router = express.Router();
 
-router.get("/test", addCliente);
-router.get("/hola", paginaInicio);
+router.get("/getClientes", getClientes);
+router.delete("/deleteCliente/:idCliente", deleteCliente);
+router.get("/getCliente/:idCliente", getClienteId);
+router.get("/getClienteSol/:idsolicitudenvio", getClienteSolId);
 
 export default router;

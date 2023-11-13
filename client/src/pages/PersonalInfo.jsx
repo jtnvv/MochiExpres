@@ -14,6 +14,7 @@ const PersonalInfo = () => {
 
     const { currentUser } = useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
+    const [shouldNavigate, setShouldNavigate] = useState(false);
 
     const [inputs, setInputs] = useState({
         idusuario: currentUser?.idusuario,
@@ -38,6 +39,7 @@ const PersonalInfo = () => {
             if (checkpass(currentUser?.idusuario, contrasena_antigua.contrasena_antigua)) {
                 if (!compararContrasena(contrasena_antigua.contrasena_antigua, contrasena_nueva.contrasena_nueva)) {
                     setInputs((prev) => ({ ...prev, contrasenausuario: contrasena_antigua.contrasena_antigua, nuevacontrasenausuario: contrasena_nueva.contrasena_nueva }))
+                    setError("");
                 } else {
                     setError("Las contraseñas son iguales");
                 }
@@ -80,73 +82,79 @@ const PersonalInfo = () => {
                 console.log("Haz actualizado correctamente");
                 await getinfouser(inputs);
                 handleCloseModal();
-                navigate("/Personal-Info");
-            }catch(e){
-                setError(err.response.data);
-                console.log(err.response.data);
+                setShouldNavigate(true);
+            } catch (e) {
+                setError(e.response.data);
+                console.log(e.response.data);
             }
-                
+
         }
 
     }
 
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigate("/Personal-Info");
+        }
+    }, [shouldNavigate]);
 
-return (
-    <>
-        <div className="content-flex">
-            <Sidebar />
-            <div className="divContent">
-                <div className="ItemsContainer-PersonalInfo">
-                    <div className="divHeaderPersonalInfo">
-                        <p><IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" />Volver</p>
-                        <p className="photo">{currentUser?.nombreusuario}<img src="https://i.imgur.com/T9X0JHm.jpg" alt="" /></p>
-                    </div>
-                    <div className="divBodyPersonalInfo">
-                        <div className="divLeftPersonalInfo">
-                            <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
-                            <h2 className="usernameTxt">{currentUser?.nombreusuario}</h2>
-                            <h2 className="rolTxt">Rol: {currentUser?.tipousuario}</h2>
+    return (
+        <>
+            <div className="content-flex">
+                <Sidebar />
+                <div className="divContent">
+                    <div className="ItemsContainer-PersonalInfo">
+                        <div className="divHeaderPersonalInfo">
+                            <p><IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" />Volver</p>
+                            <p className="photo">{currentUser?.nombreusuario}<img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" /></p>
                         </div>
-                        <div className="divRightPersonalInfo">
-                            <div className="top">
-                                <h1 className="tittle">Tus datos personales</h1>
-                                <ul>
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Número telefónico: </p>
-                                            <p className="content">{currentUser?.telefonousuario}</p>
-                                        </div>
-                                    </li><br />
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Correo electrónico: </p>
-                                            <p className="content">{currentUser?.correousuario}</p>
-                                        </div>
-                                    </li><br />
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Número identidad: </p>
-                                            <p className="content">{currentUser?.idusuario}</p>
-                                        </div>
-                                    </li><br />
-                                    <li>
-                                        <div className="p">
-                                            <p className="p-list">Pregunta de seguridad: </p>
-                                            <p className="content">{getPreguntaSeguridad(currentUser?.identificadorpregusuario)}</p>
-                                        </div>
-                                    </li><br />
-                                </ul>
+                        <div className="divBodyPersonalInfo">
+                            <div className="divLeftPersonalInfo">
+                                <img className="imgLeftPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                                <h2 className="usernameTxt">{currentUser?.nombreusuario}</h2>
+                                <h2 className="rolTxt">Rol: {currentUser?.tipousuario}</h2>
                             </div>
-                            <div className="bottom">
-                                <div className="flex">
-                                    <div className="div">
-                                        <p>¿Deseas cambiar tu contraseña?.</p>
-                                        <button type="submit" onClick={() => setShowModal(true)}>Cambiar!</button>
-                                    </div>
-                                    <div className="div">
-                                        <p>¿Deseas actualizar tus datos?.</p>
-                                        <Link to="/Actualiza-personal-Info"><button type="submit">Actualizar!</button></Link>
+                            <div className="divRightPersonalInfo">
+                                <div className="top">
+                                    <h1 className="tittle">Tus datos personales</h1>
+                                    <ul>
+                                        <li>
+                                            <div className="p">
+                                                <p className="p-list">Número telefónico: </p>
+                                                <p className="content">{currentUser?.telefonousuario}</p>
+                                            </div>
+                                        </li><br />
+                                        <li>
+                                            <div className="p">
+                                                <p className="p-list">Correo electrónico: </p>
+                                                <p className="content">{currentUser?.correousuario}</p>
+                                            </div>
+                                        </li><br />
+                                        <li>
+                                            <div className="p">
+                                                <p className="p-list">Número identidad: </p>
+                                                <p className="content">{currentUser?.idusuario}</p>
+                                            </div>
+                                        </li><br />
+                                        <li>
+                                            <div className="p">
+                                                <p className="p-list">Pregunta de seguridad: </p>
+                                                <p className="content">{getPreguntaSeguridad(currentUser?.identificadorpregusuario)}</p>
+                                            </div>
+                                        </li><br />
+                                    </ul>
+                                </div>
+                                <div className="bottom">
+                                    <div className="flex">
+                                        <div className="div">
+                                            <p>¿Deseas cambiar tu contraseña?.</p>
+                                            <button type="submit" onClick={() => setShowModal(true)}>Cambiar!</button>
+                                        </div>
+                                        <div className="div">
+                                            <p>¿Deseas actualizar tus datos?.</p>
+                                            <Link to="/Actualiza-personal-Info"><button type="submit">Actualizar!</button></Link>
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -154,35 +162,34 @@ return (
                     </div>
                 </div>
             </div>
-        </div>
-        {showModal &&
-            (<div className="VentanaModel">
-                <Overlay>
-                    <ContenedorModal>
-                        <EncabezadoModal>
-                            <h3>Cambiar Contraseña</h3>
-                        </EncabezadoModal>
+            {showModal &&
+                (<div className="VentanaModel">
+                    <Overlay>
+                        <ContenedorModal>
+                            <EncabezadoModal>
+                                <h3>Cambiar Contraseña</h3>
+                            </EncabezadoModal>
 
-                        <Contenido>
-                            <form>
-                                <h2>Tu nombre de usuario</h2>
-                                <input type="text" placeholder={currentUser?.nombreusuario} />
-                                <h2>Inserta tu anterior contraseña</h2>
-                                <input type="password" placeholder="Antigua Contraseña" name="contrasena_antigua" onChange={handleContrasenaAntiguaChange} />
-                                <h2>Inserta tu nueva contraseña</h2>
-                                <input type="password" placeholder="Nueva Contraseña" name="contrasena_nueva" onChange={handleContrasenaNuevaChange} />
-                            </form>
-                        </Contenido>
-                        <Boton onClick={handleSubmit}>Confirmar</Boton>
-                        <BotonCerrar onClick={handleCloseModal}><RiIcons.RiCloseFill className="IconClose" /></BotonCerrar>
-                    </ContenedorModal>
+                            <Contenido>
+                                <form>
+                                    <h2>Tu nombre de usuario</h2>
+                                    <input type="text" placeholder={currentUser?.nombreusuario} />
+                                    <h2>Inserta tu anterior contraseña</h2>
+                                    <input type="password" placeholder="Antigua Contraseña" name="contrasena_antigua" onChange={handleContrasenaAntiguaChange} />
+                                    <h2>Inserta tu nueva contraseña</h2>
+                                    <input type="password" placeholder="Nueva Contraseña" name="contrasena_nueva" onChange={handleContrasenaNuevaChange} />
+                                </form>
+                            </Contenido>
+                            <Boton onClick={handleSubmit}>Confirmar</Boton>
+                            <BotonCerrar onClick={handleCloseModal}><RiIcons.RiCloseFill className="IconClose" /></BotonCerrar>
+                        </ContenedorModal>
 
-                </Overlay>
-            </div>)}
-    </>
+                    </Overlay>
+                </div>)}
+        </>
 
 
-)
+    )
 };
 export default PersonalInfo;
 
@@ -295,7 +302,7 @@ const Contenido = styled.div`
         font-weight: 700;
         font-family: Comfortaa, cursive;
         color: #fff; 
-        align-items: center;
+        text-align: center;
     }
 
     input{

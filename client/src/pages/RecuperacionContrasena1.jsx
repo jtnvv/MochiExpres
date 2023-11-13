@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import people from "../img/login-people.png";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
@@ -11,7 +11,7 @@ const RecuperacionContrasena1 = () => {
     });
 
     const [err, setError] = useState(null);
-
+    const [shouldNavigate, setShouldNavigate] = useState(false);
     const navigate = useNavigate();
 
     const { auth_recov1 } = useContext(AuthContext);
@@ -54,7 +54,7 @@ const RecuperacionContrasena1 = () => {
             try {
                 //await axios.post("/auth/login", inputs);
                 await auth_recov1(inputs);
-                navigate("/Recuperacion-Contrasena2");
+                setShouldNavigate(true);
             } catch (err) {
                 setError(err.response.data);
                 console.log(err.response.data);
@@ -62,19 +62,25 @@ const RecuperacionContrasena1 = () => {
         }
     };
 
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigate("/Recuperacion-Contrasena2");
+        }
+    }, [shouldNavigate]);
+
     return (
         <div className="register">
         <div className="register__bg">
             <h1>Recuperación de contraseña</h1>
             <form>
+                <p className="register__bg__text">Inserta tu número de identidad</p>
+                <input required type="number" placeholder="Número de identidad" name="idusuario" onChange={handleChange} />
+                { err && <p className="register__bg__error"></p>}
                 <p className="register__bg__text">Inserta tu usuario</p>
-                <input required type="text" placeholder="Usuario" name="idusuario" onChange={handleChange} />
-                { err && <p className="register__bg__error">Esto es un error</p>}
-                <p className="register__bg__text">Inserta tu numero de identidad</p>
                 <input required type="text" placeholder="Nombre de usuario" name="nombreusuario" onChange={handleChange}/>
-                {err && <p className="register__bg__error">Esto es un error</p>}
+                {err && <p className="register__bg__error"></p>}
                 <button type="submit" onClick={handleSubmit}>Confirmar datos</button>
-                {err && <p className="register__bg__error">Esto es un error</p>}
+                {err && <p className="register__bg__error"> {err}</p>}
             </form>
         </div>
         <div className="register__img">
