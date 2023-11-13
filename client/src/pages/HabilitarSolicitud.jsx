@@ -1,46 +1,41 @@
 import React, { useEffect, useState, useContext } from "react";
-import Sidebar from "./Sidebar";
-import ModuloEnvio from "./ModuloEnvio";
 import { AuthContext } from "../context/authContext";
-import { clienteSeleccionado } from "./Clientes";
 import { Link } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import ModuloSolicitudEnvio from "./ModuloSolicitudEnvio";
 
-export const solicitudEnvioSeleccionada = [];
+export const senvioSeleccionado = [];
 
-function HabilitarSolicitud() {
-
-    const [solicitudesEnviosList, setSolicitudesEnvios] = useState([]);
+const HabilitarSolicitud = () => {
+    const [solicitudList, setSolicitudenvio] = useState([]);
     const { getSolicitudesEnvio } = useContext(AuthContext);
 
     const [identificador, setIdentificador] = useState({
-        idenvio: ""
+        idsolicitudenvio: ""
     });
-
     useEffect(() => {
         console.log(identificador);
     }, [identificador]);
 
     const [err, setError] = useState(null);
 
-    const currentSolicitudEnvio = (solicitudEnvio) => {
-        solicitudEnvioSeleccionada.pop();
-        solicitudEnvioSeleccionada.push(solicitudEnvio);
+    const currentSolicitud = (solicitudenvio) => {
+        senvioSeleccionado.pop();
+        senvioSeleccionado.push(solicitudenvio);
     }
 
     useEffect(() => {
-        const obtenerSolicitudesEnvios = async () => {
+        const obtenerSolicitudes = async () => {
             try {
                 const res = await getSolicitudesEnvio();
                 console.log(res);
-                setSolicitudesEnvios(res);
+                setSolicitudenvio(res);
             } catch (err) {
                 console.log(err);
             }
         };
-        obtenerSolicitudesEnvios();
+        obtenerSolicitudes();
     }, []);
-
-
     return (
         <div className="content-flex">
             <Sidebar />
@@ -48,32 +43,25 @@ function HabilitarSolicitud() {
                 <div className="ItemsContainerEnvio">
                     <div className="BarraRepartidor">
                         <div className="containerButtonsRepartidor">
-                            <h3 className="styleH3Clientes">Solicitudes de Envíos</h3>
+                            <h3 className="styleH3Clientes">Solicitud de envíos</h3>
                         </div>
                         <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Solicitud de Envío" />
+                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar solicitud envío" />
                             <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
                     </div>
                     {
-                        solicitudesEnviosList.map((solicitudEnvio) => {
+                        solicitudList.map((solicitudenvio) => {
                             return (
-                                console.log("Aca: ",solicitudEnvio),
-                                <React.Fragment key={solicitudEnvio.idsolicitudenvio}>
+                                console.log("Aca: ", solicitudenvio),
+                                <React.Fragment key={solicitudenvio.idenvio}>
                                     <div className="ModuloEnvioBarra">
-                                        <Link to="/EnviosInfo" onClick= { () => currentSolicitudEnvio(solicitudEnvio)} style={{ textDecoration: 'none' }}>
-                                                <div className="content-flex-module-SolicitudEnvio">
-
-                                                      <div className="nombrecliente">
-                                                        <h3>{solicitudEnvio.nombrecliente}</h3>
-                                                      </div>
-                                                      <h2>Ver Info</h2>
-
-
-                                                </div>
-    
+                                        <Link to="/SolEnvInfo1" onClick={() => currentSolicitud(solicitudenvio)} style={{ textDecoration: 'none' }}>
+                                            <ModuloSolicitudEnvio
+                                                idsolicitudenvio={solicitudenvio.idsolicitudenvio}
+                                            />
                                         </Link>
                                     </div>
                                 </React.Fragment>

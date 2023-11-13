@@ -16,46 +16,46 @@ const Home = () => {
     if (currentTypeUser === "administrador") { // Si el usuario es admin
         return (
             <div className="content-flex">
-                <Sidebar />       
-                    <div className="divContentHAdmin">
-                        <div className="BarraRepartidor">
-                            <div className="containerButtonsRepartidor">
-                                <h3 className="styleH3Clientes"> Bienvenido de vuelta!
-                                </h3>
-                            </div>
-                            <div className="containerBusquedaRepartidor">
-                                <div className="InfoBarImg">
-                                    <img className="imgPersonalInfo"  src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
-                                </div>
+                <Sidebar />
+                <div className="divContentHAdmin">
+                    <div className="BarraRepartidor">
+                        <div className="containerButtonsRepartidor">
+                            <h3 className="styleH3Clientes"> Bienvenido de vuelta!
+                            </h3>
+                        </div>
+                        <div className="containerBusquedaRepartidor">
+                            <div className="InfoBarImg">
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
-                        <div className="ItemsContainerHAdmin">
-                            <Link to="/Personal-Info" className="NombreH" style={{ textDecoration: 'none' }}>
-                                <div className="image">
-                                    <img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />   
-                                </div>
-                                <h3> Nombre</h3>
-                            </Link>
-                            <Link to="/Consultar-Pedidos" className="ConsultarPedidosH" style={{ textDecoration: 'none', color:'#4A4846'}} >
-                                <BiIcons.BiSolidShoppingBags className="IconColorH" />
-                                <h3> Consultar Pedidos</h3>
-                            </Link>
-                            <Link to="/Habilitar-Solicitud" className="HabilitarSH" style={{ textDecoration: 'none', color:'#4A4846'}}>
-                                <MdIcons.MdNotificationAdd className="IconColorH" />
-                                <h3> Habilitar Solicitud</h3>
-                            </Link>
-                            <Link to="/Repartidores" className="RepartidoresH" style={{ textDecoration: 'none', color:'#4A4846' }}> 
-                                <FaIcons.FaTruckArrowRight className="IconColorH" />
-                                <h3> Repartidores</h3>
-                            </Link>
-                            <Link to="/Clientes" className="ClientesH" style={{ textDecoration: 'none', color:'#4A4846'}}> 
-                                <BiIcons.BiSolidHappyBeaming className="IconColorH" />
-                                <h3> Clientes</h3>
-                            </Link>
-                            <Link to="/Envios" className="EnviosH" style={{ textDecoration: 'none', color:'#4A4846' }}>
-                                <PiIcons.PiPackageFill className="IconColorH" />
-                                <h3> Envíos</h3>
-                            </Link>
+                    </div>
+                    <div className="ItemsContainerHAdmin">
+                        <Link to="/Personal-Info" className="NombreH" style={{ textDecoration: 'none' }}>
+                            <div className="image">
+                                <img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                            </div>
+                            <h3> Nombre</h3>
+                        </Link>
+                        <Link to="/Consultar-Pedidos" className="ConsultarPedidosH" style={{ textDecoration: 'none', color: '#4A4846' }} >
+                            <BiIcons.BiSolidShoppingBags className="IconColorH" />
+                            <h3> Consultar Pedidos</h3>
+                        </Link>
+                        <Link to="/Habilitar-Solicitud" className="HabilitarSH" style={{ textDecoration: 'none', color: '#4A4846' }}>
+                            <MdIcons.MdNotificationAdd className="IconColorH" />
+                            <h3> Habilitar Solicitud</h3>
+                        </Link>
+                        <Link to="/Repartidores" className="RepartidoresH" style={{ textDecoration: 'none', color: '#4A4846' }}>
+                            <FaIcons.FaTruckArrowRight className="IconColorH" />
+                            <h3> Repartidores</h3>
+                        </Link>
+                        <Link to="/Clientes" className="ClientesH" style={{ textDecoration: 'none', color: '#4A4846' }}>
+                            <BiIcons.BiSolidHappyBeaming className="IconColorH" />
+                            <h3> Clientes</h3>
+                        </Link>
+                        <Link to="/Envios" className="EnviosH" style={{ textDecoration: 'none', color: '#4A4846' }}>
+                            <PiIcons.PiPackageFill className="IconColorH" />
+                            <h3> Envíos</h3>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ function Envios() {
     const [enviosList, setEnvios] = useState([]);
     const { getEnvios } = useContext(AuthContext);
 
-   
+
 
     const [identificador, setIdentificador] = useState({
         idenvio: ""
@@ -98,28 +98,28 @@ function Envios() {
                         <div className="containerBusquedaRepartidor">
                             <input type="text" className="BusquedaRepartidor" placeholder="Buscar Envío" />
                             <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
                     </div>
                     {
                         enviosList.map((envio) => {
                             return (
-                                console.log("Aca: ",envio),
+                                console.log("Aca: ", envio),
                                 <React.Fragment key={envio.idenvio}>
                                     <div className="ModuloEnvioBarra">
-                                        <Link to="/EnviosInfo" onClick= { () => currentEnvio(envio)} style={{ textDecoration: 'none' }}>
-                                                <ModuloEnvio
-                                                    idenvio={envio.idenvio}
-                                                    descripcionpaquete={envio.descripcionpaquete}
-                                                    estadoenvio={envio.estadoenvio}
-                                                    tarifaenvio={envio.tarifaenvio}
-                                                    fechaenvioentregado={envio.fechaenvioentregado}
-                                                    fechaenviorealizado={envio.fechaenviorealizado}
-                                                    destinoenvio={envio.destinoenvio}
-                                                    idrepartidor={envio.idrepartidor}
-                                                    idsolicitudenvio={envio.idsolicitudenvio}
-                                                />
+                                        <Link to="/EnviosInfo" onClick={() => currentEnvio(envio)} style={{ textDecoration: 'none' }}>
+                                            <ModuloEnvio
+                                                idenvio={envio.idenvio}
+                                                descripcionpaquete={envio.descripcionpaquete}
+                                                estadoenvio={envio.estadoenvio}
+                                                tarifaenvio={envio.tarifaenvio}
+                                                fechaenvioentregado={envio.fechaenvioentregado}
+                                                fechaenviorealizado={envio.fechaenviorealizado}
+                                                destinoenvio={envio.destinoenvio}
+                                                idrepartidor={envio.idrepartidor}
+                                                idsolicitudenvio={envio.idsolicitudenvio}
+                                            />
                                         </Link>
                                     </div>
                                 </React.Fragment>

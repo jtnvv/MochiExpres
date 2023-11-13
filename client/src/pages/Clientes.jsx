@@ -14,7 +14,7 @@ function Clientes() {
     const { deleteCliente } = useContext(AuthContext);
 
     const [identificador, setIdentificador] = useState({
-        idCliente:""
+        idCliente: ""
     });
 
     useEffect(() => {
@@ -59,7 +59,7 @@ function Clientes() {
         if (!clickedModal) {
             setModalStyle({ visibility: 'visible' });
             console.log(idCliente);
-            setIdentificador({idCliente: idCliente});
+            setIdentificador({ idCliente: idCliente });
             console.log(identificador);
         } else {
             setModalStyle({ visibility: 'hidden' });
@@ -69,16 +69,16 @@ function Clientes() {
 
     const handleEliminarCliente = async (e) => {
         //e.preventDefault();
-        try{
+        try {
             console.log("Identificador: ", identificador);
-            if(identificador.idCliente !== null){
+            if (identificador.idCliente !== null) {
                 const res = await deleteCliente(identificador.idCliente);
                 console.log("Ha salido bien :D ", res);
                 window.location.reload();
-            }else{
+            } else {
                 console.log("Ha salido mal :c ");
             }
-        }catch(err){
+        } catch (err) {
             setError(err.response.data);
         }
 
@@ -103,7 +103,7 @@ function Clientes() {
                         <div className="containerBusquedaRepartidor">
                             <input type="text" className="BusquedaRepartidor" placeholder="Buscar Cliente" />
                             <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ function Clientes() {
                             return (
                                 <React.Fragment key={val.idCliente}>
                                     <div className="ModuloRepartidorContainer">
-                                    <div className="eliminarModulo" onClick={() => showModal(val.idCliente)} style={divStyle}>X</div>
+                                        <div className="eliminarModulo" onClick={() => showModal(val.idCliente)} style={divStyle}>X</div>
 
                                         <Link to="/ClientesInfo" onClick={() => currentCliente(val)} style={{ textDecoration: 'none' }}>
                                             <ModuloClientes nombre={val.nombrecliente} />
