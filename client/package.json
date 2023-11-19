@@ -22,7 +22,7 @@
     "yarn": "^1.22.19"
   },
   "scripts": {
-    "start": "set HOST=0.0.0.0 && set PORT=10000 && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -45,5 +45,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://mochiexpress-backend.onrender.com/api"
+  "proxy": "https://mochiexpres-backend.onrender.com/api"
 }
