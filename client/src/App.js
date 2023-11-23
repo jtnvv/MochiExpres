@@ -26,6 +26,7 @@ import AgregarRepartidor from "./pages/AgregarRepartidores";
 import EnviosInfo from "./pages/EnviosInfo";
 import SolEnvInfo1 from "./pages/SolEnvInfo1";
 import SolEnvInfo2 from "./pages/SolEnvInfo2";
+import EnviosInfoClientes from "./pages/EnviosInfoClientes";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,11 @@ const router = createBrowserRouter([
     path: "/EnviosInfo",
     element:
       <EnviosInfo />,
+  },
+  {
+    path: "/EnviosInfoClientes",
+    element:
+      <EnviosInfoClientes />,
   },
   {
     path: "/Consultar-Pedidos",
