@@ -22,7 +22,7 @@ export const DB_PORT = process.env.DB_PORT || 3306;
 // export const DB_USER = process.env.DB_USER || "ud5wyjvotay7zszu";
 // export const DB_PASSWORD = process.env.DB_PASSWORD || "XQAc8LsOZjd0GltnKV4S";
 
-export const DB_NAME = process.env.DB_NAME || "bhntkh5hnfdvcubwd7tc";
+//export const DB_NAME = process.env.DB_NAME || "bhntkh5hnfdvcubwd7tc";
 // export const DB_PORT = process.env.DB_PORT || 3306;
 
 // export const DB_NAME = process.env.DB_NAME || "bhntkh5hnfdvcubwd7tc";
