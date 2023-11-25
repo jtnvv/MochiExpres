@@ -47,11 +47,13 @@ const AgregarRepartidores = () => {
         try {
             if (!inputs.idrepartidor || !inputs.nombrerepartidor || !inputs.correorepartidor || !inputs.direccionrepartidor || !inputs.telefonorepartidor || !inputs.contrasenarepartidor || !inputs.identificadorpregrepar || !inputs.respuestapregrepar) {
                 setError("Por favor llene todos los campos");
+                return;
             }
 
             if (validarUsuario(inputs.idrepartidor)) {
                 const res = await registerRepartidor(inputs);
-                console.log("Ha salido bien :D ", res);
+                alert("Repartidor registrado con éxito");
+                window.location.reload();
             } else {
                 setError("El identificador debe contener las condiciones necesarias");
                 return;

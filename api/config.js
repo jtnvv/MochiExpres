@@ -1,9 +1,15 @@
+import dotenv from 'dotenv';
+dotenv.config();
 export const PORT = process.env.PORT || 8800;
 
 export const DB_HOST = process.env.DB_HOST || "localhost";
 export const DB_USER = process.env.DB_USER || "root";
 export const DB_PASSWORD = process.env.DB_PASSWORD || "12345";
+<<<<<<< HEAD
 //export const DB_NAME = process.env.DB_NAME || "mochiexprescopia";
+=======
+export const DB_NAME = process.env.DB_NAME || "mochiexpres";
+>>>>>>> 927486cadb389f311139e99da123d0f1a5cbe5f7
 export const DB_PORT = process.env.DB_PORT || 3306;
 
 
@@ -16,5 +22,10 @@ export const DB_PORT = process.env.DB_PORT || 3306;
 // export const DB_HOST = process.env.DB_HOST || "bhntkh5hnfdvcubwd7tc-mysql.services.clever-cloud.com";
 // export const DB_USER = process.env.DB_USER || "ud5wyjvotay7zszu";
 // export const DB_PASSWORD = process.env.DB_PASSWORD || "XQAc8LsOZjd0GltnKV4S";
+<<<<<<< HEAD
 export const DB_NAME = process.env.DB_NAME || "bhntkh5hnfdvcubwd7tc";
 // export const DB_PORT = process.env.DB_PORT || 3306;
+=======
+// export const DB_NAME = process.env.DB_NAME || "bhntkh5hnfdvcubwd7tc";
+// export const DB_PORT = process.env.DB_PORT || 3306;
+>>>>>>> 927486cadb389f311139e99da123d0f1a5cbe5f7

@@ -69,6 +69,13 @@
                         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
                         cursor: pointer;
                     }
+                    .button1 {
+                        position: relative;
+                        padding: 0px;
+                        left: 50%;
+                        background-color: red;
+                    }
+
 
                     .auth__bg__text {
                         font-family: Comfortaa, cursive;
@@ -1409,12 +1416,13 @@
 
                             .bottomRegister {
                                 height: 35%;
-                                padding-bottom: 10vh;
+                                padding-bottom: 13vh;
                                 justify-content: space-evenly;
 
                                 .flex {
                                     display: flex;
                                     justify-content: space-evenly;
+                                    padding-bottom: 5vh;
 
                                     .div {
                                         width: 200px;
@@ -1765,7 +1773,9 @@
                     border-radius: 25px;
                     padding: 3%;
 
+
                     button {
+                        margin-bottom: 25%;
                         margin-top: 40px;
                         font-family: Coiny, cursive;
                         border-radius: 50px;
@@ -1779,12 +1789,19 @@
                     }
 
                     .Sol-env2__bg__tarifa {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        align-content: center;
                         background-color: #fff;
                         border-radius: 35px;
                         width: 45%;
+                        margin: auto;
+                        margin-bottom: 5%;
 
                         button {
                             margin-top: 0px;
+                            margin-bottom: 0px;
                             font-family: Coiny, cursive;
                             border-radius: 35px;
                             height: 80px;
@@ -2159,4 +2176,5 @@
 
         }
     }
+
 }

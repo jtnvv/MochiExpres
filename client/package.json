@@ -45,5 +45,12 @@
       "last 1 safari version"
     ]
   },
+<<<<<<< HEAD
   "proxy": "https://mochiexpress-backend.onrender.com/api"
 }
+=======
+  
+  "proxy": "http://localhost:8800/api"
+
+}
+>>>>>>> 927486cadb389f311139e99da123d0f1a5cbe5f7
