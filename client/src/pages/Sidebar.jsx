@@ -78,6 +78,11 @@ const Sidebar = () => {
                                     <BiIcons.BiSolidShoppingBags className="IconColor" />
                                 </Link>
                             </li>
+                            <li>
+                                <Link to="/SolEnvClientes" className="Habilitar Solicitudes">
+                                    <MdIcons.MdNotificationAdd className="IconColor" />
+                                </Link>
+                            </li>
                         </>
 
                     )

@@ -53,3 +53,49 @@ export const getSolicitudId = (req, res) => {
         return res.status(200).json(data);
     });
 }
+export const getSolicitudIdCliente = (req, res) => {
+    const q = "SELECT * FROM solicitudenvio WHERE idCliente= ? ";
+    console.log(req.params);
+    db.query(q, [req.params.idCliente], (err, data) => {
+        if (err) return res.status(500).json(err);
+        console.log(err);
+        if (data.length == 0) return res.json("No hay solicitudes de envio registradas");
+        return res.status(200).json(data);
+    });
+}
+export const createSolEnvio = (req, res) => {
+    const q1 = "SELECT * FROM solicitudenvio WHERE idsolicitudenvio = ?";
+    console.log("Entro");
+
+    db.query(q1, [req.body.idenvio], (err, data) => {
+        if (err) return res.status(500).json(err);
+        if (data.length) return res.status(409).json("La solicitud de envío ya existe");
+        const q2 = "INSERT INTO solicitudenvio(`idsolicitudenvio`,`descripcionsolicitud`,`pesopaquete`,`tarifasolicitud`,`fechasolicitud`,`destinosolicitud`,`idCliente`) values (?)";
+        const values = [
+            req.body.idsolicitudenvio,
+            req.body.descripcionsolicitud,
+            parseFloat(req.body.pesopaquete),
+            req.body.tarifasolicitud,
+            req.body.fechasolicitud,
+            req.body.destinosolicitud,
+            req.body.idCliente,
+        ]
+        db.query(q2, [values], (err, data) => {
+            if (err) return res.json(err);
+            return res.status(200).json("Solicitud de envío creado con éxito");
+        });
+    });
+}
+
+export const deleteSolEnvCliente = (req, res) => {
+    let solicitudId = req.params.idsolicitudenvio;
+    console.log("Aqui ", solicitudId);
+    if (solicitudId === "") return res.status(403).json("No se ha enviado la Id de solicitud de envio");
+
+    const q1 = "DELETE FROM solicitudenvio WHERE idsolicitudenvio = ?";
+
+    db.query(q1, [solicitudId], (err, data) => {
+        if (err) return res.status(403).json("No puedes borrar esta solicitud de envío");
+    });
+    return res.status(200).json("Solicitud de envío borrado con éxito");
+}

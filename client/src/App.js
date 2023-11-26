@@ -27,6 +27,9 @@ import EnviosInfo from "./pages/EnviosInfo";
 import SolEnvInfo1 from "./pages/SolEnvInfo1";
 import SolEnvInfo2 from "./pages/SolEnvInfo2";
 import EnviosInfoClientes from "./pages/EnviosInfoClientes";
+import SolEnvClientes from "./pages/SolEnvClientes";
+import SolEnvClientesInfo from "./pages/SolEnvClientesInfo";
+import AgregarSolEnvCliente from "./pages/AgregarSolEnvCliente";
 
 const router = createBrowserRouter([
   {
@@ -34,9 +37,24 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/AgregarSolEnvCliente",
+    element:
+      <AgregarSolEnvCliente />,
+  },
+  {
     path: "/SolEnvInfo1",
     element:
       <SolEnvInfo1 />,
+  },
+  {
+    path: "/SolEnvClientes",
+    element:
+      <SolEnvClientes />,
+  },
+  {
+    path: "/SolEnvClientesInfo",
+    element:
+      <SolEnvClientesInfo />,
   },
   {
     path: "/SolEnvInfo2",
