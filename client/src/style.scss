@@ -311,7 +311,7 @@
             justify-content: center;
             align-items: center;
 
-            .ModuloSolEnv {
+            .ModuloSolEnv, .ModuloEnvCliente {
                 margin-top: 60px;
                 margin-bottom: 50px;
                 display: flex;
@@ -322,14 +322,19 @@
                 color: #F4BB3A;
                 font-size: 45px;
             }
-
-            .ModuloSolEnv_t {
+            .ModuloEnvCliente{
+                font-size: 70px;
+            }
+            .ModuloSolEnv_t, .ModuloEnvCliente_t {
                 font-family: Coiny, cursive;
                 font-size: large;
                 display: flex;
                 justify-content: center;
                 margin-top: 20px;
                 color: #4A4846;
+            }
+            .ModuloEnvCliente_t{
+                font-size: 30px;
             }
 
             .ModuloRepartidor_DivImagen {
@@ -386,16 +391,54 @@
                     color: #3289A0;
                     font-family: Coiny, cursive;
                     font-size: 30px;
-                    margin-right: 30px;
-                }
-            }
+                    margin: 0px;
+                    margin-right: 10px;
 
+                }
+                
+            }
             .containerBusquedaRepartidor {
                 display: flex;
                 align-items: center;
                 height: 100%;
                 width: 50%;
                 justify-content: space-evenly;
+            }
+            
+            .containerBusquedaEnvClientes{
+                visibility: visible;   
+            }
+            @media only screen and (max-width: 1000px) {
+                .containerBusquedaEnvClientes,.containerBusquedaRepartidor{
+                    visibility: hidden;  
+                    width: 0px; 
+                }
+                .containerButtonsRepartidor{
+                    width: 100%;       
+                    .styleH3Clientes {
+                        font-family: Coiny, cursive;
+                        font-size: 20px;
+                        margin-left: 10%;
+                        margin-right: 30px;
+                    }
+                }
+            }
+            @media only screen and (max-width: 650px) {
+                .containerBusquedaEnvClientes,.containerBusquedaRepartidor{
+                    visibility: hidden;  
+                    width: 0px; 
+                }
+                .containerButtonsRepartidor{
+                    width: 100%;       
+                    .styleH3Clientes {
+                        visibility: hidden;
+                        width: 0px;
+                        margin:0px
+                    }
+                    .buttonRepartidorStyle{
+                        margin-right: 5px;
+                    }
+                }
             }
 
             .BusquedaRepartidor {
@@ -408,6 +451,21 @@
                 padding-right: 10px;
                 color: black;
                 font-family: Coiny, cursive;
+            }
+            .buttonEnviosClienteStyle{
+                padding-left: 20px;
+                padding-right: 20px;
+                cursor: pointer;
+                border: transparent;
+                height: 70%;
+                border-radius: 20px;
+                margin-right: 30px;
+                background-color: transparent;
+                font-size: 20px;
+                color: #4A4846;
+            }
+            .buttonEnviosClienteStyle:hover{
+                color: white;
             }
 
             .buttonRepartidorStyle {
@@ -722,12 +780,11 @@
 
             .modalEnvioContenedor2 {
                 opacity: 1.4;
-                height: 50vh;
+                height: 80vh;
                 width: 80vw;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-evenly;
-                align-items: center;
                 padding-left: 30px;
                 padding-right: 30px;
                 border-radius: 30px;
@@ -735,6 +792,7 @@
                 .id {
                     display: block;
                     width: 310px;
+                    height: 100%;
 
                     .idEnvio {
                         display: flex;
@@ -742,7 +800,6 @@
                         align-items: center;
                         font-size: 25px;
                         font-family: Coiny, cursive;
-                        border: solid 1px black;
                         border-radius: 30px;
                         background-color: #C4DDE3;
                         color: orange;
@@ -750,7 +807,7 @@
 
                     .info {
                         font-family: Coiny, cursive;
-                        border: solid 1px black;
+                        border: solid 1px transparent;
                         border-radius: 30px;
                         background-color: #C4DDE3;
                         margin-top: 20px;
@@ -773,13 +830,13 @@
                 .contenedorTarifaInfo {
                     display: block;
                     width: 700px;
-                    height: 90vh;
+                    height: 100%;
 
                     .tarifaInfo {
                         display: flex;
                         flex-wrap: wrap;
                         justify-content: space-evenly;
-                        height: 70%;
+                        height: 80%;
                         width: 100%;
                     }
 
@@ -790,17 +847,20 @@
                         align-items: center;
                         justify-content: center;
                         flex-wrap: wrap;
-                        margin-top: 5px;
+                        margin-top: 10%;
                         border-radius: 30px;
                         background-color: #C4DDE3;
 
                         h3 {
+                            margin: 0;
                             font-family: Coiny, cursive;
                             font-size: 15px;
                             color: #4A4846;
+                            margin-right: 20px;
                         }
 
                         p {
+                            margin: 0;
                             font-family: Comfortaa, cursive;
                             color: #4A4846;
                             font-size: 14px;
@@ -815,7 +875,6 @@
                         align-items: center;
                         font-size: 25px;
                         font-family: Coiny, cursive;
-                        border: solid 1px black;
                         border-radius: 30px;
                         background-color: #C4DDE3;
                         color: #4A4846;
@@ -827,7 +886,7 @@
                         font-family: Coiny, cursive;
                         height: 410px;
                         width: 280px;
-                        border: solid 1px black;
+                        border: solid 1px transparent;
                         border-radius: 30px;
                         background-color: #C4DDE3;
                         margin-top: 20px;
@@ -851,13 +910,19 @@
                 .personalInfo {
                     display: block;
                     font-family: Coiny, cursive;
-                    height: 390px;
+                    height: 500px;
+                    margin: 0;
+                    padding: 0;
                     width: 280px;
-                    border: solid 1px black;
                     border-radius: 30px;
                     background-color: #C4DDE3;
-                    margin-top: 70px;
-                    padding-top: 20px;
+                    border-color: transparent; 
+                    .btnPersonalInfo{
+                        width: 80%;
+                        height: 10%;
+                        background-color: #E26767;
+                        border-color: transparent;    
+                    }
 
                     .status {
                         margin-left: 60px;

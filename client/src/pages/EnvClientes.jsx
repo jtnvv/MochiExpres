@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import ModuloSolEnvCliente from "./ModuloSolEnvCliente"
+import ModuloEnvCliente from "./ModuloEnvCliente"
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-export const SolEnvClienteSeleccionado = [];
+import { HiOutlineTrash } from "react-icons/hi";
+import { FaCirclePlus } from "react-icons/fa6";
+export const EnvClienteSeleccionado = [];
 
 
-function SolEnvClientes() {
+function EnvClientes() {
     const { currentUser } = useContext(AuthContext);
-    const [SolEnvCliente, setSolEnvCliente] = useState([]);
+    const [EnvCliente, setEnvCliente] = useState([]);
     const { getSolicitudIdCliente } = useContext(AuthContext);
-    const { deleteSolEnvCliente } = useContext(AuthContext);
+    const { deleteEnvCliente } = useContext(AuthContext);
     //const { repartidores } = useContext(AuthContext);
     const [identificador, setIdentificador] = useState({
         idsolicitudenvio: ""
@@ -23,8 +25,8 @@ function SolEnvClientes() {
     const [err, setError] = useState(null);
 
     const currentSolicitud = (solicitud) => {
-        SolEnvClienteSeleccionado.pop();
-        SolEnvClienteSeleccionado.push(solicitud);
+        EnvClienteSeleccionado.pop();
+        EnvClienteSeleccionado.push(solicitud);
 
     }
 
@@ -32,7 +34,7 @@ function SolEnvClientes() {
         const obtenerSolicitudes = async () => {
             try {
                 const res = await getSolicitudIdCliente(currentUser.idusuario);
-                setSolEnvCliente(res);
+                setEnvCliente(res);
 
             } catch (err) {
                 console.log(err);
@@ -44,7 +46,7 @@ function SolEnvClientes() {
 
     useEffect(() => {
 
-    }, [SolEnvCliente]);
+    }, [EnvCliente]);
     // useEffect(() => {
     //     console.log("Aqui esta la respuesta");
     //     console.log(repartidoresList);
@@ -76,11 +78,11 @@ function SolEnvClientes() {
         setClickedModal(!clickedModal);
     };
 
-    const handleEliminarSolEnvCliente = async (e) => {
+    const handleEliminarEnvCliente = async (e) => {
         try {
             console.log("Identificador: ", identificador);
             if (identificador.idsolicitudenvio !== null) {
-                const res = await deleteSolEnvCliente(identificador.idsolicitudenvio);
+                const res = await deleteEnvCliente(identificador.idsolicitudenvio);
                 console.log("Ha salido bien :D", res);
                 window.location.reload();
             }
@@ -88,10 +90,10 @@ function SolEnvClientes() {
             setError(err.response.data);
         }
     }
-    const handleRedirect = () => { navigate("/AgregarSolEnvCliente") };
+    const handleRedirect = () => { navigate("/AgregarEnvCliente") };
 
     return (
-        console.log(SolEnvCliente),
+        console.log(EnvCliente),
         <div className="content-flex">
             <Sidebar />
             <div className="divContent">
@@ -99,48 +101,55 @@ function SolEnvClientes() {
 
                     <div className="BarraRepartidor">
                         <div className="containerButtonsRepartidor">
-                            <button className="buttonRepartidorStyle" onClick={handleRedirect}>Agregar Solicitud</button>
-                            <button className="buttonRepartidorStyle" onClick={handleButtonClick}>Eliminar Solicitud</button>
+                            <h3 className="styleH3Clientes">Envíos </h3>
+                            
+                            <button className="buttonEnviosClienteStyle" onClick={handleButtonClick}>
+                               Eliminar  <HiOutlineTrash className="IconColor" />
+                            </button>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Solicitud" />
+                        <div className="containerBusquedaRepartidor containerBusquedaEnvClientes">
+                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar envio" />
                             <div className="InfoBarImg">
                                 <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
                     </div>
+        
+                
                     <div className="lista">{
-                        SolEnvCliente.map((val) => {
+                
+                        EnvCliente.map((val) => {
                             return (
+                                
+                                
                                 <React.Fragment key={val.idsolicitudenvio}>
                                     <div className="ModuloRepartidorContainer">
                                         <div className="eliminarModulo" onClick={() => showModal(val.idsolicitudenvio)} style={divStyle}>X</div>
-                                        <Link to="/SolEnvClientesInfo" onClick={() => currentSolicitud(val)} style={{ textDecoration: 'none' }}>
-                                            <ModuloSolEnvCliente id={val.idsolicitudenvio} fecha={val.fechasolicitud} />
+                                        <Link to="/EnvClientesInfo" onClick={() => currentSolicitud(val)} style={{ textDecoration: 'none' }}>
+                                            <ModuloEnvCliente id={"35F"} />
                                         </Link>
                                     </div>
-
                                     <div className="modalEliminarRepartidorContenedor" style={modalStyle}>
                                         <div className="containerModalEliminarRepartidor2">
                                             <div className="eliminarModalRepartidor" onClick={() => showModal(val.idsolicitudenvio)}>X</div>
                                             <div className="modalEliminarRepartidor">
-                                                <h3>¿Estás seguro de eliminar la solicitud?</h3>
-                                                <p>Al eliminar la solicitud, esta no será tenida en cuenta</p>
-                                                <button onClick={handleEliminarSolEnvCliente}>Eliminar</button>
+                                                <h3>¿Estás seguro de eliminar el envío?</h3>
+                                                <p>Al eliminar tu envío la entrega no se podrá hacer</p>
+                                                <button onClick={handleEliminarEnvCliente}>Eliminar</button>
                                             </div>
                                         </div>
                                     </div>
-
                                 </React.Fragment>
 
                             );
                         })
                     }
                     </div>
+                
                 </div>
             </div>
 
         </div>
     );
 };
-export default SolEnvClientes;
+export default EnvClientes;

@@ -30,6 +30,8 @@ import EnviosInfoClientes from "./pages/EnviosInfoClientes";
 import SolEnvClientes from "./pages/SolEnvClientes";
 import SolEnvClientesInfo from "./pages/SolEnvClientesInfo";
 import AgregarSolEnvCliente from "./pages/AgregarSolEnvCliente";
+import EnvClientes from "./pages/EnvClientes";
+import EnviosClienteInfo from "./pages/EnviosClienteInfo";
 
 const router = createBrowserRouter([
   {
@@ -120,9 +122,21 @@ const router = createBrowserRouter([
 
   },
   {
+    path: "/Consultar-Envios-Cliente",
+    element:
+      <EnvClientes />,
+
+  },
+  {
     path: "/Envios",
     element:
       <Envios />,
+
+  },
+  {
+    path: "/EnvClientesInfo",
+    element:
+      <EnviosClienteInfo />,
 
   },
   {
