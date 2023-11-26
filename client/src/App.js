@@ -35,6 +35,7 @@ import AgregarSolEnvCliente from "./pages/AgregarSolEnvCliente";
 import EnviosAsignados from "./pages/EnviosAsignados"
 import EnviosInfoRepartidores from "./pages/EnviosInfoRepartidores";
 import ClientesInfoRepartidores from "./pages/ClientesInfoRepartidores";
+import Auditoria from "./pages/Auditoria";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,11 @@ const router = createBrowserRouter([
     path: "/SolEnvClientes",
     element:
       <SolEnvClientes />,
+  },
+  {
+    path: "/Auditoria",
+    element:
+      <Auditoria />,
   },
   {
     path: "/SolEnvClientesInfo",

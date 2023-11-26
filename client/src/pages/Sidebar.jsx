@@ -6,6 +6,7 @@ import * as PiIcons from "react-icons/pi";
 import * as IoIcons from "react-icons/io";
 import * as FaIcons from "react-icons/fa6";
 import * as FcIcons from "react-icons/fc";
+import { PiNotebookBold } from "react-icons/pi";
 import { AuthContext } from "../context/authContext";
 const Sidebar = () => {
 
@@ -48,6 +49,11 @@ const Sidebar = () => {
                             <li>
                                 <Link to="/Envios" className="Envios">
                                     <PiIcons.PiPackageFill className="IconColor" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/Auditoria" className="Envios">
+                                    <PiNotebookBold className="IconColor" />
                                 </Link>
                             </li>
                         </>
