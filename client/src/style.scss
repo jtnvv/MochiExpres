@@ -1399,6 +1399,163 @@
                                 }
                             }
 
+                            .top-solenvcliente {
+                                height: 11vw;
+                                padding: 5vh;
+
+
+                                .tittle {
+                                    margin: 0;
+                                    font-size: 50px;
+                                    font-family: Coiny, cursive;
+                                    color: #3289A0;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+
+                                ul {
+                                    padding-left: 2rem;
+                                    list-style-image: url("./img/yellow-circle.png");
+
+                                    li {
+                                        width: 90%;
+
+                                        .p {
+                                            display: flex;
+                                            width: 100%;
+                                            flex-wrap: wrap;
+
+                                            Input {
+                                                border-radius: 10px;
+                                                border: 2px solid #63b5cc;
+                                                align-items: center;
+                                                font-family: Coiny, cursive;
+                                                font-size: 15px;
+                                                color: #3289A0;
+                                            }
+
+                                            select {
+                                                border-radius: 10px;
+                                                border: 2px solid #63b5cc;
+                                                align-items: center;
+                                                font-family: Coiny, cursive;
+                                                font-size: 15px;
+                                                color: #3289A0;
+
+                                                option {
+                                                    border-radius: 10px;
+                                                    border: 2px solid #63b5cc;
+                                                    align-items: center;
+                                                    font-family: Comfortaa, cursive;
+                                                    font-size: 15px;
+                                                    color: #3289A0;
+                                                }
+                                            }
+
+                                            .p-error {
+                                                display: flex;
+                                                width: 100%;
+                                                margin-bottom: 2.3vw;
+                                            }
+
+                                            .p-list {
+                                                font-size: 20px;
+                                                font-family: Coiny;
+                                                color: rgb(51, 51, 51);
+                                                margin: 0;
+                                            }
+
+                                            .tooltip {
+                                                position: relative;
+                                                display: inline-block;
+                                                display: flex;
+                                                justify-content: flex-end;
+                                                margin-left: auto;
+                                            }
+
+                                            .tooltip .tooltiptext {
+                                                visibility: hidden;
+                                                width: 300px;
+                                                min-width: 350px;
+                                                background-color: #f8d4c4;
+                                                color: rgb(51, 51, 51);
+                                                text-align: center;
+                                                border-radius: 6px;
+                                                padding: .5rem;
+                                                position: absolute;
+                                                z-index: 1;
+                                                bottom: 110%;
+                                                left: 65%;
+                                                margin-left: -60px;
+                                                font-family: Coiny;
+                                                transform: translateX(-50%);
+                                            }
+
+                                            .tooltip .tooltiptext::after {
+                                                content: "";
+                                                position: absolute;
+                                                top: 100%;
+                                                left: 10%;
+                                                margin-left: -5px;
+                                                border-width: 5px;
+                                                border-style: solid;
+                                                border-color: #f8d4c4 transparent transparent transparent;
+                                            }
+
+                                            .tooltip:hover .tooltiptext {
+                                                visibility: visible;
+                                            }
+
+
+
+                                            .p-list-error {
+                                                position: absolute;
+                                                margin-top: 20px;
+                                            }
+
+                                            .content {
+                                                margin: 0;
+                                                font-size: 20px;
+                                                width: 50%;
+                                                display: flex;
+                                                align-items: center;
+                                                margin-left: 20px;
+                                                font-family: Comfortaa, cursive;
+                                                color: rgb(51, 51, 51);
+                                            }
+
+                                            Input {
+                                                display: flex;
+                                                justify-content: flex-end;
+                                                align-items: center;
+                                                width: 25vw;
+                                                font-size: 20px;
+                                                margin-left: auto;
+                                                font-family: Coiny, cursive;
+                                                color: rgb(51, 51, 51);
+                                            }
+
+                                            Select {
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: flex-end;
+                                                width: 25.5vw;
+                                                font-size: 20px;
+                                                margin-left: auto;
+                                                margin-top: 5px;
+                                                margin-bottom: 5px;
+                                                height: 2.5vw;
+                                                align-items: center;
+                                                font-family: Coiny, cursive;
+                                                color: rgb(51, 51, 51);
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+
                             .bottom {
                                 height: 35%;
                                 justify-content: space-evenly;

@@ -65,7 +65,7 @@ const AgregarSolEnvCliente = () => {
 
                     <div className="divBodyPersonalInfo">
                         <div className="divPersonalInfo">
-                            <div className="top">
+                            <div className="top-solenvcliente">
                                 <h1 className="tittle">Crea tu solicitud</h1>
                                 <ul>
                                     <li>
@@ -95,7 +95,6 @@ const AgregarSolEnvCliente = () => {
                                         {err && <p className="register__bg__error"> {err}</p>}
                                         <button type="submit" onClick={handleSubmit}>Registrar!</button>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
