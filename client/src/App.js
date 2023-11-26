@@ -16,6 +16,8 @@ import Repartidores from "./pages/Repartidores";
 import RepartidoresInfo from "./pages/RepartidoresInfo";
 import ConsultarPedidos from "./pages/ConsultarPedidos";
 import Envios from "./pages/Envios";
+
+
 import HabilitarSolicitud from "./pages/HabilitarSolicitud";
 import "./style.scss";
 import "./index.css";
@@ -30,6 +32,9 @@ import EnviosInfoClientes from "./pages/EnviosInfoClientes";
 import SolEnvClientes from "./pages/SolEnvClientes";
 import SolEnvClientesInfo from "./pages/SolEnvClientesInfo";
 import AgregarSolEnvCliente from "./pages/AgregarSolEnvCliente";
+import EnviosAsignados from "./pages/EnviosAsignados"
+import EnviosInfoRepartidores from "./pages/EnviosInfoRepartidores";
+import ClientesInfoRepartidores from "./pages/ClientesInfoRepartidores";
 
 const router = createBrowserRouter([
   {
@@ -104,9 +109,19 @@ const router = createBrowserRouter([
       <ClientesInfo />,
   },
   {
+    path: "/ClientesInfoRepartidores",
+    element:
+      <ClientesInfoRepartidores />,
+  },
+  {
     path: "/EnviosInfo",
     element:
       <EnviosInfo />,
+  },
+  {
+    path: "/EnviosInfoRepartidores",
+    element:
+      <EnviosInfoRepartidores />,
   },
   {
     path: "/EnviosInfoClientes",
@@ -142,6 +157,11 @@ const router = createBrowserRouter([
     path: "/RepartidoresInfo",
     element:
       <RepartidoresInfo />,
+  },
+  {
+    path: "/EnviosAsignados",
+    element:
+      <EnviosAsignados />,
   },
   {
     path: "/Home",

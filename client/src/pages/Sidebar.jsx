@@ -55,7 +55,7 @@ const Sidebar = () => {
                     ) : currentTypeUser === "repartidor" ? (
                         <>
                             <li>
-                                <Link to="/Consultar-Pedidos" className="Consultar pedidos">
+                                <Link to="/EnviosAsignados" className="Consultar pedidos">
                                     <BiIcons.BiSolidShoppingBags className="IconColor" />
                                 </Link>
                             </li>

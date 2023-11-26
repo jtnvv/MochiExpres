@@ -60,6 +60,18 @@ export const getEnviosCliente = (req, res) => {
     });
 }
 
+export const getEnviosRepartidor = (req, res) => {
+    const q = "SELECT * from envio where idrepartidor =?";
+    console.log("Entro");
+    console.log("Aquiiiii ", req.params.idRepartidor);
+    db.query(q, [req.params.idRepartidor], (err, data) => {
+        if (err) return res.status(500).json(err);
+        //console.log(err);
+        if (data.length == 0) return res.status(409).json("No hay envíos registrados");
+        return res.status(200).json(data);
+    });
+}
+
 export const deleteEnvio = (req, res) => {
 
 
