@@ -74,7 +74,7 @@ const Sidebar = () => {
                     ) : (
                         <>
                             <li>
-                                <Link to="/Consultar-Pedidos" className="Consultar pedidos">
+                                <Link to="/Consultar-Envios-Cliente" className="Consultar-Envios-Cliente">
                                     <BiIcons.BiSolidShoppingBags className="IconColor" />
                                 </Link>
                             </li>
