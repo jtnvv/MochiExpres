@@ -64,18 +64,33 @@ const Home = () => {
         return (
             <div className="content-flex">
                 <Sidebar />
-                <div className="divContent">
-                    <InfoBar />
-                    <div className="ItemsContainer">
-                        <div className="ItemsContainer__construccion">
-                            <div className="ItemsContainer__img_construccion">
-                                <img src="https://i.imgur.com/Lfs0XUC.png"></img>
-                            </div>
-                            <div className="ItemsContainer__texto_construccion">
-                                <h1>En construcción</h1>
-                                <p>Esta sección se encuentra en construcción</p>
+                <div className="divContentHAdmin">
+                    <div className="BarraRepartidor">
+                        <div className="containerButtonsRepartidor">
+                            <h3 className="styleH3Clientes"> Bienvenido de vuelta!
+                            </h3>
+                        </div>
+                        <div className="containerBusquedaRepartidor">
+                            <div className="InfoBarImg">
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
+                    </div>
+                    <div className="ItemsContainerHAdmin">
+                        <Link to="/Personal-Info" className="NombreH" style={{ textDecoration: 'none' }}>
+                            <div className="image">
+                                <img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                            </div>
+                            <h3> Información personal</h3>
+                        </Link>
+                        <Link to="/ModuloEnvCliente" className="enviosH" style={{ textDecoration: 'none', color: '#4A4846' }} >
+                            <BiIcons.BiSolidShoppingBags className="IconColorH" />
+                            <h3> Envíos</h3>
+                        </Link>
+                        <Link to="/ModuloSolEnvCliente" className="solicitudesEnviosH" style={{ textDecoration: 'none', color: '#4A4846' }}>
+                            <MdIcons.MdNotificationAdd className="IconColorH" />
+                            <h3> Solucitudes envíos</h3>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -84,18 +99,29 @@ const Home = () => {
         return (
             <div className="content-flex">
                 <Sidebar />
-                <div className="divContent">
-                    <InfoBar />
-                    <div className="ItemsContainer">
-                        <div className="ItemsContainer__construccion">
-                            <div className="ItemsContainer__img_construccion">
-                                <img src="https://i.imgur.com/Lfs0XUC.png"></img>
-                            </div>
-                            <div className="ItemsContainer__texto_construccion">
-                                <h1>En construcción</h1>
-                                <p>Esta sección se encuentra en construcción</p>
+                <div className="divContentHAdmin">
+                    <div className="BarraRepartidor">
+                        <div className="containerButtonsRepartidor">
+                            <h3 className="styleH3Clientes"> Bienvenido de vuelta!
+                            </h3>
+                        </div>
+                        <div className="containerBusquedaRepartidor">
+                            <div className="InfoBarImg">
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
                         </div>
+                    </div>
+                    <div className="ItemsContainerHAdmin">
+                        <Link to="/Personal-Info" className="NombreH" style={{ textDecoration: 'none' }}>
+                            <div className="image">
+                                <img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                            </div>
+                            <h3> Información personal</h3>
+                        </Link>
+                        <Link to="/EnviosAsignados" className="enviosAsignadosH" style={{ textDecoration: 'none', color: '#4A4846' }} >
+                            <BiIcons.BiSolidShoppingBags className="IconColorH" />
+                            <h3> Envíos Asignados</h3>
+                        </Link>
                     </div>
                 </div>
             </div>

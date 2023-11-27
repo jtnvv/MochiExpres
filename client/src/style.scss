@@ -1064,7 +1064,10 @@
                     .HabilitarSH,
                     .RepartidoresH,
                     .ClientesH,
-                    .EnviosH {
+                    .solicitudesEnviosH,
+                    .enviosH,
+                    .enviosAsignadosH
+                     {
                         height: 45%;
                         width: 20%;
                         border-radius: 30px;

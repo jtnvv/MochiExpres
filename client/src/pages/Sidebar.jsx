@@ -65,16 +65,6 @@ const Sidebar = () => {
                                     <BiIcons.BiSolidShoppingBags className="IconColor" />
                                 </Link>
                             </li>
-                            <li>
-                                <Link to="/Clientes" className="Clientes">
-                                    <BiIcons.BiSolidHappyBeaming className="IconColor" />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/Envios" className="Envios">
-                                    <PiIcons.PiPackageFill className="IconColor" />
-                                </Link>
-                            </li>
                         </>
 
                     ) : (

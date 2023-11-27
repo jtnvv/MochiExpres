@@ -69,14 +69,14 @@ const Login = () => {
                     <input
                         required
                         type="text"
-                        placeholder="Username"
+                        placeholder="Usuario"
                         name="idusuario"
                         onChange={handleChange}
                     />
                     <input
                         required
                         type="password"
-                        placeholder="Password"
+                        placeholder="Contraseña"
                         name="contrasenausuario"
                         onChange={handleChange}
                     />
