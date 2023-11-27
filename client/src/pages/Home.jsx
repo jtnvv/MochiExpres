@@ -29,12 +29,12 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="ItemsContainerHAdmin">
+                    <div className="ItemsContainerHAdmin" style={{ overflowY: 'auto' }}>
                         <Link to="/Personal-Info" className="NombreH" style={{ textDecoration: 'none' }}>
                             <div className="image">
                                 <img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>
-                            <h3> Nombre</h3>
+                            <h3> Información personal</h3>
                         </Link>
                         <Link to="/Consultar-Pedidos" className="ConsultarPedidosH" style={{ textDecoration: 'none', color: '#4A4846' }} >
                             <BiIcons.BiSolidShoppingBags className="IconColorH" />
@@ -52,9 +52,13 @@ const Home = () => {
                             <BiIcons.BiSolidHappyBeaming className="IconColorH" />
                             <h3> Clientes</h3>
                         </Link>
-                        <Link to="/Envios" className="EnviosH" style={{ textDecoration: 'none', color: '#4A4846' }}>
+                        <Link to="/Envios" className="enviosH" style={{ textDecoration: 'none', color: '#4A4846' }}>
                             <PiIcons.PiPackageFill className="IconColorH" />
                             <h3> Envíos</h3>
+                        </Link>
+                        <Link to="/Auditoria" className="auditoriaH" style={{ textDecoration: 'none', color: '#4A4846' }}>
+                            <PiIcons.PiNotebookBold className="IconColorH" />
+                            <h3> Auditoria</h3>
                         </Link>
                     </div>
                 </div>
