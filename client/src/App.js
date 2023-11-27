@@ -35,8 +35,9 @@ import AgregarSolEnvCliente from "./pages/AgregarSolEnvCliente";
 import EnviosAsignados from "./pages/EnviosAsignados"
 import EnviosInfoRepartidores from "./pages/EnviosInfoRepartidores";
 import ClientesInfoRepartidores from "./pages/ClientesInfoRepartidores";
-import Auditoria from "./pages/Auditoria";
-
+import AuditoriaBtns from "./pages/AuditoriaBtns";
+import AuditoriaOperaciones from "./pages/AuditoriaOperaciones";
+import AuditoriaIngresos from "./pages/AuditoriaIngresos";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -60,7 +61,17 @@ const router = createBrowserRouter([
   {
     path: "/Auditoria",
     element:
-      <Auditoria />,
+      <AuditoriaBtns />,
+  },
+  {
+    path: "/AuditoriaOperaciones",
+    element:
+      <AuditoriaOperaciones />,
+  },
+  {
+    path: "/AuditoriaIngresos",
+    element:
+      <AuditoriaIngresos />,
   },
   {
     path: "/SolEnvClientesInfo",

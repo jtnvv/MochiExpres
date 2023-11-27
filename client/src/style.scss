@@ -298,8 +298,7 @@
 
 
         }
-
-
+     
 
         .ModuloRepartidor {
             height: 300px;
@@ -310,7 +309,20 @@
             display: flexbox;
             justify-content: center;
             align-items: center;
-
+            .ModuloAuditoriaBtn {
+                        
+                margin-top: 60px;
+                margin-bottom: 50px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-family: Coiny, cursive;
+                color: #F4BB3A;
+                font-size: 30px;
+                width: 100%;
+                margin-top: 120px;
+            }
             .ModuloSolEnv, .ModuloEnvCliente {
                 margin-top: 60px;
                 margin-bottom: 50px;
@@ -325,6 +337,7 @@
             .ModuloEnvCliente{
                 font-size: 70px;
             }
+
             .ModuloSolEnv_t, .ModuloEnvCliente_t {
                 font-family: Coiny, cursive;
                 font-size: large;
@@ -512,7 +525,7 @@
 
             .ModuloRepartidorContainer {
                 margin-left: 10px;
-                margin-right: 50px;
+                margin-right: 10px;
                 border-radius: 30px;
                 margin-bottom: 30px;
 
@@ -683,6 +696,87 @@
             }
 
             .eliminarModalConsulta:hover {
+                background-color: white;
+                color: black;
+            }
+        }
+        .modalDetalleContenedor{
+            height: 100vh;
+            width: 100vw;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            background-color: rgb(0, 0, 0, 0);
+            visibility: hidden;
+            position:absolute;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .modalEliminarDetalle{
+                background-color: white;
+                opacity: 1.4;
+                height: 260px;
+                width: 25vw;
+                display: block;
+                padding-left: 30px;
+                padding-right: 30px;
+                border: solid gray 2px;
+                border-radius: 30px;
+
+                h3 {
+                    margin-top: 30px;
+                    font-family: Coiny, cursive;
+                    color: #4A4846;
+                    text-align: center;
+                }
+
+                p {
+                    margin-top: 20px;
+                    color: #4A4846;
+                    text-align: center;
+                    font-family: Comfortaa, cursive;
+                }
+
+                button {
+                    margin-top: 40px;
+                    font-family: Coiny, cursive;
+                    border: solid black 2px;
+                    border-radius: 50px;
+                    height: 40px;
+                    width: 200px;
+                    background-color: #3289A0;
+                    color: white;
+                    margin-left: 23%;
+                    font-size: large;
+                }
+
+                button:hover {
+                    transform: translateY(-3px);
+                    transition: 0.2s;
+                    box-shadow: 0 4px 17px black;
+                    cursor: pointer;
+                }
+            }
+            .eliminarModalDetalle {
+                height: 40px;
+                width: 40px;
+                display: flex;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                border-radius: 100%;
+                position: relative;
+                top: 25px;
+                left: -10px;
+                z-index: 1;
+                background-color: red;
+                border: solid 1px white;
+                font-family: Coiny, cursive;
+            }
+
+            .eliminarModalDetalle:hover {
                 background-color: white;
                 color: black;
             }
@@ -1125,7 +1219,7 @@
                 margin: 0px;
                 margin-right: 10px;
             }
-            @media only screen and (max-width: 650px) {
+            @media only screen and (max-width: 1300px) {
                 .styleH3Auditoria {
                     color: #3289A0;
                     font-family: Coiny, cursive;
@@ -1158,11 +1252,14 @@
                                 display: flex;
                                 align-items: center;
                                 justify-content: space-evenly;
+                                border-bottom: 1px dotted white;
+                                
+                                
                                 .text,.text_i,.text_d{
                                     
                                     font-family: Coiny, cursive;
-                                    width: calc(100%/5);
-                                    border: 1px solid black;
+                                    width: calc(100%/9);
+                                    border:  1px dotted white;
                                     height: 100%;
                                     display: flex;
                                     align-items: center;
@@ -1177,7 +1274,35 @@
 
                                 }
                                 .text_d{
-                                    padding-right: 9px;
+                                    border-right: transparent;
+                                }
+                            }   
+                            .header2{
+                                width: 100%;
+                                height: 15%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-evenly;
+                                border-bottom:  1px dotted white;
+                                
+                                .text,.text_i,.text_d{
+                                    font-family: Coiny, cursive;
+                                    width: calc(100%/7);
+                                    border:  1px dotted white;
+                                    height: 100%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    font-size: 20px;
+                                    text-align: center;
+                                    color: #4A4846;
+                                }
+                                
+                                .text_i{
+                                    border-left: transparent;
+
+                                }
+                                .text_d{
                                     border-right: transparent;
                                 }
                             }   
@@ -1186,18 +1311,51 @@
                                 border-radius: 0px,0px,30px,30px;
                                 width: 100%;
                                 overflow: auto;
+                                
                                 .moduloAuditoria{
-                                    border-bottom: 1px solid black;
+                                    border-bottom: 1px dotted white;
                                     width: 100%;
                                     height: 25%;
                                     display: flex;
                                     align-items: center;
                                     justify-content: space-evenly;
                                     .text,.text_i,.text_d{
+                                        background-color: #C4DDE3;
                                         overflow-wrap: break-word;
                                         word-break: break-all;
-                                        width: calc(100%/5);
-                                        border: 1px solid black;
+                                        width: calc(100%/9);
+                                        border: 1px dotted white;
+                                        height: 100%;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        font-size: 15px;
+                                        text-align: center;
+                                        font-family: Comfortaa, cursive;
+                                        color: #4A4846;
+                                        
+                                    }
+                                    
+                                    .text_i{
+                                        border-left: transparent;
+                                    }
+                                    .text_d{
+                                        border-right: transparent;
+                                    }
+                                }
+                                .moduloAuditoria2{
+                                    border-bottom:1px dotted white;
+                                    width: 100%;
+                                    height: 25%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-evenly;
+                                    .text,.text_i,.text_d{
+                                        background-color: #C4DDE3;
+                                        overflow-wrap: break-word;
+                                        word-break: break-all;
+                                        width: calc(100%/7);
+                                        border: 1px dotted white;
                                         height: 100%;
                                         display: flex;
                                         align-items: center;
@@ -1219,10 +1377,11 @@
                             }  
                             .container::-webkit-scrollbar {
                                 -webkit-appearance: none;
+                                
                             }
                             
                             .container::-webkit-scrollbar:vertical {
-                                width:10px;
+                                width:1px;
                             }
                             
                             .container::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
@@ -1243,24 +1402,24 @@
                                 border-radius: 10px;  
                             } 
                         }
-                        @media (max-width: 500px) {
+                        @media (max-width: 1000px) {
                             .containerAuditoria{
-                                border: 1px solid black;
+                                border: 1px dotted white;
                                 height: 100%;
                                 width: 100%;
                                 border-radius: 40px;
                                 background-color: #C4DDE3;  
                                 overflow-x: scroll;
                                 .header{
-                                    border-bottom: 1px solid black;
-                                    width: 500px;
+                                    border-bottom: 1px dotted white;
+                                    width: 1000px;
                                     height: 15%;
                                     display: flex;
                                     align-items: center;
                                     justify-content: space-evenly;
                                     .text,.text_i,.text_d{
                                         width: 200px;
-                                        border: 1px solid black;
+                                        border: 1px dotted white;
                                         height: 100%;
                                         display: flex;
                                         align-items: center;
@@ -1275,13 +1434,37 @@
                                         border-right: transparent;
                                     }
                                 }   
+                                .header2{
+                                    border-bottom: 1px dotted white;
+                                    width: 1000px;
+                                    height: 15%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-evenly;
+                                    .text,.text_i,.text_d{
+                                        width: 200px;
+                                        border: 1px dotted white;
+                                        height: 100%;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        font-size: 15px;
+                                    }
+                                    
+                                    .text_i{
+                                        border-left: transparent;
+                                    }
+                                    .text_d{
+                                        border-right: transparent;
+                                    }
+                                }  
                                 .container{
-                                    border: 1px solid black;
+                                    border: 1px dotted white;
                                     height: 85%;
                                     border-radius: 0px,0px,30px,30px;
-                                    width: 500px;
+                                    width: 1000px;
                                     .moduloAuditoria{
-                                        border-bottom: 1px solid black;
+                                        border-bottom: 1px dotted white;
                                         width: 100%;
                                         height: 15%;
                                         display: flex;
@@ -1289,7 +1472,31 @@
                                         justify-content: space-evenly;
                                         .text,.text_i,.text_d{
                                             width: 200px;
-                                            border: 1px solid black;
+                                            border: 1px dotted white;
+                                            height: 100%;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-size: 80%;
+                                        }
+                                        
+                                        .text_i{
+                                            border-left: transparent;
+                                        }
+                                        .text_d{
+                                            border-right: transparent;
+                                        }
+                                    }
+                                    .moduloAuditoria2{
+                                        border-bottom: 1px dotted white;
+                                        width: 100%;
+                                        height: 15%;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: space-evenly;
+                                        .text,.text_i,.text_d{
+                                            width: 200px;
+                                            border: 1px dotted white;
                                             height: 100%;
                                             display: flex;
                                             align-items: center;
