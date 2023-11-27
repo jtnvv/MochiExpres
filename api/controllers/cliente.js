@@ -1,8 +1,5 @@
 import { db } from '../db.js';
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { deleteEnvio } from './envio.js';
-import { deleteSolicitudEnvio } from './solicitudenvio.js';
 import { usuario_log } from './auth.js';
 import { registrarOperacion } from './auditoria.js';
 

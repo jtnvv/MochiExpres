@@ -46,7 +46,7 @@ export const recoverPassword1 = (req, res) => {
             usuario_mod.identificadorpregusuario = data[0];
             usuario_mod.respuestapregusuario = data[0].respuestapregusuario;
             usuario_mod.tipousuario = data[0].tipousuario;
-            registrarOperacion(data[0].tipousuario, data[0].idusuario, data[0].nombreusuario,"GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 1 Exitosa", "Exitoso", new Date(), res);
+            registrarOperacion(data[0].tipousuario, data[0].idusuario, data[0].nombreusuario,"GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 1: Usuario Encontrado, Exitosa", "Exitoso", new Date(), res);
             return res.status(200).json(data[0]);
         }
 
@@ -92,7 +92,7 @@ export const recoverPassword2 = (req, res) => {
 
         if (respuestaIn === respuestaBd) {
             console.log("Respuesta correcta");
-            registrarOperacion(data[0].tipousuario, data[0].idusuario, data[0].nombreusuario,"GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 2 Exitosa", "Exitoso", new Date(), res);
+            registrarOperacion(data[0].tipousuario, data[0].idusuario, data[0].nombreusuario,"GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 2: Identidad validada, Exitosa", "Exitoso", new Date(), res);
             return res.status(200).json(data[0]);
         } else {
             registrarOperacion(data[0].tipousuario, data[0].idusuario, data[0].nombreusuario,"GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 2 Falla: Respuesta incorrecta", "Fallido", new Date(), res);
@@ -130,7 +130,7 @@ export const recoverPassword3 = (req, res) => {
                     return res.json(err);
                 };
                 console.log(data[0]);
-                registrarOperacion(tipo_usuario, req.body.idusuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Exitosa", "Exitoso", new Date(), res);
+                registrarOperacion(tipo_usuario, req.body.idusuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3: Contraseña modificada, Exitosa", "Exitoso", new Date(), res);
                 return res.status(200).json("Contraseña actualizada con exito");
             });
         }else if(tipo_usuario === "administrador"){
@@ -140,7 +140,7 @@ export const recoverPassword3 = (req, res) => {
                     return res.json(err);
                 }
                 console.log(data[0]);
-                registrarOperacion(tipo_usuario, req.body.idusuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Exitosa", "Exitoso", new Date(), res);
+                registrarOperacion(tipo_usuario, req.body.idusuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3: Contraseña modificada Exitosa", "Exitoso", new Date(), res);
                 return res.status(200).json("Contraseña actualizada con exito");
             });
         }else{
@@ -150,7 +150,7 @@ export const recoverPassword3 = (req, res) => {
                     return res.json(err);
                 }
                 console.log(data[0]);
-                registrarOperacion(tipo_usuario, req.body.idusuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Exitosa", "Exitoso", new Date(), res);
+                registrarOperacion(tipo_usuario, req.body.idusuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3: Contraseña modificada Exitosa", "Exitoso", new Date(), res);
                 return res.status(200).json("Contraseña actualizada con exito");
             });
         }
