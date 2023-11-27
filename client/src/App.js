@@ -36,6 +36,8 @@ import EnviosAsignados from "./pages/EnviosAsignados"
 import EnviosInfoRepartidores from "./pages/EnviosInfoRepartidores";
 import ClientesInfoRepartidores from "./pages/ClientesInfoRepartidores";
 import AuditoriaBtns from "./pages/AuditoriaBtns";
+import EnviosClienteInfo from "./pages/EnviosClienteInfo";
+import EnvClientes from "./pages/EnvClientes";
 import AuditoriaOperaciones from "./pages/AuditoriaOperaciones";
 import AuditoriaIngresos from "./pages/AuditoriaIngresos";
 const router = createBrowserRouter([
@@ -150,6 +152,16 @@ const router = createBrowserRouter([
     element:
       <ConsultarPedidos />,
 
+  },
+  {
+    path: "/EnvClientesInfo",
+    element:
+      <EnviosClienteInfo />,
+  },
+  {
+    path: "/Consultar-Envios-Cliente",
+    element:
+      <EnvClientes />,
   },
   {
     path: "/Envios",
