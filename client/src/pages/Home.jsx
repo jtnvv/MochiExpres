@@ -87,7 +87,7 @@ const Home = () => {
                             </div>
                             <h3> Información personal</h3>
                         </Link>
-                        <Link to="/ModuloEnvCliente" className="enviosH" style={{ textDecoration: 'none', color: '#4A4846' }} >
+                        <Link to="/Consultar-Envios-Cliente" className="enviosH" style={{ textDecoration: 'none', color: '#4A4846' }} >
                             <BiIcons.BiSolidShoppingBags className="IconColorH" />
                             <h3> Envíos</h3>
                         </Link>

@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import { AuthContext } from "../context/authContext";
 import { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-
-const ModuloAuditoria = (props) => {
+const ModuloAuditoriaIngresos = (props) => {
 
     const { getClienteSol } = useContext(AuthContext);
     const { getRepartidor } = useContext(AuthContext);
-
 
     const [nombreCliente, setNombreCliente] = useState("");
     const [nombreRepartidor, setNombreRepartidor] = useState("");
@@ -22,6 +20,8 @@ const ModuloAuditoria = (props) => {
         }
         setClickedModal(!clickedModal);
     };
+
+    
     useEffect(() => {
         const obtenerCliente = async () => {
             try {
@@ -55,16 +55,15 @@ const ModuloAuditoria = (props) => {
     }, [nombreRepartidor]);
 
     return (
-        <div className="moduloAuditoria" >
+        <div className="moduloAuditoria2" >
             <h3 className="text_i">{props.idaud}</h3>
             <h3 className="text">{props.tipo}</h3>
             <h3 className="text">{props.usuario}</h3>
             <h3 className="text">{props.accion}</h3>
-            <h3 className="text">{props.archivo}</h3>
-            <h3 className="text">{props.id}</h3>
             <button className="text" onClick={()=>showModal()}><FaSearch className="IconColor"/></button>
             <h3 className="text">{props.resultado}</h3>
             <h3 className="text_d">{props.fecha}</h3>
+
             <div className="modalDetalleContenedor" style={modalStyle}>
                 <div className="containerModalEliminarRepartidor2">
                 <div className="eliminarModalDetalle" onClick={() => showModal()}>X</div>
@@ -75,6 +74,7 @@ const ModuloAuditoria = (props) => {
                 </div>
             </div>
         </div>
+        
     );
 };
-export default ModuloAuditoria;
+export default ModuloAuditoriaIngresos;
