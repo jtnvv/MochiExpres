@@ -4,11 +4,6 @@ import { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 const ModuloAuditoriaIngresos = (props) => {
 
-    const { getClienteSol } = useContext(AuthContext);
-    const { getRepartidor } = useContext(AuthContext);
-
-    const [nombreCliente, setNombreCliente] = useState("");
-    const [nombreRepartidor, setNombreRepartidor] = useState("");
     const [modalStyle, setModalStyle] = useState({});
     const [clickedModal, setClickedModal] = useState(false);
     
@@ -21,55 +16,23 @@ const ModuloAuditoriaIngresos = (props) => {
         setClickedModal(!clickedModal);
     };
 
-    
-    useEffect(() => {
-        const obtenerCliente = async () => {
-            try {
-                console.log(props.idsolicitudenvio);
-                const res = await getClienteSol(props.idsolicitudenvio);
-                setNombreCliente(res.nombrecliente);
-                console.log(res.nombrecliente);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        obtenerCliente();
-    }, [nombreCliente]);
-
-    useEffect(() => {
-        const obtenerRepartidor = async () => {
-            try {
-                if (props.idrepartidor !== null) {
-                    const res = await getRepartidor(props.idrepartidor);
-                    setNombreRepartidor(res.nombrerepartidor);
-                    console.log("nombre del repa: ", res.nombrerepartidor);
-                }else{
-                    setNombreRepartidor("No asignado");
-                }
-
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        obtenerRepartidor();
-    }, [nombreRepartidor]);
-
     return (
         <div className="moduloAuditoria2" >
-            <h3 className="text_i">{props.idaud}</h3>
-            <h3 className="text">{props.tipo}</h3>
-            <h3 className="text">{props.usuario}</h3>
-            <h3 className="text">{props.accion}</h3>
+            <h3 className="text_i">{props.aud_id}</h3>
+            <h3 className="text">{props.aud_tipousuario}</h3>
+            <h3 className="text">{props.aud_idusuario}</h3>
+            <h3 className="text">{props.aud_nombreusuario}</h3>
+            <h3 className="text">{props.aud_tipolog}</h3>
             <button className="text" onClick={()=>showModal()}><FaSearch className="IconColor"/></button>
-            <h3 className="text">{props.resultado}</h3>
-            <h3 className="text_d">{props.fecha}</h3>
+            <h3 className="text">{props.aud_detalle}</h3>
+            <h3 className="text_d">{props.aud_fecha}</h3>
 
             <div className="modalDetalleContenedor" style={modalStyle}>
                 <div className="containerModalEliminarRepartidor2">
                 <div className="eliminarModalDetalle" onClick={() => showModal()}>X</div>
                     <div className="modalEliminarDetalle">
                         <h3>Detalle</h3>
-                        <p>{props.detalle}</p>
+                        <p>{props.aud_detalle}</p>
                     </div>
                 </div>
             </div>
