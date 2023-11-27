@@ -75,7 +75,7 @@ const Sidebar = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/ModuloSolEnvCliente" className="Habilitar Solicitudes">
+                                <Link to="/SolEnvClientes" className="Habilitar Solicitudes">
                                     <MdIcons.MdNotificationAdd className="IconColor" />
                                 </Link>
                             </li>
