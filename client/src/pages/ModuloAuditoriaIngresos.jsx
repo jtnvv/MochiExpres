@@ -24,7 +24,7 @@ const ModuloAuditoriaIngresos = (props) => {
             <h3 className="text">{props.aud_nombreusuario}</h3>
             <h3 className="text">{props.aud_tipolog}</h3>
             <button className="text" onClick={()=>showModal()}><FaSearch className="IconColor"/></button>
-            <h3 className="text">{props.aud_detalle}</h3>
+            <h3 className="text">{props.aud_resultado}</h3>
             <h3 className="text_d">{props.aud_fecha}</h3>
 
             <div className="modalDetalleContenedor" style={modalStyle}>
