@@ -31,7 +31,7 @@ export const registerClients = (req, res) => {
             registrarOperacion("Cliente no registrado", "Desconocido","Desconocido", "CREATE", "Cliente", req.body.idCliente, "Error en conexión con la base de datos", "Fallido", new Date(), res);
             return res.status(500).json(err)
         };
-        console.log(err);
+        //console.log(err);
         if (data.length) {
             registrarOperacion("Cliente", req.body.idCliente, data[0].nombrecliente, "CREATE", "Cliente", req.body.idCliente, "El usuario ya esta registrado", "Fallido", new Date(), res);
             return res.status(409).json("El usuario ya esta registrado")

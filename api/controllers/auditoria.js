@@ -23,6 +23,7 @@ export const registrarOperacion = (aud_tipousuario, aud_idusuario, aud_nombreusu
     console.log("Comienzo de auditoria");
     const valores = [[aud_tipousuario,aud_idusuario, aud_nombreusuario, aud_accion, aud_archivo, aud_idobjeto, aud_detalle, aud_resultado, aud_fecha]];
     db.query(q, valores, (err, data) => {
+        console.log(valores);
         if (err) {
             console.log(err);
         } else {
