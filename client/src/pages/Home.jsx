@@ -91,7 +91,7 @@ const Home = () => {
                             <BiIcons.BiSolidShoppingBags className="IconColorH" />
                             <h3> Envíos</h3>
                         </Link>
-                        <Link to="/ModuloSolEnvCliente" className="solicitudesEnviosH" style={{ textDecoration: 'none', color: '#4A4846' }}>
+                        <Link to="/SolEnvClientes" className="solicitudesEnviosH" style={{ textDecoration: 'none', color: '#4A4846' }}>
                             <MdIcons.MdNotificationAdd className="IconColorH" />
                             <h3> Solucitudes envíos</h3>
                         </Link>
