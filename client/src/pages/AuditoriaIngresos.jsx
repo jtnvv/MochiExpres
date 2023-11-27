@@ -10,67 +10,15 @@ export const EnvClienteSeleccionado = [];
 
 function AuditoriaIngresos() {
     const { currentUser } = useContext(AuthContext);
-    const [EnvCliente, setEnvCliente] = useState([]);
-    const { getSolicitudIdCliente } = useContext(AuthContext);
-    const { deleteEnvCliente } = useContext(AuthContext);
-    //const { repartidores } = useContext(AuthContext);
-    const [identificador, setIdentificador] = useState({
-        idsolicitudenvio: ""
-    });
-
-    // useEffect(() => {
-    //     console.log(identificador);
-    // }, [identificador]);
 
     const [err, setError] = useState(null);
 
-    const currentSolicitud = (solicitud) => {
-        EnvClienteSeleccionado.pop();
-        EnvClienteSeleccionado.push(solicitud);
 
-    }
-
-    useEffect(() => {
-        const obtenerSolicitudes = async () => {
-            try {
-                const res = await getSolicitudIdCliente(currentUser.idusuario);
-                setEnvCliente(res);
-
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        obtenerSolicitudes();
-    }, []);
-
-
-    useEffect(() => {
-
-    }, [EnvCliente]);
-    // useEffect(() => {
-    //     console.log("Aqui esta la respuesta");
-    //     console.log(repartidoresList);
-    // }, [repartidoresList]);
 
     const navigate = useNavigate();
 
-   
-    const handleEliminarEnvCliente = async (e) => {
-        try {
-            console.log("Identificador: ", identificador);
-            if (identificador.idsolicitudenvio !== null) {
-                const res = await deleteEnvCliente(identificador.idsolicitudenvio);
-                console.log("Ha salido bien :D", res);
-                window.location.reload();
-            }
-        } catch (err) {
-            setError(err.response.data);
-        }
-    }
-    const handleRedirect = () => { navigate("/AgregarEnvCliente") };
 
     return (
-        console.log(EnvCliente),
         <div className="content-flex">
             <Sidebar />
             <div className="divContent">
