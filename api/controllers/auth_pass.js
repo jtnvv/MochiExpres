@@ -1,6 +1,7 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { registrarOperacion } from './auditoria.js';
 
 // const db = require('../db.js');
 
@@ -26,9 +27,11 @@ export const recoverPassword1 = (req, res) => {
     db.query(q, [req.body.idusuario, req.body.nombreusuario], (err, data) => {
         if (err) {
             console.log("Ha pasado algo ", err);
+            registrarOperacion("Desconocido", "Desconocido","GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 1 Falla: Error en conexión con base de datos", "Fallido", new Date());
             return res.status(500).json(err);
         };
         if (data.length === 0) {
+            registrarOperacion("Desconocido", "Desconocido","GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 1 Falla: Usuario no encontrado", "Fallido", new Date());
             return res.status(404).json("Usuario no encontrado");
             //Manejar el error
         } else {
@@ -43,6 +46,7 @@ export const recoverPassword1 = (req, res) => {
             usuario_mod.identificadorpregusuario = data[0];
             usuario_mod.respuestapregusuario = data[0].respuestapregusuario;
             usuario_mod.tipousuario = data[0].tipousuario;
+            registrarOperacion(data[0].tipousuario, data[0].nombreusuario,"GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 1 Exitosa", "Exitoso", new Date());
             return res.status(200).json(data[0]);
         }
 
@@ -72,8 +76,12 @@ export const recoverPassword2 = (req, res) => {
     const q = "select * from (select idCliente as idusuario, nombrecliente as nombreusuario, correocliente as correousuario, direccioncliente as direccionusuario, telefonocliente as telefonousuario, contrasenacliente as contrasenausuario, identificadorpregcliente as identificadorpregusuario, respuestapregcliente as respuestapregusuario, tipousuario from cliente union select idadministrador as idusuario, nombreadministrador as nombreusuario, correoadministrador as correousuario, direccionadministrador as direccionusuario, telefonoadministrador as telefonousuario, contrasenaadministrador as contrasenausuario, identificadorpregadmin as identificadorpregusuario, respuestapregadmin as respuestapregusuario, tipousuario from administrador union select idrepartidor as idusuario, nombrerepartidor as nombreusuario, correorepartidor as correousuario, direccionrepartidor as direccionusuario, telefonorepartidor as telefonousuario, contrasenarepartidor as contrasenausuario, identificadorpregrepar as identificadorpregusuario, respuestapregrepar as respuestapregusuario, tipousuario from repartidor) as usuarios where idusuario = ?";
 
     db.query(q, [req.body.idusuario], (err, data) => {
-        if (err) return res.status(500).json("Ha pasado algo ", err);
+        if (err) {
+            registrarOperacion("Desconocido", "Desconocido","GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 2 Falla: Error en conexión con base de datos", "Fallido", new Date());
+            return res.status(500).json("Ha pasado algo ", err);
+        };
         if (data.length === 0) {
+            registrarOperacion("Desconocido", "Desconocido","GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 2 Falla: Usuario no encontrado", "Fallido", new Date());
             return res.status(404).json("¡Usuario no encontrado!");
         }
 
@@ -83,10 +91,11 @@ export const recoverPassword2 = (req, res) => {
         console.log(respuestaBd);
 
         if (respuestaIn === respuestaBd) {
-
             console.log("Respuesta correcta");
+            registrarOperacion(data[0].tipousuario, data[0].nombreusuario,"GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 2 Exitosa", "Exitoso", new Date());
             return res.status(200).json(data[0]);
         } else {
+            registrarOperacion(data[0].tipousuario, data[0].nombreusuario,"GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 2 Falla: Respuesta incorrecta", "Fallido", new Date());
             return res.status(400).json("Respuesta incorrecta");
         }
     });
@@ -116,25 +125,38 @@ export const recoverPassword3 = (req, res) => {
         console.log(nueva_contrasena);
         if(tipo_usuario === "cliente"){
             db.query(query_cliente, [hash_nueva, req.body.idusuario], (err, data) => {
-                if (err) return res.json(err);
+                if (err) {
+                    registrarOperacion(tipo_usuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Falla: Error en conexión con base de datos", "Fallido", new Date());
+                    return res.json(err);
+                };
                 console.log(data[0]);
+                registrarOperacion(tipo_usuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Exitosa", "Exitoso", new Date());
                 return res.status(200).json("Contraseña actualizada con exito");
             });
         }else if(tipo_usuario === "administrador"){
             db.query(query_administrador, [hash_nueva, req.body.idusuario], (err, data) => {
-                if (err) return res.json(err);
+                if (err) {
+                    registrarOperacion(tipo_usuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Falla: Error en conexión con base de datos", "Fallido", new Date());
+                    return res.json(err);
+                }
                 console.log(data[0]);
+                registrarOperacion(tipo_usuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Exitosa", "Exitoso", new Date());
                 return res.status(200).json("Contraseña actualizada con exito");
             });
         }else{
             db.query(query_repartidor, [hash_nueva, req.body.idusuario], (err, data) => {
-                if (err) return res.json(err);
+                if (err) {
+                    registrarOperacion(tipo_usuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Falla: Error en conexión con base de datos", "Fallido", new Date());
+                    return res.json(err);
+                }
                 console.log(data[0]);
+                registrarOperacion(tipo_usuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Exitosa", "Exitoso", new Date());
                 return res.status(200).json("Contraseña actualizada con exito");
             });
         }
     }
     else {
+        registrarOperacion(tipo_usuario, req.body.nombreusuario,"UPDATE", tipo_usuario, req.body.idusuario, "Recuperación de contraseña Paso 3 Falla: La nueva contraseña no puede ser igual a la anterior", "Fallido", new Date());
         return res.status(400).json("La nueva contraseña no puede ser igual a la anterior");
     }
 

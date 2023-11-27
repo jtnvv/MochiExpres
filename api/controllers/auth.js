@@ -1,7 +1,8 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { registrarLog } from './auditoria.js';
+
+import { registrarLog, registrarOperacion } from './auditoria.js';
 // const db = require('../db.js');
 
 export const usuario_log = {
@@ -26,9 +27,15 @@ export const registerClients = (req, res) => {
     //console.log
 
     db.query(q, [req.body.idCliente], (err, data) => {
-        if (err) return res.status(500).json(err);
+        if (err) {
+            registrarOperacion("Cliente no registrado", "Desconocido", "CREATE", "Cliente", req.body.idCliente, "Error en conexión con la base de datos", "Fallido", new Date());
+            return res.status(500).json(err)
+        };
         console.log(err);
-        if (data.length) return res.status(409).json("El usuario ya esta registrado");
+        if (data.length) {
+            registrarOperacion("Cliente", data[0].nombrecliente, "CREATE", "Cliente", req.body.idCliente, "El usuario ya esta registrado", "Fallido", new Date());
+            return res.status(409).json("El usuario ya esta registrado")
+        };
 
         //Encriptar contraseña
 
@@ -49,7 +56,11 @@ export const registerClients = (req, res) => {
         ]
 
         db.query(q, [values], (err, data) => {
-            if (err) return res.json(err);
+            if (err) {
+                registrarOperacion("Cliente", req.body.nombrecliente, "CREATE", "Cliente no registrado", req.body.idCliente, "Error en la inserción del cliente", "Fallido", new Date());
+                return res.json(err)
+            };
+            registrarOperacion("Cliente", req.body.nombrecliente, "CREATE", "Cliente", req.body.idCliente, "Cliente registrado con exito", "Exitoso", new Date());
             return res.status(200).json("Usuario creado con exito");
         });
 
@@ -66,11 +77,11 @@ export const login = (req, res) => {
     //Validación de identidad del usuario ingresado
     db.query(q, [req.body.idusuario], (err, data) => {
         if (err) {
-            registrarLog(req.body.idusuario, "No determinado", "Desconocido", "Login", "Error en conexión con la base de datos","Fallido", new Date());
+            registrarLog("No determinado", "Desconocido", "Login", "Error en conexión con la base de datos","Fallido", new Date());
             return res.status(500).json("Ha pasado algo al conectar con la base de datos");
         }
         if (data.length === 0) {
-            registrarLog(req.body.idusuario, "No determinado", "Desconocido", "Login", "El usuario no fue encontrado", "Fallido", new Date());
+            registrarLog("No determinado", "Desconocido", "Login", "El usuario no fue encontrado", "Fallido", new Date());
             return res.status(404).json("¡Usuario no encontrado!")
         };
 
