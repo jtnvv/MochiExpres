@@ -35,7 +35,7 @@ const EnviosClienteInfo = () => {
                 if (envioSeleccionado[0].idrepartidor !== null) {
                     //console.log(envioSeleccionado[0].idrepartidor);
                     const res = await getRepartidor(envioSeleccionado[0].idrepartidor);
-                    setNombreRepartidor(res);
+                    setNombreRepartidor(res.nombreRepartidor);
                     //console.log(nombreRepartidor);
                 } else {
                     setNombreRepartidor("No asignado");
