@@ -10,7 +10,9 @@ export const getClientes = (req, res) => {
     console.log("Entro");
 
     db.query(q, (err, data) => {
-        if (err) return res.status(500).json(err);
+        if (err) {
+            return res.status(500).json(err)
+        };
         console.log(err);
         if (data.length == 0) return res.status(409).json("No hay clientes registrados");
         return res.status(200).json(data);

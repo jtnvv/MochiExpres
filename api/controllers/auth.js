@@ -28,12 +28,12 @@ export const registerClients = (req, res) => {
 
     db.query(q, [req.body.idCliente], (err, data) => {
         if (err) {
-            registrarOperacion("Cliente no registrado", "Desconocido", "CREATE", "Cliente", req.body.idCliente, "Error en conexión con la base de datos", "Fallido", new Date());
+            registrarOperacion("Cliente no registrado", "Desconocido", "CREATE", "Cliente", req.body.idCliente, "Error en conexión con la base de datos", "Fallido", new Date(), res);
             return res.status(500).json(err)
         };
         console.log(err);
         if (data.length) {
-            registrarOperacion("Cliente", data[0].nombrecliente, "CREATE", "Cliente", req.body.idCliente, "El usuario ya esta registrado", "Fallido", new Date());
+            registrarOperacion("Cliente", data[0].nombrecliente, "CREATE", "Cliente", req.body.idCliente, "El usuario ya esta registrado", "Fallido", new Date(), res);
             return res.status(409).json("El usuario ya esta registrado")
         };
 
@@ -57,10 +57,10 @@ export const registerClients = (req, res) => {
 
         db.query(q, [values], (err, data) => {
             if (err) {
-                registrarOperacion("Cliente", req.body.nombrecliente, "CREATE", "Cliente no registrado", req.body.idCliente, "Error en la inserción del cliente", "Fallido", new Date());
+                registrarOperacion("Cliente", req.body.nombrecliente, "CREATE", "Cliente no registrado", req.body.idCliente, "Error en la inserción del cliente", "Fallido", new Date(), res);
                 return res.json(err)
             };
-            registrarOperacion("Cliente", req.body.nombrecliente, "CREATE", "Cliente", req.body.idCliente, "Cliente registrado con exito", "Exitoso", new Date());
+            registrarOperacion("Cliente", req.body.nombrecliente, "CREATE", "Cliente", req.body.idCliente, "Cliente registrado con exito", "Exitoso", new Date(), res);
             return res.status(200).json("Usuario creado con exito");
         });
 
@@ -77,11 +77,11 @@ export const login = (req, res) => {
     //Validación de identidad del usuario ingresado
     db.query(q, [req.body.idusuario], (err, data) => {
         if (err) {
-            registrarLog("No determinado", "Desconocido", "Login", "Error en conexión con la base de datos","Fallido", new Date());
+            registrarLog("No determinado", "Desconocido", "Login", "Error en conexión con la base de datos","Fallido", new Date(), res);
             return res.status(500).json("Ha pasado algo al conectar con la base de datos");
         }
         if (data.length === 0) {
-            registrarLog("No determinado", "Desconocido", "Login", "El usuario no fue encontrado", "Fallido", new Date());
+            registrarLog("No determinado", "Desconocido", "Login", "El usuario no fue encontrado", "Fallido", new Date(), res);
             return res.status(404).json("¡Usuario no encontrado!")
         };
 
@@ -89,7 +89,7 @@ export const login = (req, res) => {
         const isPasswordCorrect = bcrypt.compareSync(req.body.contrasenausuario, data[0].contrasenausuario);
 
         if (!isPasswordCorrect) {
-            registrarLog(req.body.idusuario, data[0].tipousuario, data[0].nombreusuario, "Login", "Contraseña incorrecta", "Fallido", new Date());
+            registrarLog(data[0].tipousuario, data[0].nombreusuario, "Login", "Contraseña incorrecta", "Fallido", new Date(), res);
             return res.status(400).json("¡Contraseña incorrecta!");
         };
 
@@ -109,7 +109,7 @@ export const login = (req, res) => {
         usuario_log.respuestapregusuario = data[0].respuestapregusuario;
         usuario_log.tipousuario = data[0].tipousuario;
 
-        registrarLog(req.body.idusuario, data[0].tipousuario, data[0].nombreusuario, "Login", "Login exitoso", "Exitoso", new Date());
+        registrarLog(data[0].tipousuario, data[0].nombreusuario, "Login", "Login exitoso", "Exitoso", new Date(), res);
 
         res.cookie("access_token", token, {
             httpOnly: true
@@ -120,7 +120,7 @@ export const login = (req, res) => {
 };
 
 export const logout = (req, res) => {
-    registrarLog(usuario_log.idusuario, usuario_log.tipousuario, usuario_log.nombreusuario, "Logout", "Logout exitoso", "Exitoso", new Date());
+    registrarLog(usuario_log.tipousuario, usuario_log.nombreusuario, "Logout", "Logout exitoso", "Exitoso", new Date(), res);
     res.clearCookie("access_token", {
         sameSite: "none",
         secure: true
