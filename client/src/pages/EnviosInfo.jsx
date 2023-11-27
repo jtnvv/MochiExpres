@@ -92,7 +92,7 @@ const EnviosInfo = () => {
                 if (envioSeleccionado[0].idrepartidor !== null) {
                     //console.log(envioSeleccionado[0].idrepartidor);
                     const res = await getRepartidor(envioSeleccionado[0].idrepartidor);
-                    setNombreRepartidor(res);
+                    setNombreRepartidor(res.nombrerepartidor);
                     //console.log(nombreRepartidor);
                 } else {
                     setNombreRepartidor("No asignado");
