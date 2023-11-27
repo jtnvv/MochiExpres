@@ -70,7 +70,7 @@ const Sidebar = () => {
                     ) : (
                         <>
                             <li>
-                                <Link to="/ModuloEnvCliente" className="Consultar-Envios-Cliente">
+                                <Link to="/Consultar-Envios-Cliente" className="Consultar-Envios-Cliente">
                                     <BiIcons.BiSolidShoppingBags className="IconColor" />
                                 </Link>
                             </li>

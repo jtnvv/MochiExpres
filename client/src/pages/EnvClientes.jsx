@@ -5,43 +5,58 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { HiOutlineTrash } from "react-icons/hi";
 import { FaCirclePlus } from "react-icons/fa6";
-export const EnvClienteSeleccionado = [];
+export const envioSeleccionado = [];
 
 
 function EnvClientes() {
     const { currentUser } = useContext(AuthContext);
     const [EnvCliente, setEnvCliente] = useState([]);
     const { getSolicitudIdCliente } = useContext(AuthContext);
-    const { deleteEnvCliente } = useContext(AuthContext);
-    //const { repartidores } = useContext(AuthContext);
     const [identificador, setIdentificador] = useState({
         idsolicitudenvio: ""
     });
+    const { deleteEnvCliente } = useContext(AuthContext);
+    const [enviosList, setEnvios] = useState([]);
+    const { getEnvios } = useContext(AuthContext);
 
-    // useEffect(() => {
-    //     console.log(identificador);
-    // }, [identificador]);
+    useEffect(() => {
+        console.log(identificador);
+    }, [identificador]);
 
     const [err, setError] = useState(null);
 
-    const currentSolicitud = (solicitud) => {
-        EnvClienteSeleccionado.pop();
-        EnvClienteSeleccionado.push(solicitud);
 
+    const currentEnvio = (envio) => {
+        envioSeleccionado.pop();
+        envioSeleccionado.push(envio);
     }
+
+
+    useEffect(() => {
+        const obtenerEnvios = async () => {
+            try {
+                const res = await getEnvios();
+                console.log(res);
+                setEnvios(res);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        obtenerEnvios();
+    }, []);
 
     useEffect(() => {
         const obtenerSolicitudes = async () => {
             try {
                 const res = await getSolicitudIdCliente(currentUser.idusuario);
                 setEnvCliente(res);
-
             } catch (err) {
                 console.log(err);
             }
         };
         obtenerSolicitudes();
-    }, []);
+    }, [currentUser.idusuario]);
+
 
 
     useEffect(() => {
@@ -90,7 +105,6 @@ function EnvClientes() {
             setError(err.response.data);
         }
     }
-    const handleRedirect = () => { navigate("/AgregarEnvCliente") };
 
     return (
         console.log(EnvCliente),
@@ -98,11 +112,9 @@ function EnvClientes() {
             <Sidebar />
             <div className="divContent">
                 <div className="ItemsContainer">
-
                     <div className="BarraRepartidor">
                         <div className="containerButtonsRepartidor">
                             <h3 className="styleH3Clientes">Envíos </h3>
-                            
                             <button className="buttonEnviosClienteStyle" onClick={handleButtonClick}>
                                Eliminar  <HiOutlineTrash className="IconColor" />
                             </button>
@@ -114,41 +126,37 @@ function EnvClientes() {
                             </div>
                         </div>
                     </div>
-        
-                
-                    <div className="lista">{
-                
-                        EnvCliente.map((val) => {
-                            return (
-                                
-                                
-                                <React.Fragment key={val.idsolicitudenvio}>
-                                    <div className="ModuloRepartidorContainer">
+                    <div className="lista">
+                        {
+                            EnvCliente.map((solicitud) => {
+                                // Filtra los envíos asociados a la solicitud del usuario actual
+                                const enviosUsuarioActual = enviosList.filter(envio => envio.idsolicitudenvio === solicitud.idsolicitudenvio);
+
+                                return enviosUsuarioActual.map((val) => (
+                                    <React.Fragment key={val.idenvio}>
+                                        <div className="ModuloRepartidorContainer">
                                         <div className="eliminarModulo" onClick={() => showModal(val.idsolicitudenvio)} style={divStyle}>X</div>
-                                        <Link to="/EnvClientesInfo" onClick={() => currentSolicitud(val)} style={{ textDecoration: 'none' }}>
-                                            <ModuloEnvCliente id={"35F"} />
-                                        </Link>
-                                    </div>
-                                    <div className="modalEliminarRepartidorContenedor" style={modalStyle}>
-                                        <div className="containerModalEliminarRepartidor2">
-                                            <div className="eliminarModalRepartidor" onClick={() => showModal(val.idsolicitudenvio)}>X</div>
-                                            <div className="modalEliminarRepartidor">
-                                                <h3>¿Estás seguro de eliminar el envío?</h3>
-                                                <p>Al eliminar tu envío la entrega no se podrá hacer</p>
-                                                <button onClick={handleEliminarEnvCliente}>Eliminar</button>
+                                            <Link to="/EnvClientesInfo" onClick={() => currentEnvio(val)} style={{ textDecoration: 'none' }}>
+                                                <ModuloEnvCliente idenvio={val.idenvio} />
+                                            </Link>
+                                        </div>
+                                        <div className="modalEliminarRepartidorContenedor" style={modalStyle}>
+                                            <div className="containerModalEliminarRepartidor2">
+                                                <div className="eliminarModalRepartidor" onClick={() => showModal(val.idsolicitudenvio)}>X</div>
+                                                <div className="modalEliminarRepartidor">
+                                                    <h3>¿Estás seguro de eliminar el envío?</h3>
+                                                    <p>Al eliminar tu envío la entrega no se podrá hacer</p>
+                                                    <button onClick={handleEliminarEnvCliente}>Eliminar</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </React.Fragment>
-
-                            );
-                        })
-                    }
+                                    </React.Fragment>
+                                ));
+                            })
+                        }
                     </div>
-                
                 </div>
             </div>
-
         </div>
     );
 };
