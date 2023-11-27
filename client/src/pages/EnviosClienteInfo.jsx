@@ -16,6 +16,7 @@ const EnviosClienteInfo = () => {
     });
     const { getClienteSol } = useContext(AuthContext);
     const { getRepartidor } = useContext(AuthContext);
+
     useEffect(() => {
         const obtenerCliente = async () => {
             try {
@@ -29,13 +30,14 @@ const EnviosClienteInfo = () => {
         };
         obtenerCliente();
     }, [nombreCliente]);
+
     useEffect(() => {
         const obtenerRepartidor = async () => {
             try {
                 if (envioSeleccionado[0].idrepartidor !== null) {
                     //console.log(envioSeleccionado[0].idrepartidor);
                     const res = await getRepartidor(envioSeleccionado[0].idrepartidor);
-                    setNombreRepartidor(res.nombreRepartidor);
+                    setNombreRepartidor(res.nombrerepartidor);
                     //console.log(nombreRepartidor);
                 } else {
                     setNombreRepartidor("No asignado");

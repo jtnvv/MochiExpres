@@ -11,13 +11,12 @@ export const envioSeleccionado = [];
 function EnvClientes() {
     const { currentUser } = useContext(AuthContext);
     const [EnvCliente, setEnvCliente] = useState([]);
-    const { getSolicitudIdCliente } = useContext(AuthContext);
+    const { getEnviosCliente } = useContext(AuthContext);
     const [identificador, setIdentificador] = useState({
-        idsolicitudenvio: ""
+        idenvio: ""
     });
     const { deleteEnvCliente } = useContext(AuthContext);
     const [enviosList, setEnvios] = useState([]);
-    const { getEnvios } = useContext(AuthContext);
 
     useEffect(() => {
         console.log(identificador);
@@ -31,37 +30,19 @@ function EnvClientes() {
         envioSeleccionado.push(envio);
     }
 
-
     useEffect(() => {
         const obtenerEnvios = async () => {
             try {
-                const res = await getEnvios();
-                console.log(res);
-                setEnvios(res);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        obtenerEnvios();
-    }, []);
-
-    useEffect(() => {
-        const obtenerSolicitudes = async () => {
-            try {
-                const res = await getSolicitudIdCliente(currentUser.idusuario);
+                const res = await getEnviosCliente(currentUser.idusuario);
                 setEnvCliente(res);
             } catch (err) {
                 console.log(err);
             }
         };
-        obtenerSolicitudes();
+        obtenerEnvios();
     }, [currentUser.idusuario]);
 
 
-
-    useEffect(() => {
-
-    }, [EnvCliente]);
     // useEffect(() => {
     //     console.log("Aqui esta la respuesta");
     //     console.log(repartidoresList);
@@ -81,11 +62,11 @@ function EnvClientes() {
         }
         setClicked(!clicked);
     };
-    const showModal = (idsolicitudenvio) => {
+    const showModal = (idenvio) => {
         if (!clickedModal) {
             setModalStyle({ visibility: 'visible' });
-            console.log(idsolicitudenvio);
-            setIdentificador({ idsolicitudenvio: idsolicitudenvio });
+            console.log(idenvio);
+            setIdentificador({ idenvio: idenvio });
             console.log(identificador);
         } else {
             setModalStyle({ visibility: 'hidden' });
@@ -96,8 +77,8 @@ function EnvClientes() {
     const handleEliminarEnvCliente = async (e) => {
         try {
             console.log("Identificador: ", identificador);
-            if (identificador.idsolicitudenvio !== null) {
-                const res = await deleteEnvCliente(identificador.idsolicitudenvio);
+            if (identificador.idenvio !== null) {
+                const res = await deleteEnvCliente(identificador.idenvio);
                 console.log("Ha salido bien :D", res);
                 window.location.reload();
             }
@@ -128,21 +109,19 @@ function EnvClientes() {
                     </div>
                     <div className="lista">
                         {
-                            EnvCliente.map((solicitud) => {
+                            EnvCliente.map((enviosele) => {
                                 // Filtra los envíos asociados a la solicitud del usuario actual
-                                const enviosUsuarioActual = enviosList.filter(envio => envio.idsolicitudenvio === solicitud.idsolicitudenvio);
-
-                                return enviosUsuarioActual.map((val) => (
-                                    <React.Fragment key={val.idenvio}>
+                                return (
+                                    <React.Fragment key={enviosele.idenvio}>
                                         <div className="ModuloRepartidorContainer">
-                                        <div className="eliminarModulo" onClick={() => showModal(val.idsolicitudenvio)} style={divStyle}>X</div>
-                                            <Link to="/EnvClientesInfo" onClick={() => currentEnvio(val)} style={{ textDecoration: 'none' }}>
-                                                <ModuloEnvCliente idenvio={val.idenvio} />
+                                        <div className="eliminarModulo" onClick={() => showModal(enviosele.idenvio)} style={divStyle}>X</div>
+                                            <Link to="/EnvClientesInfo" onClick={() => currentEnvio(enviosele)} style={{ textDecoration: 'none' }}>
+                                                <ModuloEnvCliente idenvio={enviosele.idenvio} />
                                             </Link>
                                         </div>
                                         <div className="modalEliminarRepartidorContenedor" style={modalStyle}>
                                             <div className="containerModalEliminarRepartidor2">
-                                                <div className="eliminarModalRepartidor" onClick={() => showModal(val.idsolicitudenvio)}>X</div>
+                                                <div className="eliminarModalRepartidor" onClick={() => showModal(enviosele.idenvio)}>X</div>
                                                 <div className="modalEliminarRepartidor">
                                                     <h3>¿Estás seguro de eliminar el envío?</h3>
                                                     <p>Al eliminar tu envío la entrega no se podrá hacer</p>
@@ -151,7 +130,7 @@ function EnvClientes() {
                                             </div>
                                         </div>
                                     </React.Fragment>
-                                ));
+                                );
                             })
                         }
                     </div>
