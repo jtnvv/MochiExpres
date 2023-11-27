@@ -7,6 +7,7 @@ import usersRoutes from "./model/usuarios.js";
 import solicitudesenvioRoutes from "./model/solicitudesenvio.js";
 import enviosRoutes from "./model/envios.js";
 import authRecoverRoutes from "./model/auth_pass.js";
+import auditoriasRoutes from "./model/auditorias.js";
 import cookieParser from "cookie-parser";
 import { PORT } from "./config.js";
 
@@ -22,7 +23,7 @@ app.use("/api/auth_pass", authRecoverRoutes)
 app.use("/api/usuarios", usersRoutes)
 app.use("/api/solicitudesenvio", solicitudesenvioRoutes);
 app.use("/api/envios", enviosRoutes);
-
+app.use("/api/auditorias", auditoriasRoutes);
 
 
 app.listen(PORT, () => {
