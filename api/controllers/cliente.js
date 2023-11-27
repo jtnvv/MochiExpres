@@ -87,7 +87,7 @@ export const deleteCliente = (req, res) => {
                 registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", "Cliente", clienteId, "Error en conexión con la base de datos", "Fallido", new Date(), res);
                 return res.status(403).json("No puedes borrar este cliente");
             }
-            registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", "Cliente", clienteId, "Cliente borrado con exito", "Exitoso", new Date(), res);
+            registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", `El cliente con el identificador ${clienteId} fue borrado con éxito`, "Exitoso", new Date(), res);
             return res.status(200).json("Cliente borrado con exito");
         });
     });

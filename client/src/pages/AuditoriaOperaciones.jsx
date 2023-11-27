@@ -1,76 +1,32 @@
 import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import ModuloAuditoria from "./ModuloAuditoria"
+import ModuloAuditoriaOperaciones from "./ModuloAuditoriaOperaciones"
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-import { HiOutlineTrash } from "react-icons/hi";
-import { FaCirclePlus } from "react-icons/fa6";
 export const EnvClienteSeleccionado = [];
 
 
 function AuditoriaOperaciones() {
     const { currentUser } = useContext(AuthContext);
-    const [EnvCliente, setEnvCliente] = useState([]);
-    const { getSolicitudIdCliente } = useContext(AuthContext);
-    const { deleteEnvCliente } = useContext(AuthContext);
-    //const { repartidores } = useContext(AuthContext);
-    const [identificador, setIdentificador] = useState({
-        idsolicitudenvio: ""
-    });
-
-    // useEffect(() => {
-    //     console.log(identificador);
-    // }, [identificador]);
+    const { getAuditoriaOperaciones } = useContext(AuthContext);
 
     const [err, setError] = useState(null);
-
-    const currentSolicitud = (solicitud) => {
-        EnvClienteSeleccionado.pop();
-        EnvClienteSeleccionado.push(solicitud);
-
-    }
+    const [auditoriaOperacionesList, setAuditoriaOperacionesList] = useState([]);
 
     useEffect(() => {
-        const obtenerSolicitudes = async () => {
+        const obtenerAuditoriaOperaciones = async () => {
             try {
-                const res = await getSolicitudIdCliente(currentUser.idusuario);
-                setEnvCliente(res);
-
+                const res = await getAuditoriaOperaciones();
+                setAuditoriaOperacionesList(res);
             } catch (err) {
                 console.log(err);
             }
         };
-        obtenerSolicitudes();
+        obtenerAuditoriaOperaciones();
     }, []);
 
 
-    useEffect(() => {
-
-    }, [EnvCliente]);
-    // useEffect(() => {
-    //     console.log("Aqui esta la respuesta");
-    //     console.log(repartidoresList);
-    // }, [repartidoresList]);
-
-    const navigate = useNavigate();
-
-   
-    const handleEliminarEnvCliente = async (e) => {
-        try {
-            console.log("Identificador: ", identificador);
-            if (identificador.idsolicitudenvio !== null) {
-                const res = await deleteEnvCliente(identificador.idsolicitudenvio);
-                console.log("Ha salido bien :D", res);
-                window.location.reload();
-            }
-        } catch (err) {
-            setError(err.response.data);
-        }
-    }
-    const handleRedirect = () => { navigate("/AgregarEnvCliente") };
-
     return (
-        console.log(EnvCliente),
         <div className="content-flex">
             <Sidebar />
             <div className="divContent">
@@ -91,45 +47,42 @@ function AuditoriaOperaciones() {
                             <div className="header">
                                 <h3 className="text_i">ID Auditoria</h3>
                                 <h3 className="text">Tipo de usuario</h3>
-                                <h3 className="text">Usuario</h3>
+                                <h3 className="text">Identificador usuario</h3>
+                                <h3 className="text">Nombre usuario</h3>
                                 <h3 className="text">Acción</h3>
                                 <h3 className="text">Archivo</h3>
-                                <h3 className="text">ID</h3>
+                                <h3 className="text">Id del objeto</h3>
                                 <h3 className="text">Detalle</h3>
                                 <h3 className="text">Resultado</h3>
                                 <h3 className="text_d">Fecha</h3>
                             </div>
                             <div className="container">
-                                <ModuloAuditoria idaud="12345667" tipo="admin" usuario="Ivana" accion="eliminar modulo"
-                                archivo="perro.txt" id="34456123131dasdasdasasasF" detalle="dasdadasdd" resultado="dadsad" fecha="17/07/2003 23:00h"></ModuloAuditoria>
-                                <ModuloAuditoria idaud="12345667" tipo="admin" usuario="Ivana" accion="eliminar modulo"
-                                archivo="perro.txt" id="34456123131dasdasdasasasF" detalle="dasdadasdd" resultado="dadsad" fecha="17/07/2003 23:00h"></ModuloAuditoria>
-                                <ModuloAuditoria idaud="12345667" tipo="admin" usuario="Ivana" accion="eliminar modulo"
-                                archivo="perro.txt" id="34456123131dasdasdasasasF" detalle="dasdadasdd" resultado="dadsad" fecha="17/07/2003 23:00h"></ModuloAuditoria>
-                                <ModuloAuditoria idaud="12345667" tipo="admin" usuario="Ivana" accion="eliminar modulo"
-                                archivo="perro.txt" id="34456123131dasdasdasasasF" detalle="dasdadasdd" resultado="dadsad" fecha="17/07/2003 23:00h"></ModuloAuditoria>
-                                <ModuloAuditoria idaud="12345667" tipo="admin" usuario="Ivana" accion="eliminar modulo"
-                                archivo="perro.txt" id="34456123131dasdasdasasasF" detalle="dasdadasdd" resultado="dadsad" fecha="17/07/2003 23:00h"></ModuloAuditoria>
-                                <ModuloAuditoria idaud="12345667" tipo="admin" usuario="Ivana" accion="eliminar modulo"
-                                archivo="perro.txt" id="34456123131dasdasdasasasF" detalle="dasdadasdd" resultado="dadsad" fecha="17/07/2003 23:00h"></ModuloAuditoria>
-                                <ModuloAuditoria idaud="12345667" tipo="admin" usuario="Ivana" accion="eliminar modulo"
-                                archivo="perro.txt" id="34456123131dasdasdasasasF" detalle="dasdadasdd" resultado="dadsad" fecha="17/07/2003 23:00h"></ModuloAuditoria>
-                                <ModuloAuditoria idaud="12345667" tipo="admin" usuario="Ivana" accion="eliminar modulo"
-                                archivo="perro.txt" id="34456123131dasdasdasasasF" detalle="dasdadasdd" resultado="dadsad" fecha="17/07/2003 23:00h"></ModuloAuditoria>
-                                <ModuloAuditoria idaud="12345667" tipo="admin" usuario="Ivana" accion="eliminar modulo"
-                                archivo="perro.txt" id="34456123131dasdasdasasasF" detalle="dasdadasdd" resultado="dadsad" fecha="17/07/2003 23:00h"></ModuloAuditoria>
-                                
-                            
+                                {
+                                    auditoriaOperacionesList.map((auditoriaOperaciones) => {
+                                        return (
+                                            console.log("Aca: ", auditoriaOperaciones),
+                                            <React.Fragment key={auditoriaOperaciones.aud_id}>
+                                                <ModuloAuditoriaOperaciones
+                                                    aud_id={auditoriaOperaciones.aud_id}
+                                                    aud_tipousuario={auditoriaOperaciones.aud_tipousuario}
+                                                    aud_idusuario={auditoriaOperaciones.aud_idusuario}
+                                                    aud_nombreusuario={auditoriaOperaciones.aud_nombreusuario}
+                                                    aud_accion={auditoriaOperaciones.aud_accion}
+                                                    aud_archivo={auditoriaOperaciones.aud_archivo}
+                                                    aud_idobjeto={auditoriaOperaciones.aud_idobjeto}
+                                                    aud_detalle={auditoriaOperaciones.aud_detalle}
+                                                    aud_resultado={auditoriaOperaciones.aud_resultado}
+                                                    aud_fecha={auditoriaOperaciones.aud_fecha}>
+                                                </ModuloAuditoriaOperaciones>
+                                            </React.Fragment>
+                                        );
+                                    })
+                                }
                             </div>
                         </div>
                     </div>
-                    
-                
-                    
-                
                 </div>
             </div>
-
         </div>
     );
 };

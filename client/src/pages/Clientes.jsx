@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import ModuloClientes from "./ModuloClientes";
 import { AuthContext } from "../context/authContext";
+import { mensajeError, mensajeExito } from "../components/mensajesAlerta.js";
 export const clienteSeleccionado = [];
 
 function Clientes() {
@@ -74,20 +75,17 @@ function Clientes() {
             if (identificador.idCliente !== null) {
                 const res = await deleteCliente(identificador.idCliente);
                 console.log("Ha salido bien :D ", res);
-                window.location.reload();
+                mensajeExito("Cliente eliminado exitosamente");
             } else {
                 console.log("Ha salido mal :c ");
+                mensajeError("No se pudo eliminar el cliente");
             }
         } catch (err) {
             setError(err.response.data);
         }
 
     }
-    // useEffect(() => {
-    //     if(clickedModal){
-    //         setIdentificador({idCliente: identificador});
-    //     }
-    // }, [clickedModal]);
+
 
     return (
 

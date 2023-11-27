@@ -13,20 +13,6 @@ function AuditoriaIngresos() {
     const [err, setError] = useState(null);
     const [auditoriaIngresosList, setAuditoriaIngresosList] = useState([]);
 
-    // const [identificador, setIdentificador] = useState({
-    //     aud_id: ""
-    // });
-
-    // useEffect(() => {
-    //     console.log(identificador);
-    // }, [identificador]);
-
-    // const currentAuditoriaIngresos = (auditoriaIngresos) => {
-    //     auditoriaIngresosSeleccionado.pop();
-    //     auditoriaIngresosSeleccionado.push(auditoriaIngresos);
-
-    // }
-
     useEffect(() => {
         const obtenerAuditoriaIngresos = async () => {
             try {
@@ -39,31 +25,6 @@ function AuditoriaIngresos() {
         obtenerAuditoriaIngresos();
     }, []);
 
-    const [divStyle, setDivStyle] = useState({});
-    const [clicked, setClicked] = useState(false);
-    const [modalStyle, setModalStyle] = useState({});
-    const [clickedModal, setClickedModal] = useState(false);
-    const navigate = useNavigate();
-
-    // const handleButtonClick = () => {
-    //     if (!clicked) {
-    //         setDivStyle({ visibility: 'visible' });
-    //     } else {
-    //         setDivStyle({ visibility: 'hidden' });
-    //     }
-    //     setClicked(!clicked);
-    // };
-    // const showModal = () => {
-    //     if (!clickedModal) {
-    //         setModalStyle({ visibility: 'visible' });
-    //         console.log(identificador);
-    //         setIdentificador({ aud_id: aud_id });
-    //         console.log(identificador);
-    //     } else {
-    //         setModalStyle({ visibility: 'hidden' });
-    //     }
-    //     setClickedModal(!clickedModal);
-    // };
 
     return (
         <div className="content-flex">
