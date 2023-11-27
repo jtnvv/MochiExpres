@@ -1,5 +1,4 @@
 import { db } from '../db.js';
-import { retornarFecha } from './retornarFecha.js';
 
 export const registrarLog = (aud_tipousuario, aud_idusuario, aud_nombreusuario, aud_tipolog,aud_detalle, aud_resultado, aud_fecha, res) => {
     const q = "INSERT INTO auditoria_log (`aud_tipousuario`,`aud_idusuario`,`aud_nombreusuario`,`aud_tipolog`,`aud_detalle`,`aud_resultado`,`aud_fecha`) values (?)";
