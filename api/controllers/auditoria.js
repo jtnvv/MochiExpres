@@ -1,11 +1,11 @@
 import { db } from '../db.js';
 import { retornarFecha } from './retornarFecha.js';
 
-export const registrarLog = (aud_tipousuario, aud_nombreusuario, aud_tipolog,aud_detalle, aud_resultado, aud_fecha, res) => {
-    const q = "INSERT INTO auditoria_log (`aud_tipousuario`,`aud_nombreusuario`,`aud_tipolog`,`aud_detalle`,`aud_resultado`,`aud_fecha`) values (?)";
+export const registrarLog = (aud_tipousuario, aud_idusuario, aud_nombreusuario, aud_tipolog,aud_detalle, aud_resultado, aud_fecha, res) => {
+    const q = "INSERT INTO auditoria_log (`aud_tipousuario`,`aud_idusuario`,`aud_nombreusuario`,`aud_tipolog`,`aud_detalle`,`aud_resultado`,`aud_fecha`) values (?)";
     //let fecha = retornarFecha(aud_fecha);
     console.log("Comienzo de auditoria");
-    const valores = [[aud_tipousuario, aud_nombreusuario, aud_tipolog, aud_detalle, aud_resultado, aud_fecha]];
+    const valores = [[aud_tipousuario,aud_idusuario, aud_nombreusuario, aud_tipolog, aud_detalle, aud_resultado, aud_fecha]];
 
     db.query(q, valores, (err, data) => {
         console.log(valores);
@@ -17,11 +17,11 @@ export const registrarLog = (aud_tipousuario, aud_nombreusuario, aud_tipolog,aud
     });
 };
 
-export const registrarOperacion = (aud_tipousuario, aud_nombreusuario, aud_accion, aud_archivo, aud_idobjeto, aud_detalle, aud_resultado, aud_fecha, res) => {
-    const q = "INSERT INTO auditoria_operaciones (`aud_tipousuario`,`aud_nombreusuario`,`aud_accion`,`aud_archivo`,`aud_idobjeto`,`aud_detalle`,`aud_resultado`,`aud_fecha`) values (?)";
+export const registrarOperacion = (aud_tipousuario, aud_idusuario, aud_nombreusuario, aud_accion, aud_archivo, aud_idobjeto, aud_detalle, aud_resultado, aud_fecha, res) => {
+    const q = "INSERT INTO auditoria_operaciones (`aud_tipousuario`,`aud_idusuario`,`aud_nombreusuario`,`aud_accion`,`aud_archivo`,`aud_idobjeto`,`aud_detalle`,`aud_resultado`,`aud_fecha`) values (?)";
     //let fecha = retornarFecha(aud_fecha);
     console.log("Comienzo de auditoria");
-    const valores = [[aud_tipousuario, aud_nombreusuario, aud_accion, aud_archivo, aud_idobjeto, aud_detalle, aud_resultado, aud_fecha]];
+    const valores = [[aud_tipousuario,aud_idusuario, aud_nombreusuario, aud_accion, aud_archivo, aud_idobjeto, aud_detalle, aud_resultado, aud_fecha]];
     db.query(q, valores, (err, data) => {
         if (err) {
             console.log(err);
