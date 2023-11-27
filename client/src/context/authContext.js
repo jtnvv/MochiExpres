@@ -192,6 +192,19 @@ export const AuthContexProvider = ({ children }) => {
     //console.log("Aqui empiexaaaa");
     console.log(res.data);
   }
+
+  //AUDITORIAS 
+  const getAuditoriaLog = async () => {
+    const res = await axios.get("/auditorias/getAuditoriaLog");
+    return res.data;
+  };
+
+  const getAuditoriaOperaciones = async () => {
+    const res = await axios.get("/auditorias/getAuditoriaOperaciones");
+    return res.data;
+  };
+
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
@@ -209,7 +222,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnviosRepartidor, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor, getSolicitudId, registerRepartidor, registrarCliente, createEnvio, createSolEnvio, getSolicitudIdCliente, deleteSolEnvCliente }}>
+    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnviosRepartidor, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor, getSolicitudId, registerRepartidor, registrarCliente, createEnvio, createSolEnvio, getSolicitudIdCliente, deleteSolEnvCliente, getAuditoriaLog,getAuditoriaOperaciones }}>
       {children}
     </AuthContext.Provider>
   );

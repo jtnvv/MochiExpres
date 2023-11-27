@@ -44,11 +44,6 @@ function Repartidores() {
 
     }, []);
 
-    // useEffect(() => {
-    //     console.log("Aqui esta la respuesta");
-    //     console.log(repartidoresList);
-    // }, [repartidoresList]);
-
     const [divStyle, setDivStyle] = useState({});
     const [clicked, setClicked] = useState(false);
     const [modalStyle, setModalStyle] = useState({});
