@@ -161,6 +161,42 @@ export const deleteEnvio = (req, res) => {
 
 }
 
+export const deleteEnvioId = (req, res) => {
+    console.log(req.params.idenvio);
+    const token = req.cookies.access_token;
+    if (!token) {
+        registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", "Envio", "Desconocido", "El usuario no está autorizado para realizar esta operación", "Fallido", new Date(), res);
+        return res.status(401).json("No estas autorizado");
+    }
+
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
+        if (err) {
+            registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", "Envio", "Desconocido", "El usuario no cuenta con un token válido.", "Fallido", new Date(), res);
+            return res.status(403).json("Token is not valid!");
+        }
+        let envioId = req.params.idenvio;
+        console.log("Aqui esta el id", envioId);
+        if (envioId === "") {
+            registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", "Envio", "Desconocido", "No se ha enviado el id del envio", "Fallido", new Date(), res);
+            return res.status(403).json("No se ha enviado el id del envio");
+        }
+
+
+        const q = "DELETE FROM envio WHERE idenvio = ?";
+
+        db.query(q, [envioId] , (err, data) => {
+            console.log("Aca esta el maldito ", envioId);
+            if (err) {
+                registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", "Envio", envioId, "Error en conexión con la base de datos", "Fallido", new Date(), res);
+                return res.status(403).json("No puedes borrar este envio");
+            }
+            registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", `El envio con el identificador ${envioId} fue borrado con éxito`, "Exitoso", new Date(), res);
+            return res.status(200).json("Envio borrado con exito");
+        });
+
+    });
+};
+
 export const updateEnvioEstado = (req, res) => {
     const values = [
         req.body.estadoenvio,

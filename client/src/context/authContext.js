@@ -150,6 +150,13 @@ export const AuthContexProvider = ({ children }) => {
     console.log(res.data);
   }
 
+  const deleteEnvioId = async (idenvio) => {
+    console.log("Entro a delete");
+    const res = await axios.delete(`/envios/deleteEnvioId/${idenvio}`);
+    console.log(res.data);
+  }
+
+
   const updateEnvioEstado = async (inputs) => {
     const res = await axios.post("/envios/updateEnvioEstado", inputs);
     console.log(res.data);
@@ -222,7 +229,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnviosRepartidor, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor, getSolicitudId, registerRepartidor, registrarCliente, createEnvio, createSolEnvio, getSolicitudIdCliente, deleteSolEnvCliente, getAuditoriaLog,getAuditoriaOperaciones }}>
+    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnviosRepartidor, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor, getSolicitudId, registerRepartidor, registrarCliente, createEnvio, createSolEnvio, getSolicitudIdCliente, deleteSolEnvCliente, getAuditoriaLog,getAuditoriaOperaciones, deleteEnvioId }}>
       {children}
     </AuthContext.Provider>
   );

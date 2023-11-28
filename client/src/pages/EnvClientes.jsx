@@ -13,9 +13,9 @@ function EnvClientes() {
     const [EnvCliente, setEnvCliente] = useState([]);
     const { getEnviosCliente } = useContext(AuthContext);
     const [identificador, setIdentificador] = useState({
-        idenvio: ""
+        idenvio: "",
     });
-    const { deleteEnvCliente } = useContext(AuthContext);
+    const { deleteEnvioId } = useContext(AuthContext);
     const [enviosList, setEnvios] = useState([]);
 
     useEffect(() => {
@@ -62,12 +62,12 @@ function EnvClientes() {
         }
         setClicked(!clicked);
     };
-    const showModal = (idenvio) => {
+    const showModal = (idEnvio) => {
         if (!clickedModal) {
             setModalStyle({ visibility: 'visible' });
-            console.log(idenvio);
-            setIdentificador({ idenvio: idenvio });
-            console.log(identificador);
+            console.log(idEnvio);
+            setIdentificador({ idenvio: idEnvio });
+            console.log("k ", identificador.idenvio);
         } else {
             setModalStyle({ visibility: 'hidden' });
         }
@@ -76,10 +76,11 @@ function EnvClientes() {
 
     const handleEliminarEnvCliente = async (e) => {
         try {
-            console.log("Identificador: ", identificador);
+            console.log("Identificador: ", identificador.idenvio);
             if (identificador.idenvio !== null) {
-                const res = await deleteEnvCliente(identificador.idenvio);
+                const res = await deleteEnvioId(identificador.idenvio);
                 console.log("Ha salido bien :D", res);
+                alert("Funcionooooooo");
                 window.location.reload();
             }
         } catch (err) {
