@@ -1,13 +1,17 @@
-import React from "react";
-import { AuthContext } from "../context/authContext";
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 import { envioSeleccionado } from "./EnvClientes";
+import { mensajeInformacion, mensajeExito } from "../components/mensajesAlerta.js";
+import { AuthContext } from "../context/authContext.js";
+
+
+
 const EnviosClienteInfo = () => {
     const [nombreCliente, setNombreCliente] = useState("");
     const [nombreRepartidor, setNombreRepartidor] = useState("");   
+    const { deleteEnvioId } = useContext(AuthContext);
 
     const [inputs, setInputs] = useState({
         idenvio: envioSeleccionado[0].idenvio,
@@ -16,6 +20,7 @@ const EnviosClienteInfo = () => {
     });
     const { getClienteSol } = useContext(AuthContext);
     const { getRepartidor } = useContext(AuthContext);
+    const [err, setError] = useState(null);
 
     useEffect(() => {
         const obtenerCliente = async () => {
@@ -30,6 +35,29 @@ const EnviosClienteInfo = () => {
         };
         obtenerCliente();
     }, [nombreCliente]);
+
+
+    const handleAceptar = async (e) => {
+        mensajeInformacion("¡Haz aceptado el envío! Debes esperar a la entrega.\n¡Gracias por confiar en nosotros!")
+    };
+
+    const handleNoAceptar = async (e) => {
+        mensajeInformacion("¡Haz rechazado el envío! Este será borrado de tu historial.\nPara mayor información contacta con el administrador.");
+        handleBorrar(e);
+    };
+
+    const handleBorrar = async (e) => {
+            try {
+                console.log("Identificador: ", envioSeleccionado[0].idenvio);
+                if (envioSeleccionado[0].idenvio !== null) {
+                    const res = await deleteEnvioId(envioSeleccionado[0].idenvio);
+                    console.log("Ha salido bien :D", res);
+                    mensajeExito("Se ha eliminado correctamente el envio ", envioSeleccionado[0].idenvio);
+                }
+            } catch (err) {
+                setError(err.response.data);
+            }
+    } 
 
     useEffect(() => {
         const obtenerRepartidor = async () => {
@@ -103,8 +131,8 @@ const EnviosClienteInfo = () => {
                                             </div>
                                             <h3>Repartidor</h3>
                                             <p>{nombreRepartidor}</p>
-                                            <button className="btnPersonalInfo">Aceptar</button>
-                                            <button className="btnPersonalInfo">No Aceptar</button>
+                                            <button className="btnPersonalInfo" onClick={handleAceptar}>Aceptar</button>
+                                            <button className="btnPersonalInfo" onClick={handleNoAceptar}>No Aceptar</button>
                                             {/* 
                                             <select name="repartidoractual" className="status" onChange={handleRepartidorSeleccionado}>
                                                 <option key={EnvClienteSeleccionado[0].idrepartidor || "0"} value={EnvClienteSeleccionado[0].idrepartidor || "0"}>

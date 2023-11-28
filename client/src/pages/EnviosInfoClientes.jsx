@@ -123,11 +123,11 @@ const EnviosInfoClientes = () => {
         }*/
     }
 
-    useEffect(() => {
-        if (shouldNavigate) {
-            navigate("la pag de cristian");
-        }
-    }, [shouldNavigate]);
+    // useEffect(() => {
+    //     if (shouldNavigate) {
+    //         navigate("l");
+    //     }
+    // }, [shouldNavigate]);
 
     return (
         <div className="content-flex">

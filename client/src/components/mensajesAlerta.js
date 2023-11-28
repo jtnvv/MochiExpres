@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 
-export const mensajeInformación = (mensaje) => {
+export const mensajeInformacion = (mensaje) => {
     Swal.fire({
         title: "Información",
-        text: {mensaje},
+        text: mensaje,
         icon: "info"
     });
 };
@@ -11,7 +11,7 @@ export const mensajeInformación = (mensaje) => {
 export const mensajeExito = (mensaje) => {
     Swal.fire({
         title: "Confirmación",
-        text: {mensaje},
+        text: mensaje,
         icon: "success"
     }).then (() => {
         //window.location.reload();
@@ -21,7 +21,7 @@ export const mensajeExito = (mensaje) => {
 export const mensajeAdvertencia = (mensaje) => {
     Swal.fire({
         title: "Advertencia",
-        text: {mensaje},
+        text: mensaje,
         icon: "warning"
     });
 };

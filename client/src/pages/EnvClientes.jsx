@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import ModuloEnvCliente from "./ModuloEnvCliente"
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../context/authContext.js";
 import { HiOutlineTrash } from "react-icons/hi";
 import { FaCirclePlus } from "react-icons/fa6";
 import {mensajeExito} from "../components/mensajesAlerta.js";

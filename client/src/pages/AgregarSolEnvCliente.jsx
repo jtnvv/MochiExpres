@@ -91,7 +91,6 @@ const AgregarSolEnvCliente = () => {
                             <div className="bottomRegister">
                                 <div className="flex">
                                     <div className="div">
-                                        <p>En caso de pérdida de contraseña, elige una pregunta de recuperación de contraseña.</p>
                                         {err && <p className="register__bg__error"> {err}</p>}
                                         <button type="submit" onClick={handleSubmit}>Registrar!</button>
                                     </div>
