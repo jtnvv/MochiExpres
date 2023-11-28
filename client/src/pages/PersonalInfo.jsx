@@ -132,7 +132,7 @@ const PersonalInfo = () => {
                                         </li><br />
                                         <li>
                                             <div className="p">
-                                                <p className="p-list">Número identidad: </p>
+                                                <p className="p-list">Identificador de usuario: </p>
                                                 <p className="content">{currentUser?.idusuario}</p>
                                             </div>
                                         </li><br />
