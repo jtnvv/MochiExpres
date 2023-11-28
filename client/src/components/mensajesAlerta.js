@@ -14,7 +14,7 @@ export const mensajeExito = (mensaje) => {
         text: {mensaje},
         icon: "success"
     }).then (() => {
-        window.location.reload();
+        //window.location.reload();
     });
 };
 

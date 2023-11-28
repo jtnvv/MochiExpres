@@ -44,7 +44,7 @@ const AgregarSolEnvCliente = () => {
                 return;
             } else {
                 const res = await createSolEnvio(inputs);
-                alert("Repartidor registrado con éxito");
+                alert("Solicitud registrada con éxito");
             }
             console.log(inputs);
         } catch (err) {

@@ -5,6 +5,8 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { HiOutlineTrash } from "react-icons/hi";
 import { FaCirclePlus } from "react-icons/fa6";
+import {mensajeExito} from "../components/mensajesAlerta.js";
+
 export const envioSeleccionado = [];
 
 
@@ -80,8 +82,7 @@ function EnvClientes() {
             if (identificador.idenvio !== null) {
                 const res = await deleteEnvioId(identificador.idenvio);
                 console.log("Ha salido bien :D", res);
-                alert("Funcionooooooo");
-                window.location.reload();
+                mensajeExito("Se ha eliminado correctamente el envio ", identificador.idenvio);
             }
         } catch (err) {
             setError(err.response.data);

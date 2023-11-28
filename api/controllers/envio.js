@@ -4,6 +4,9 @@ import { usuario_log } from './auth.js';
 import { registrarOperacion } from './auditoria.js';
 
 export const createEnvio = (req, res) => {
+
+    console.log(usuario_log);
+
     const q1 = "SELECT * FROM envio WHERE idenvio = ?";
     console.log("Entro");
     
@@ -55,6 +58,9 @@ export const createEnvio = (req, res) => {
 
 
 export const getEnvios = (req, res) => {
+
+    console.log(usuario_log);
+
     const q = "SELECT * FROM envio";
     //console.log("Entro");
     db.query(q, (err, data) => {
@@ -73,6 +79,9 @@ export const getEnvios = (req, res) => {
 }
 
 export const getEnviosCliente = (req, res) => {
+
+    console.log(usuario_log);
+
     const q = "SELECT e.idenvio, e.descripcionpaquete, e.estadoenvio, e.tarifaenvio, e.fechaenvioentregado, e.fechaenviorealizado, e.destinoenvio, e.idrepartidor, e.idsolicitudenvio, s.tarifasolicitud, s.pesopaquete, s.idCliente FROM (envio e JOIN solicitudenvio s ON e.idsolicitudenvio = s.idsolicitudenvio) WHERE s.idCliente = ?";
     console.log("Entro");
     console.log("Aquiiiii ", req.params.idCliente);
@@ -92,6 +101,9 @@ export const getEnviosCliente = (req, res) => {
 }
 
 export const getEnviosRepartidor = (req, res) => {
+
+    console.log(usuario_log);
+
     const q = "SELECT * from envio where idrepartidor =?";
     console.log("Entro");
     console.log("Aquiiiii ", req.params.idRepartidor);
@@ -111,6 +123,8 @@ export const getEnviosRepartidor = (req, res) => {
 }
 
 export const deleteEnvio = (req, res) => {
+
+    console.log(usuario_log);
 
     const token = req.cookies.access_token;
     if (!token) {
@@ -162,6 +176,9 @@ export const deleteEnvio = (req, res) => {
 }
 
 export const deleteEnvioId = (req, res) => {
+
+    console.log(usuario_log);
+
     console.log(req.params.idenvio);
     const token = req.cookies.access_token;
     if (!token) {
@@ -190,7 +207,7 @@ export const deleteEnvioId = (req, res) => {
                 registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", "Envio", envioId, "Error en conexión con la base de datos", "Fallido", new Date(), res);
                 return res.status(403).json("No puedes borrar este envio");
             }
-            registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", `El envio con el identificador ${envioId} fue borrado con éxito`, "Exitoso", new Date(), res);
+            registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"DELETE", "Envio", envioId, `El envio con el identificador ${envioId} fue borrado con éxito`, "Exitoso", new Date(), res);
             return res.status(200).json("Envio borrado con exito");
         });
 
