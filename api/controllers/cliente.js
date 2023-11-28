@@ -21,7 +21,7 @@ export const getClientes = (req, res) => {
         }
         registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"GET", "Cliente", "Tabla cliente", "Clientes consultados con exito", "Exitoso", new Date(), res);
         
-        datosDesencriptados = data.map((cliente) => {
+        const datosDesencriptados = data.map((cliente) => {
             return{
                 ...cliente,
                 correocliente: decryptData(cliente.correocliente),

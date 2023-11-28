@@ -22,7 +22,7 @@ export const getRepartidores = (req, res) => {
         }
         registrarOperacion(usuario_log.tipousuario,usuario_log.idusuario,usuario_log.nombreusuario,"GET","Repartidor","Tabla de repartidores","Consulta de repartidores exitosa","Exitoso",new Date(),res);
         
-        datosDesencriptados = data.map((repartidor) => {
+        const datosDesencriptados = data.map((repartidor) => {
             return{
                 ...repartidor,
                 correorepartidor: decryptData(repartidor.correorepartidor),

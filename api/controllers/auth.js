@@ -14,24 +14,36 @@ export const encryptData = (data) => {
 
     // Ciframos la contraseña con la clave secreta
     const ciphertext = CryptoJS.AES.encrypt(data, key.key);
-  
+
     // Devolvemos la clave secreta y el cifrado en formato string
     return {
-      key: key.toString(),
-      ciphertext: ciphertext.toString()
+        key: key.toString(),
+        ciphertext: ciphertext.toString()
     };
-  }
-  
-  // Función para descifrar la contraseña
-  export const decryptData = (encryptedData) => {
-    if (typeof encryptedData !== 'string' || !encryptedData) {
-        console.log('Invalid encrypted data');
-        return null;
-    }
+}
 
-    const bytes = CryptoJS.AES.decrypt(encryptedData, key.key).toString(CryptoJS.enc.Utf8);
-    console.log(bytes);
-    return bytes;
+// Función para descifrar la contraseña
+export const decryptData = (encryptedData) => {
+    const retorno = '';
+    try {
+        if (typeof encryptedData !== 'string' || !encryptedData) {
+            console.log('Invalid encrypted data');
+            return encryptedData;
+        }
+
+
+        const bytes = CryptoJS.AES.decrypt(encryptedData, key.key);
+        const originalText = bytes.toString(CryptoJS.enc.Utf8);
+        if (!originalText) {
+            console.log('Invalid decrypted data');
+            return encryptedData;
+        }
+        console.log(originalText);
+        return originalText;
+    } catch (error) {
+        console.log('Error during decryption', error);
+        return encryptedData;
+    }
 }
 
 export const usuario_log = {
@@ -57,7 +69,7 @@ export const registerClients = (req, res) => {
 
     db.query(q, [req.body.idCliente], (err, data) => {
         if (err) {
-            registrarOperacion("Cliente no registrado", "Desconocido","Desconocido", "CREATE", "Cliente", req.body.idCliente, "Error en conexión con la base de datos", "Fallido", new Date(), res);
+            registrarOperacion("Cliente no registrado", "Desconocido", "Desconocido", "CREATE", "Cliente", req.body.idCliente, "Error en conexión con la base de datos", "Fallido", new Date(), res);
             return res.status(500).json(err)
         };
         //console.log(err);
@@ -98,7 +110,7 @@ export const registerClients = (req, res) => {
 
         db.query(q, [values], (err, data) => {
             if (err) {
-                registrarOperacion("Cliente", req.body.idCliente ,req.body.nombrecliente, "CREATE", "Cliente no registrado", req.body.idCliente, "Error en la inserción del cliente", "Fallido", new Date(), res);
+                registrarOperacion("Cliente", req.body.idCliente, req.body.nombrecliente, "CREATE", "Cliente no registrado", req.body.idCliente, "Error en la inserción del cliente", "Fallido", new Date(), res);
                 return res.json(err)
             };
             registrarOperacion("Cliente", req.body.idCliente, req.body.nombrecliente, "CREATE", "Cliente", req.body.idCliente, "Cliente registrado con exito", "Exitoso", new Date(), res);
@@ -118,11 +130,11 @@ export const login = (req, res) => {
     //Validación de identidad del usuario ingresado
     db.query(q, [req.body.idusuario], (err, data) => {
         if (err) {
-            registrarLog("No determinado","Desconocido", "Desconocido", "Login", "Error en conexión con la base de datos","Fallido", new Date(), res);
+            registrarLog("No determinado", "Desconocido", "Desconocido", "Login", "Error en conexión con la base de datos", "Fallido", new Date(), res);
             return res.status(500).json("Ha pasado algo al conectar con la base de datos");
         }
         if (data.length === 0) {
-            registrarLog("No determinado","Desconocido", "Desconocido", "Login", "El usuario no fue encontrado", "Fallido", new Date(), res);
+            registrarLog("No determinado", "Desconocido", "Desconocido", "Login", "El usuario no fue encontrado", "Fallido", new Date(), res);
             return res.status(404).json("¡Usuario no encontrado!")
         };
 
@@ -130,7 +142,7 @@ export const login = (req, res) => {
         const isPasswordCorrect = bcrypt.compareSync(req.body.contrasenausuario, data[0].contrasenausuario);
 
         if (!isPasswordCorrect) {
-            registrarLog(data[0].tipousuario, data[0].idusuario ,data[0].nombreusuario, "Login", "Contraseña incorrecta", "Fallido", new Date(), res);
+            registrarLog(data[0].tipousuario, data[0].idusuario, data[0].nombreusuario, "Login", "Contraseña incorrecta", "Fallido", new Date(), res);
             return res.status(400).json("¡Contraseña incorrecta!");
         };
 
@@ -140,7 +152,7 @@ export const login = (req, res) => {
         const correo = decryptData(data[0].correousuario);
         const direccion = decryptData(data[0].direccionusuario);
         const telefono = decryptData(data[0].telefonousuario);
-        const respuesta = decryptData(data[0].respuestapregusuario); 
+        const respuesta = decryptData(data[0].respuestapregusuario);
 
         usuario_log.idusuario = data[0].idusuario;
         usuario_log.nombreusuario = data[0].nombreusuario;
