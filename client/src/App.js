@@ -16,6 +16,8 @@ import Repartidores from "./pages/Repartidores";
 import RepartidoresInfo from "./pages/RepartidoresInfo";
 import ConsultarPedidos from "./pages/ConsultarPedidos";
 import Envios from "./pages/Envios";
+
+
 import HabilitarSolicitud from "./pages/HabilitarSolicitud";
 import "./style.scss";
 import "./index.css";
@@ -26,16 +28,57 @@ import AgregarRepartidor from "./pages/AgregarRepartidores";
 import EnviosInfo from "./pages/EnviosInfo";
 import SolEnvInfo1 from "./pages/SolEnvInfo1";
 import SolEnvInfo2 from "./pages/SolEnvInfo2";
-
+import EnviosInfoClientes from "./pages/EnviosInfoClientes";
+import SolEnvClientes from "./pages/SolEnvClientes";
+import SolEnvClientesInfo from "./pages/SolEnvClientesInfo";
+import AgregarSolEnvCliente from "./pages/AgregarSolEnvCliente";
+import EnviosAsignados from "./pages/EnviosAsignados"
+import EnviosInfoRepartidores from "./pages/EnviosInfoRepartidores";
+import ClientesInfoRepartidores from "./pages/ClientesInfoRepartidores";
+import AuditoriaBtns from "./pages/AuditoriaBtns";
+import EnviosClienteInfo from "./pages/EnviosClienteInfo";
+import EnvClientes from "./pages/EnvClientes";
+import AuditoriaOperaciones from "./pages/AuditoriaOperaciones";
+import AuditoriaIngresos from "./pages/AuditoriaIngresos";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
   },
   {
+    path: "/AgregarSolEnvCliente",
+    element:
+      <AgregarSolEnvCliente />,
+  },
+  {
     path: "/SolEnvInfo1",
     element:
       <SolEnvInfo1 />,
+  },
+  {
+    path: "/SolEnvClientes",
+    element:
+      <SolEnvClientes />,
+  },
+  {
+    path: "/Auditoria",
+    element:
+      <AuditoriaBtns />,
+  },
+  {
+    path: "/AuditoriaOperaciones",
+    element:
+      <AuditoriaOperaciones />,
+  },
+  {
+    path: "/AuditoriaIngresos",
+    element:
+      <AuditoriaIngresos />,
+  },
+  {
+    path: "/SolEnvClientesInfo",
+    element:
+      <SolEnvClientesInfo />,
   },
   {
     path: "/SolEnvInfo2",
@@ -85,15 +128,40 @@ const router = createBrowserRouter([
       <ClientesInfo />,
   },
   {
+    path: "/ClientesInfoRepartidores",
+    element:
+      <ClientesInfoRepartidores />,
+  },
+  {
     path: "/EnviosInfo",
     element:
       <EnviosInfo />,
+  },
+  {
+    path: "/EnviosInfoRepartidores",
+    element:
+      <EnviosInfoRepartidores />,
+  },
+  {
+    path: "/EnviosInfoClientes",
+    element:
+      <EnviosInfoClientes />,
   },
   {
     path: "/Consultar-Pedidos",
     element:
       <ConsultarPedidos />,
 
+  },
+  {
+    path: "/EnvClientesInfo",
+    element:
+      <EnviosClienteInfo />,
+  },
+  {
+    path: "/Consultar-Envios-Cliente",
+    element:
+      <EnvClientes />,
   },
   {
     path: "/Envios",
@@ -118,6 +186,11 @@ const router = createBrowserRouter([
     path: "/RepartidoresInfo",
     element:
       <RepartidoresInfo />,
+  },
+  {
+    path: "/EnviosAsignados",
+    element:
+      <EnviosAsignados />,
   },
   {
     path: "/Home",

@@ -1,77 +1,26 @@
-import React from "react";
-import { AuthContext } from "../context/authContext";
-import { useContext, useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import Sidebar from "./Sidebar";
-import { envioSeleccionado } from "./Envios";
-import { getEstado, obtenerValorEstado } from "../components/estadosEnvio.js";
+import { Link } from "react-router-dom";
+import { envioSeleccionado } from "./EnvClientes";
+import { mensajeInformacion, mensajeExito } from "../components/mensajesAlerta.js";
+import { AuthContext } from "../context/authContext.js";
 import logo from '../img/Mochi.jpeg';
-const EnviosInfo = () => {
 
-    const { updateEnvioEstado, updateEnvioRepartidor } = useContext(AuthContext);
 
+const EnviosClienteInfo = () => {
     const [nombreCliente, setNombreCliente] = useState("");
-    const [nombreRepartidor, setNombreRepartidor] = useState("");
-    const { getRepartidores } = useContext(AuthContext);
-    const [repartidoresList, setRepartidoresList] = useState([]);
-    const [repartidorSeleccionado, setRepartidorSeleccionado] = useState([]);
-    const [estadoactualenvio, setEstadoEnvio] = useState("");
-    const [err, setError] = useState(null);
-    const [shouldNavigate, setShouldNavigate] = useState(false);
-
-    const navigate = useNavigate();
+    const [nombreRepartidor, setNombreRepartidor] = useState("");   
+    const { deleteEnvioId } = useContext(AuthContext);
 
     const [inputs, setInputs] = useState({
         idenvio: envioSeleccionado[0].idenvio,
         estadoenvio: envioSeleccionado[0].estadoenvio,
         idrepartidor: envioSeleccionado[0].idrepartidor,
     });
-
-    const handleEstadoEnvioChange = (event) => {
-        setEstadoEnvio(event.target.value);
-
-        console.log("Se selecciono: ", estadoactualenvio);
-    };
     const { getClienteSol } = useContext(AuthContext);
     const { getRepartidor } = useContext(AuthContext);
-
-
-    useEffect(() => {
-        const obtenerRepartidores = async () => {
-            try {
-                const res = await getRepartidores();
-                //console.log(res);
-                setRepartidoresList(res);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        obtenerRepartidores();
-    }, []);
-
-
-    const handleRepartidorSeleccionado = (e) => {
-        const idrepartidor = e.target.value;
-        console.log(repartidoresList);
-        const reparSele = repartidoresList.find((repartidor) => repartidor.idrepartidor === (idrepartidor));
-        setRepartidorSeleccionado(reparSele || {});
-
-        console.log("Se selecciono: ", reparSele);
-    }
-
-    useEffect(() => {
-
-    }, [repartidoresList]);
-
-    useEffect(() => {
-        setInputs(prev => ({ ...prev, idrepartidor: repartidorSeleccionado.idrepartidor }));
-    }, [repartidorSeleccionado]);
-
-    useEffect(() => {
-        console.log("Se selecciono: ", estadoactualenvio);
-        let estado = getEstado(parseInt(estadoactualenvio));
-        setInputs(prev => ({ ...prev, estadoenvio: estado }));
-    }, [estadoactualenvio]);
+    const [err, setError] = useState(null);
 
     useEffect(() => {
         const obtenerCliente = async () => {
@@ -86,6 +35,29 @@ const EnviosInfo = () => {
         };
         obtenerCliente();
     }, [nombreCliente]);
+
+
+    const handleAceptar = async (e) => {
+        mensajeInformacion("¡Haz aceptado el envío! Debes esperar a la entrega.\n¡Gracias por confiar en nosotros!")
+    };
+
+    const handleNoAceptar = async (e) => {
+        mensajeInformacion("¡Haz rechazado el envío! Este será borrado de tu historial.\nPara mayor información contacta con el administrador.");
+        handleBorrar(e);
+    };
+
+    const handleBorrar = async (e) => {
+            try {
+                console.log("Identificador: ", envioSeleccionado[0].idenvio);
+                if (envioSeleccionado[0].idenvio !== null) {
+                    const res = await deleteEnvioId(envioSeleccionado[0].idenvio);
+                    console.log("Ha salido bien :D", res);
+                    mensajeExito("Se ha eliminado correctamente el envio ", envioSeleccionado[0].idenvio);
+                }
+            } catch (err) {
+                setError(err.response.data);
+            }
+    } 
 
     useEffect(() => {
         const obtenerRepartidor = async () => {
@@ -106,28 +78,6 @@ const EnviosInfo = () => {
         obtenerRepartidor();
     }, [nombreRepartidor]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(inputs);
-
-        try {
-            await updateEnvioEstado(inputs);
-            console.log("Se actualizo el estado");
-            await updateEnvioRepartidor(inputs);
-            console.log("Se actualizo el repartidor");
-
-            setShouldNavigate(true);
-        } catch (err) {
-            setError(err.response.data);
-        }
-    }
-
-    useEffect(() => {
-        if (shouldNavigate) {
-            navigate("/Envios");
-        }
-    }, [shouldNavigate]);
-
     return (
         <div className="content-flex">
             <Sidebar />
@@ -138,7 +88,9 @@ const EnviosInfo = () => {
                             <h3 className="styleH3Clientes">Envíos</h3>
                         </div>
                         <div className="InfoBarImg">
-                            <img className="imgPersonalInfo" src={logo} alt="" />
+                            <Link to="/RepartidoresInfo">
+                                    <img className="imgPersonalInfo" src={logo} alt="" />
+                            </Link>
                         </div>
                     </div>
                     <div className="modalEnvioContenedor">
@@ -154,12 +106,8 @@ const EnviosInfo = () => {
                                         <h3>Fecha envío entregado</h3>
                                         <p>{envioSeleccionado[0].fechaenvioentregado || "Pendiente"}</p>
                                         <h3>Estado</h3>
-                                        <select name="estadoenvioactual" className="status" onChange={handleEstadoEnvioChange}>
-                                            <option value={obtenerValorEstado(envioSeleccionado[0].estadoenvio)}>{getEstado(obtenerValorEstado(envioSeleccionado[0].estadoenvio))}</option>
-                                            <option value="1">{getEstado(1)}</option>
-                                            <option value="2">{getEstado(2)}</option>
-                                            <option value="3">{getEstado(3)}</option>
-                                        </select>
+                                        <p>{envioSeleccionado[0].estadoenvio}</p>
+
                                     </div>
                                 </div>
                                 <div className="contenedorTarifaInfo">
@@ -174,14 +122,20 @@ const EnviosInfo = () => {
                                         </div>
                                         <div className="personalInfo card">
                                             <div className="personalInfoImage">
+                                                {/*<Link to="/RepartidoresInfo">*/}
                                                 <img src={logo} alt="profileFoto" />
+                                                {/*</Link>*/}
                                             </div>
                                             <h3>Repartidor</h3>
+                                            <p>{nombreRepartidor}</p>
+                                            <button className="btnPersonalInfo" onClick={handleAceptar}>Aceptar</button>
+                                            <button className="btnPersonalInfo" onClick={handleNoAceptar}>No Aceptar</button>
+                                            {/* 
                                             <select name="repartidoractual" className="status" onChange={handleRepartidorSeleccionado}>
-                                                <option key={envioSeleccionado[0].idrepartidor || "0"} value={envioSeleccionado[0].idrepartidor || "0"}>
+                                                <option key={EnvClienteSeleccionado[0].idrepartidor || "0"} value={EnvClienteSeleccionado[0].idrepartidor || "0"}>
                                                     {nombreRepartidor.nombrerepartidor || "No asignado"}
                                                 </option>
-                                                {
+                                                { 
                                                     repartidoresList.map((val) => {
 
                                                         return (
@@ -193,16 +147,16 @@ const EnviosInfo = () => {
                                                         );
                                                     })
                                                 }
-                                            </select>
                                             {err && <p className="register__bg__error"> {err}</p>}
                                             <button type="submit" onClick={handleSubmit}>Actualizar</button>
+                                            </select>*/}
                                         </div>
                                     </div>
                                     <div className="direccion">
                                         <h3>
-                                            Dirección
+                                            Destino
                                         </h3>
-                                        <p>Cra 506 #70-1 Barrio San Martín, Cúcuta</p>
+                                        <p>{envioSeleccionado[0].destinoenvio}</p>
                                     </div>
                                 </div>
 
@@ -215,4 +169,4 @@ const EnviosInfo = () => {
         </div>
     );
 };
-export default EnviosInfo;
+export default EnviosClienteInfo;

@@ -19,6 +19,7 @@
     "react-tooltip": "^5.22.0",
     "sass": "^1.68.0",
     "styled-components": "^6.0.8",
+    "sweetalert2": "^11.10.1",
     "web-vitals": "^2.1.0",
     "yarn": "^1.22.19"
   },
@@ -47,5 +48,4 @@
     ]
   },
   "proxy": "https://mochiexpres-backend.onrender.com/api"
-  
 }

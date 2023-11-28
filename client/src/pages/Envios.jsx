@@ -4,7 +4,7 @@ import ModuloEnvio from "./ModuloEnvio";
 import { AuthContext } from "../context/authContext";
 import { clienteSeleccionado } from "./Clientes";
 import { Link } from "react-router-dom";
-
+import logo from '../img/Mochi.jpeg';
 export const envioSeleccionado = [];
 
 function Envios() {
@@ -95,11 +95,8 @@ function Envios() {
                         <div className="containerButtonsRepartidor">
                             <h3 className="styleH3Clientes">Envíos</h3>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Envío" />
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                            <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     {

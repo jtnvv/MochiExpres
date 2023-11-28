@@ -114,7 +114,6 @@ const ConsultarPedidos = () => {
                             <h3 className="styleH3Clientes">Consultar pedidos</h3>
                         </div>
                         <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Cliente" />
                             <div className="InfoBarImg">
                                 <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
                             </div>

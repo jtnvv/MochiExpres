@@ -1,12 +1,14 @@
 import React from "react";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../context/authContext.js";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import Sidebar from "./Sidebar";
-import { envioSeleccionado } from "./Envios";
+import Sidebar from "./Sidebar.jsx";
+import { envioSeleccionado } from "./Envios.jsx";
 import { getEstado, obtenerValorEstado } from "../components/estadosEnvio.js";
 import logo from '../img/Mochi.jpeg';
-const EnviosInfo = () => {
+
+
+const EnviosInfoClientes = () => {
 
     const { updateEnvioEstado, updateEnvioRepartidor } = useContext(AuthContext);
 
@@ -93,7 +95,7 @@ const EnviosInfo = () => {
                 if (envioSeleccionado[0].idrepartidor !== null) {
                     //console.log(envioSeleccionado[0].idrepartidor);
                     const res = await getRepartidor(envioSeleccionado[0].idrepartidor);
-                    setNombreRepartidor(res.nombrerepartidor);
+                    setNombreRepartidor(res);
                     //console.log(nombreRepartidor);
                 } else {
                     setNombreRepartidor("No asignado");
@@ -110,7 +112,7 @@ const EnviosInfo = () => {
         e.preventDefault();
         console.log(inputs);
 
-        try {
+    /*    try {
             await updateEnvioEstado(inputs);
             console.log("Se actualizo el estado");
             await updateEnvioRepartidor(inputs);
@@ -119,14 +121,14 @@ const EnviosInfo = () => {
             setShouldNavigate(true);
         } catch (err) {
             setError(err.response.data);
-        }
+        }*/
     }
 
-    useEffect(() => {
-        if (shouldNavigate) {
-            navigate("/Envios");
-        }
-    }, [shouldNavigate]);
+    // useEffect(() => {
+    //     if (shouldNavigate) {
+    //         navigate("l");
+    //     }
+    // }, [shouldNavigate]);
 
     return (
         <div className="content-flex">
@@ -214,5 +216,4 @@ const EnviosInfo = () => {
             </div>
         </div>
     );
-};
-export default EnviosInfo;
+};export default EnviosInfoClientes;
