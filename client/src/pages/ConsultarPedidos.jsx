@@ -1,22 +1,23 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import ModuloEnvio from "./ModuloEnvio";
-import { AuthContext } from "../context/authContext";
-import { clienteSeleccionado } from "./Clientes";
+
 import { Link } from "react-router-dom";
-import logo from '../img/Mochi.jpeg';
+import ModuloClientes from "./ModuloClientes";
+import { AuthContext } from "../context/authContext";
+export let clienteSeleccionado = [];
 
-export const envioSeleccionado = [];
+//Esto es consultar pedidos realizados por cliente
+const ConsultarPedidos = () => {
 
-function Envios() {
-
-    const [enviosList, setEnvios] = useState([]);
-    const { getEnvios } = useContext(AuthContext);
-
+    const [clientesList, setClientes] = useState([]);
+    const [enviosList, setEnviosList] = useState([]);
+    const [envioSeleccionado, setEnvioSeleccionado] = useState([]);
+    const { getClientes } = useContext(AuthContext);
+    const { getEnviosCliente } = useContext(AuthContext);
 
 
     const [identificador, setIdentificador] = useState({
-        idenvio: ""
+        idCliente: ""
     });
 
     useEffect(() => {
@@ -25,113 +26,166 @@ function Envios() {
 
     const [err, setError] = useState(null);
 
-    const currentEnvio = (envio) => {
-        envioSeleccionado.pop();
-        envioSeleccionado.push(envio);
+    const currentClient = (cliente) => {
+        clienteSeleccionado.pop();
+        clienteSeleccionado.push(cliente);
     }
 
     useEffect(() => {
-        const obtenerEnvios = async () => {
+        const obtenerClientes = async () => {
             try {
-                const res = await getEnvios();
-                console.log(res);
-                setEnvios(res);
+                const res = await getClientes();
+                setClientes(res);
             } catch (err) {
                 console.log(err);
             }
         };
-        obtenerEnvios();
-    }, []);
+        obtenerClientes();
+    }, [])
 
-    // const [envioSeleccionado, setEnvioSeleccionado] = useState({
-    //     idenvio: "",
-    //     descripcionpaquete: "",
-    //     estadoenvio: "",
-    //     tarifaenvio: "",
-    //     fechaenvioentregado: "",
-    //     fechaenviorealizado: "",
-    //     destinoenvio: "",
-    //     idrepartidor: "",
-    //     idsolicitudenvio: ""
-    // });
-    // const [redirigir, setRedirigir] = useState(false);
 
-    // const actualizarDatos = (id, descripcion, estado, tarifa, fechaentrega, fechacreacion, destino, idrepartidor, idsolicitudenvio) => {
-    //     setEnvioSeleccionado({
-    //         id,
-    //         descripcion,
-    //         estado,
-    //         tarifa,
-    //         fechaentrega,
-    //         fechacreacion,
-    //         destino,
-    //         idrepartidor,
-    //         idsolicitudenvio
-    //     });
-    //     setRedirigir(true);
-    // };
 
-    // useEffect(() => {
-    //     if (redirigir) {
-    //         const url = `/EnviosInfo?
-    //         idenvio=${envioSeleccionado.idenvio}
-    //         &descripcionpaquete=${envioSeleccionado.descripcionpaquete}
-    //         &estadoenvio=${envioSeleccionado.estadoenvio}
-    //         &tarifaenvio=${envioSeleccionado.tarifaenvio}
-    //         &fechaenvioentregado=${envioSeleccionado.fechaenvioentregado}
-    //         &fechaenviorealizado=${envioSeleccionado.fechaenviorealizado}
-    //         &destinoenvio=${envioSeleccionado.destinoenvio}
-    //         &idrepartidor=${envioSeleccionado.idrepartidor}
-    //         &idsolicitudenvio=${envioSeleccionado.idsolicitudenvio}`;
-    //         window.location.href = url;
-    //     }
-    // }, [redirigir, envioSeleccionado]);
+    const obtenerEnviosCliente = async () => {
+        try {
+            console.log("Desde aquiii ", identificador.idCliente);
+            const res = await getEnviosCliente(identificador.idCliente);
+            setEnviosList(res);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
+    useEffect(() => {
+        console.log(enviosList);
+    }, [enviosList]);
+
+    const [divStyle, setDivStyle] = useState({});
+    const [clicked, setClicked] = useState(false);
+    const [modalStyle, setModalStyle] = useState({});
+    const [clickedModal, setClickedModal] = useState(false);
+
+    const handleButtonClick = () => {
+        if (!clicked) {
+            setDivStyle({ visibility: 'visible' });
+        } else {
+            setDivStyle({ visibility: 'hidden' });
+        }
+        setClicked(!clicked);
+    };
+    const showModal = (idCliente) => {
+        if (!clickedModal) {
+            setIdentificador({ idCliente: idCliente });
+            setModalStyle({ visibility: 'visible' });
+            setEnvioSeleccionado({});
+        } else {
+            setModalStyle({ visibility: 'hidden' });
+        }
+        setClickedModal(!clickedModal);
+    };
+
+    useEffect(() => {
+        if (identificador.idCliente !== "") {
+            obtenerEnviosCliente();
+        }
+    }, [identificador]);
+
+    useEffect(() => {
+    }, [envioSeleccionado]);
+
+    const handleEnvioSeleccionado = (event) => {
+        const selectedId = event.target.value;
+        console.log(enviosList);
+        const selectedEnvio = enviosList.find((envio) => envio.idenvio === selectedId);
+        setEnvioSeleccionado(selectedEnvio || {});
+        console.log("Se selecciono: ", envioSeleccionado);
+    }
+
+
+
 
     return (
         <div className="content-flex">
             <Sidebar />
             <div className="divContent">
-                <div className="ItemsContainerEnvio">
+                <div className="ItemsContainer">
                     <div className="BarraRepartidor">
                         <div className="containerButtonsRepartidor">
-                            <h3 className="styleH3Clientes">Envíos</h3>
+                            <h3 className="styleH3Clientes">Consultar pedidos</h3>
                         </div>
-                        <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src={logo} alt="" />
+                        <div className="containerBusquedaRepartidor">
+                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Cliente" />
+                            <div className="InfoBarImg">
+                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                            </div>
                         </div>
                     </div>
-                    {
-                        enviosList.map((envio) => {
+                    <div className="lista">{
+                        clientesList.map((val) => {
                             return (
-                                console.log("Aca: ", envio),
-                                <React.Fragment key={envio.idenvio}>
-                                    <div className="ModuloEnvioBarra">
-                                        <Link to="/EnviosInfo" onClick={() => currentEnvio(envio)} style={{ textDecoration: 'none' }}>
-                                            <ModuloEnvio
-                                                idenvio={envio.idenvio}
-                                                descripcionpaquete={envio.descripcionpaquete}
-                                                estadoenvio={envio.estadoenvio}
-                                                tarifaenvio={envio.tarifaenvio}
-                                                fechaenvioentregado={envio.fechaenvioentregado}
-                                                fechaenviorealizado={envio.fechaenviorealizado}
-                                                destinoenvio={envio.destinoenvio}
-                                                idrepartidor={envio.idrepartidor}
-                                                idsolicitudenvio={envio.idsolicitudenvio}
-                                            />
+                                <React.Fragment key={val.idCliente}>
+                                    <div className="ModuloRepartidorContainer" onClick={() => showModal(val.idCliente)}>
+                                        <Link onClick={() => currentClient(val)} style={{ textDecoration: 'none' }}>
+                                            <ModuloClientes nombre={val.nombrecliente} />
                                         </Link>
                                     </div>
                                 </React.Fragment>
-                            );
 
+                            );
                         })
                     }
-
-
-
-
+                    </div>
+                </div>
+            </div>
+            <div className="modalConsultarContenedor" style={modalStyle}>
+                <div className="containerModalEliminarRepartidor2">
+                    <div className="eliminarModalConsulta" onClick={showModal}>X</div>
+                    <div className="modalConsultarPedido">
+                        <div className="row_selection">
+                            <h3>ID</h3>
+                            <select onChange={handleEnvioSeleccionado}>
+                                <option key="0" value="0">
+                                    Selecciona una opción
+                                </option>
+                                {enviosList.map((envio) => {
+                                    return (
+                                        <React.Fragment key={envio.idenvio}>
+                                            <option key={envio.idenvio} value={envio.idenvio}>
+                                                {envio.idenvio}
+                                            </option>
+                                        </React.Fragment>
+                                    );
+                                })}
+                            </select>
+                        </div>
+                        <div className="row">
+                            <h3>Fecha envío</h3>
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.fechaenviorealizado || ''} />
+                        </div>
+                        <div className="row">
+                            <h3>Fecha entrega</h3>
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.fechaenvioentregado || ''} />
+                        </div>
+                        <div className="row">
+                            <h3>Estado</h3>
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.estadoenvio || ''} />
+                        </div>
+                        <div className="row">
+                            <h3>Tarifa</h3>
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.tarifasolicitud || ''} />
+                        </div>
+                        <div className="row">
+                            <h3>Peso</h3>
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.pesopaquete || ''} />
+                        </div>
+                        <div className="row">
+                            <h3>Descripción</h3>
+                            <input type="text" disabled className="textareaInput" value={envioSeleccionado.descripcionpaquete || ''} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
-export default Envios;
+export default ConsultarPedidos;
