@@ -1282,6 +1282,7 @@
                                 }
                                 .text_d{
                                     border-right: transparent;
+                                    padding-right: 10px;
                                 }
                             }   
                             .header2{
@@ -1311,6 +1312,7 @@
                                 }
                                 .text_d{
                                     border-right: transparent;
+                                    padding-right: 10px;
                                 }
                             }   
                             .container{
@@ -1388,7 +1390,7 @@
                             }
                             
                             .container::-webkit-scrollbar:vertical {
-                                width:1px;
+                                width:10px;
                             }
                             
                             .container::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
