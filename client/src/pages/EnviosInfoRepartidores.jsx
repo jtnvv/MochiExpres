@@ -118,9 +118,6 @@ const EnviosInfoRepartidores = () => {
         try {
             await updateEnvioEstado(inputs);
             console.log("Se actualizo el estado");
-            await updateEnvioRepartidor(inputs);
-            console.log("Se actualizo el repartidor");
-
             setShouldNavigate(true);
         } catch (err) {
             setError(err.response.data);
@@ -129,7 +126,7 @@ const EnviosInfoRepartidores = () => {
 
     useEffect(() => {
         if (shouldNavigate) {
-            navigate("/Envios");
+            navigate("/EnviosAsignados");
         }
     }, [shouldNavigate]);
 
@@ -181,25 +178,25 @@ const EnviosInfoRepartidores = () => {
                                             </div>
                                         </div>
 
-                                        
+
                                         <div className="personalInfo card" >
-                                        
+
                                             <div className="personalInfoImage" >
-                                           
-                                           
+
+
                                                 <img src="https://i.imgur.com/bzO2izE.png" alt="profileFoto" />
-                                            
+
                                             </div>
-                                        
+
                                             <h3>Cliente</h3>
-                                            <Link to= "/ClientesInfoRepartidores">
-                                            <h3>{nombreCliente}</h3>
+                                            <Link to="/ClientesInfoRepartidores">
+                                                <h3>{nombreCliente}</h3>
                                             </Link>
                                             {err && <p className="register__bg__error"> {err}</p>}
                                             <button type="submit" onClick={handleSubmit}>Actualizar</button>
-                                        
+
                                         </div>
-                                        
+
                                     </div>
                                     <div className="direccion">
                                         <h3>
@@ -217,5 +214,5 @@ const EnviosInfoRepartidores = () => {
             </div>
         </div>
     );
- };
+};
 export default EnviosInfoRepartidores;
