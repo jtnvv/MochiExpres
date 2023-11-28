@@ -7,6 +7,7 @@ import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from '../img/Mochi.jpeg';
 
 const Actualiza = () => {
 
@@ -71,12 +72,12 @@ const Actualiza = () => {
                         <Link to="/Personal-Info" className="divVolverInfoBar">
                             <IoIcons.IoCaretBackOutline className="IoIconsPersonalInfo" /> Volver</Link>
 
-                        <p className="photo">{currentUser?.nombreusuario}<img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" /></p>
+                        <p className="photo">{currentUser?.nombreusuario}<img src={logo} alt="" /></p>
 
                     </div>
                     <div className="divBodyPersonalInfo">
                         <div className="divLeftPersonalInfo">
-                            <img className="imgLeftPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                            <img className="imgLeftPersonalInfo" src={logo} alt="" />
                             <h2 className="usernameTxt">{currentUser?.nombreusuario}</h2>
                             <input type="text" placeholder="Nuevo nombre" onChange={handleChange} name="nombreusuario" />
                             <h2 className="rolTxt">"Rol: {currentUser?.tipousuario}"</h2>

@@ -6,6 +6,7 @@ import * as PiIcons from "react-icons/pi";
 import * as IoIcons from "react-icons/io";
 import * as FaIcons from "react-icons/fa6";
 import * as FcIcons from "react-icons/fc";
+import { PiNotebookBold } from "react-icons/pi";
 import { AuthContext } from "../context/authContext";
 const Sidebar = () => {
 
@@ -50,23 +51,18 @@ const Sidebar = () => {
                                     <PiIcons.PiPackageFill className="IconColor" />
                                 </Link>
                             </li>
+                            <li>
+                                <Link to="/Auditoria" className="Envios">
+                                    <PiNotebookBold className="IconColor" />
+                                </Link>
+                            </li>
                         </>
 
                     ) : currentTypeUser === "repartidor" ? (
                         <>
                             <li>
-                                <Link to="/Consultar-Pedidos" className="Consultar pedidos">
+                                <Link to="/EnviosAsignados" className="Consultar pedidos">
                                     <BiIcons.BiSolidShoppingBags className="IconColor" />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/Clientes" className="Clientes">
-                                    <BiIcons.BiSolidHappyBeaming className="IconColor" />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/Envios" className="Envios">
-                                    <PiIcons.PiPackageFill className="IconColor" />
                                 </Link>
                             </li>
                         </>
@@ -74,8 +70,13 @@ const Sidebar = () => {
                     ) : (
                         <>
                             <li>
-                                <Link to="/Consultar-Pedidos" className="Consultar pedidos">
+                                <Link to="/Consultar-Envios-Cliente" className="Consultar-Envios-Cliente">
                                     <BiIcons.BiSolidShoppingBags className="IconColor" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/SolEnvClientes" className="Habilitar Solicitudes">
+                                    <MdIcons.MdNotificationAdd className="IconColor" />
                                 </Link>
                             </li>
                         </>

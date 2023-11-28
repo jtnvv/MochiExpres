@@ -4,7 +4,7 @@ import * as IoIcons from "react-icons/io5";
 import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";
 import { validarUsuario } from "../components/validarUsuario.js";
 import axios from "axios";
-
+import logo from '../img/Mochi.jpeg';
 const Registro = () => {
 
     const [shouldNavigate, setShouldNavigate] = useState(false);
@@ -75,7 +75,7 @@ const Registro = () => {
                     </div>
                     <div className="divBodyPersonalInfo">
                         <div className="divLeftPersonalInfo">
-                            <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                            <img className="imgLeftPersonalInfo" src={logo} alt="" />
                             <h2 className="usernameTxt">Nombre de Usuario</h2>
                             <input required type="text" placeholder="Nuevo nombre" name="nombrecliente" onChange={handleChange} />
                             <h2 className="rolTxt">Cliente</h2>
@@ -88,7 +88,7 @@ const Registro = () => {
                                         <div className="p">
                                             <p className="p-list">Identificador de usuario: </p>
                                             <div className="tooltip">
-                                                <input type="text" placeholder="Username123" name="idCliente" onChange={handleChange} />
+                                                <input type="text" placeholder="Nombre123" name="idCliente" onChange={handleChange} />
                                                 <div className="p-list-error">
                                                 
                                             </div>

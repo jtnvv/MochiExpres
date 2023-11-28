@@ -9,6 +9,7 @@ import { AuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { repartidorSeleccionado } from "./Repartidores";
+import logo from '../img/Mochi.jpeg';
 
 const RepartidoresInfo = () => {
 
@@ -42,7 +43,7 @@ const RepartidoresInfo = () => {
 
                     <div className="divBodyPersonalInfo">
                         <div className="divLeftPersonalInfo">
-                            <img className="imgLeftPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
+                            <img className="imgLeftPersonalInfo" src={logo} alt="" />
                             <h2 className="usernameTxt">{repartidorSeleccionado[0].nombrerepartidor}</h2>
                             
                         </div>

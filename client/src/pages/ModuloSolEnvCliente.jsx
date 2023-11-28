@@ -3,16 +3,14 @@ import Sidebar from "./Sidebar.jsx";
 import * as IoIcons from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";
-import logo from '../img/Mochi.jpeg';
 
 const ModuloRepartidor = (props) => {
 
     return (
         <div className="ModuloRepartidor">
-            <div className="ModuloRepartidor_DivImagen">
-                <img className="ModuloRepartidor_ImagenPerfil" src={logo} alt="" />
-            </div>
-            <h3 className="ModuloRepartidor_Titulo">{props.nombre}</h3>
+            <h2 className="ModuloSolEnv_t">Solicitud de envio</h2>
+            <h1 className="ModuloSolEnv">{props.id}</h1>
+            <h2 className="ModuloSolEnv_t">{props.fecha}</h2>
         </div>
     );
 };

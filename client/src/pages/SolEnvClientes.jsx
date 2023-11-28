@@ -1,49 +1,48 @@
 import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import ModuloRepartidor from "./ModuloRepartidor"
+import ModuloSolEnvCliente from "./ModuloSolEnvCliente"
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import logo from '../img/Mochi.jpeg';
-export const repartidorSeleccionado = [];
+export const SolEnvClienteSeleccionado = [];
 
 
-function Repartidores() {
-
-    const [repartidoresList, setRepartidores] = useState([]);
-    const { getRepartidores } = useContext(AuthContext);
-    const { deleteRepartidor } = useContext(AuthContext);
+function SolEnvClientes() {
+    const { currentUser } = useContext(AuthContext);
+    const [SolEnvCliente, setSolEnvCliente] = useState([]);
+    const { getSolicitudIdCliente } = useContext(AuthContext);
+    const { deleteSolEnvCliente } = useContext(AuthContext);
     //const { repartidores } = useContext(AuthContext);
-
     const [identificador, setIdentificador] = useState({
-        idrepartidor: ""
+        idsolicitudenvio: ""
     });
 
-    useEffect(() => {
-        console.log(identificador);
-    }, [identificador]);
+    // useEffect(() => {
+    //     console.log(identificador);
+    // }, [identificador]);
 
     const [err, setError] = useState(null);
 
-    const currentRepartidor = (repartidor) => {
-        repartidorSeleccionado.pop();
-        repartidorSeleccionado.push(repartidor);
+    const currentSolicitud = (solicitud) => {
+        SolEnvClienteSeleccionado.pop();
+        SolEnvClienteSeleccionado.push(solicitud);
 
     }
 
     useEffect(() => {
-        const obtenerRepartidores = async () => {
+        const obtenerSolicitudes = async () => {
             try {
-                const res = await getRepartidores();
-
-                setRepartidores(res);
+                const res = await getSolicitudIdCliente(currentUser.idusuario);
+                setSolEnvCliente(res);
 
             } catch (err) {
                 console.log(err);
             }
         };
-        obtenerRepartidores();
-
+        obtenerSolicitudes();
     }, []);
+
+
 
     const [divStyle, setDivStyle] = useState({});
     const [clicked, setClicked] = useState(false);
@@ -59,11 +58,11 @@ function Repartidores() {
         }
         setClicked(!clicked);
     };
-    const showModal = (idrepartidor) => {
+    const showModal = (idsolicitudenvio) => {
         if (!clickedModal) {
             setModalStyle({ visibility: 'visible' });
-            console.log(idrepartidor);
-            setIdentificador({ idrepartidor: idrepartidor });
+            console.log(idsolicitudenvio);
+            setIdentificador({ idsolicitudenvio: idsolicitudenvio });
             console.log(identificador);
         } else {
             setModalStyle({ visibility: 'hidden' });
@@ -71,11 +70,11 @@ function Repartidores() {
         setClickedModal(!clickedModal);
     };
 
-    const handleEliminarRepartidor = async (e) => {
+    const handleEliminarSolEnvCliente = async (e) => {
         try {
             console.log("Identificador: ", identificador);
-            if (identificador.idrepartidor !== null) {
-                const res = await deleteRepartidor(identificador.idrepartidor);
+            if (identificador.idsolicitudenvio !== null) {
+                const res = await deleteSolEnvCliente(identificador.idsolicitudenvio);
                 console.log("Ha salido bien :D", res);
                 window.location.reload();
             }
@@ -83,10 +82,10 @@ function Repartidores() {
             setError(err.response.data);
         }
     }
-    const handleRedirect = () => { navigate("/AgregarRepartidor") };
+    const handleRedirect = () => { navigate("/AgregarSolEnvCliente") };
 
     return (
-
+        console.log(SolEnvCliente),
         <div className="content-flex">
             <Sidebar />
             <div className="divContent">
@@ -94,31 +93,31 @@ function Repartidores() {
 
                     <div className="BarraRepartidor">
                         <div className="containerButtonsRepartidor">
-                            <button className="buttonRepartidorStyle" onClick={handleRedirect}>Agregar Repartidor</button>
-                            <button className="buttonRepartidorStyle" onClick={handleButtonClick}>Eliminar Repartidor</button>
+                            <button className="buttonRepartidorStyle" onClick={handleRedirect}>Agregar Solicitud</button>
+                            <button className="buttonRepartidorStyle" onClick={handleButtonClick}>Eliminar Solicitud</button>
                         </div>
                         <div className="InfoBarImg">
                             <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="lista">{
-                        repartidoresList.map((val) => {
+                        SolEnvCliente.map((val) => {
                             return (
-                                <React.Fragment key={val.idrepartidor}>
+                                <React.Fragment key={val.idsolicitudenvio}>
                                     <div className="ModuloRepartidorContainer">
-                                        <div className="eliminarModulo" onClick={() => showModal(val.idrepartidor)} style={divStyle}>X</div>
-                                        <Link to="/RepartidoresInfo" onClick={() => currentRepartidor(val)} style={{ textDecoration: 'none' }}>
-                                            <ModuloRepartidor nombre={val.nombrerepartidor} />
+                                        <div className="eliminarModulo" onClick={() => showModal(val.idsolicitudenvio)} style={divStyle}>X</div>
+                                        <Link to="/SolEnvClientesInfo" onClick={() => currentSolicitud(val)} style={{ textDecoration: 'none' }}>
+                                            <ModuloSolEnvCliente id={val.idsolicitudenvio} fecha={val.fechasolicitud} />
                                         </Link>
                                     </div>
 
                                     <div className="modalEliminarRepartidorContenedor" style={modalStyle}>
                                         <div className="containerModalEliminarRepartidor2">
-                                            <div className="eliminarModalRepartidor" onClick={() => showModal(val.idrepartidor)}>X</div>
+                                            <div className="eliminarModalRepartidor" onClick={() => showModal(val.idsolicitudenvio)}>X</div>
                                             <div className="modalEliminarRepartidor">
-                                                <h3>¿Estás seguro de eliminar al repartidor?</h3>
-                                                <p>Al eliminar al repartidor se borraran todos sus envíos hechos</p>
-                                                <button onClick={handleEliminarRepartidor}>Eliminar</button>
+                                                <h3>¿Estás seguro de eliminar la solicitud?</h3>
+                                                <p>Al eliminar la solicitud, esta no será tenida en cuenta</p>
+                                                <button onClick={handleEliminarSolEnvCliente}>Eliminar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -135,4 +134,4 @@ function Repartidores() {
         </div>
     );
 };
-export default Repartidores;
+export default SolEnvClientes;

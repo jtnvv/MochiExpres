@@ -2,11 +2,14 @@ import React from "react";
 import { AuthContext } from "../context/authContext";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import { envioSeleccionado } from "./Envios";
+import { selectedE } from "./EnviosAsignados.jsx";
 import { getEstado, obtenerValorEstado } from "../components/estadosEnvio.js";
 import logo from '../img/Mochi.jpeg';
-const EnviosInfo = () => {
+export const selectedClient = [];
+
+const EnviosInfoRepartidores = () => {
 
     const { updateEnvioEstado, updateEnvioRepartidor } = useContext(AuthContext);
 
@@ -21,10 +24,11 @@ const EnviosInfo = () => {
 
     const navigate = useNavigate();
 
+
     const [inputs, setInputs] = useState({
-        idenvio: envioSeleccionado[0].idenvio,
-        estadoenvio: envioSeleccionado[0].estadoenvio,
-        idrepartidor: envioSeleccionado[0].idrepartidor,
+        idenvio: selectedE[0].idenvio,
+        estadoenvio: selectedE[0].estadoenvio,
+        idrepartidor: selectedE[0].idrepartidor,
     });
 
     const handleEstadoEnvioChange = (event) => {
@@ -77,8 +81,10 @@ const EnviosInfo = () => {
         const obtenerCliente = async () => {
             try {
                 //console.log(envioSeleccionado[0]);
-                const res = await getClienteSol(envioSeleccionado[0].idsolicitudenvio);
+                const res = await getClienteSol(selectedE[0].idsolicitudenvio);
                 setNombreCliente(res.nombrecliente);
+                selectedClient.pop();
+                selectedClient.push(res);
                 //console.log(res.nombrecliente);
             } catch (err) {
                 console.log(err);
@@ -90,10 +96,10 @@ const EnviosInfo = () => {
     useEffect(() => {
         const obtenerRepartidor = async () => {
             try {
-                if (envioSeleccionado[0].idrepartidor !== null) {
+                if (selectedE[0].idrepartidor !== null) {
                     //console.log(envioSeleccionado[0].idrepartidor);
-                    const res = await getRepartidor(envioSeleccionado[0].idrepartidor);
-                    setNombreRepartidor(res.nombrerepartidor);
+                    const res = await getRepartidor(selectedE[0].idrepartidor);
+                    setNombreRepartidor(res);
                     //console.log(nombreRepartidor);
                 } else {
                     setNombreRepartidor("No asignado");
@@ -113,9 +119,6 @@ const EnviosInfo = () => {
         try {
             await updateEnvioEstado(inputs);
             console.log("Se actualizo el estado");
-            await updateEnvioRepartidor(inputs);
-            console.log("Se actualizo el repartidor");
-
             setShouldNavigate(true);
         } catch (err) {
             setError(err.response.data);
@@ -124,7 +127,7 @@ const EnviosInfo = () => {
 
     useEffect(() => {
         if (shouldNavigate) {
-            navigate("/Envios");
+            navigate("/EnviosAsignados");
         }
     }, [shouldNavigate]);
 
@@ -145,17 +148,17 @@ const EnviosInfo = () => {
                         <div className="Container2modalEnvio">
                             <div className="modalEnvioContenedor2">
                                 <div className="id ">
-                                    <div className="idEnvio card">{envioSeleccionado[0].idenvio}</div>
+                                    <div className="idEnvio card">{selectedE[0].idenvio}</div>
                                     <div className="info card">
                                         <h3>NombreCliente</h3>
                                         <p>{nombreCliente}</p>
                                         <h3>Fecha envío realizado</h3>
-                                        <p>{envioSeleccionado[0].fechaenviorealizado}</p>
+                                        <p>{selectedE[0].fechaenviorealizado}</p>
                                         <h3>Fecha envío entregado</h3>
-                                        <p>{envioSeleccionado[0].fechaenvioentregado || "Pendiente"}</p>
+                                        <p>{selectedE[0].fechaenvioentregado || "Pendiente"}</p>
                                         <h3>Estado</h3>
                                         <select name="estadoenvioactual" className="status" onChange={handleEstadoEnvioChange}>
-                                            <option value={obtenerValorEstado(envioSeleccionado[0].estadoenvio)}>{getEstado(obtenerValorEstado(envioSeleccionado[0].estadoenvio))}</option>
+                                            <option value={obtenerValorEstado(selectedE[0].estadoenvio)}>{getEstado(obtenerValorEstado(selectedE[0].estadoenvio))}</option>
                                             <option value="1">{getEstado(1)}</option>
                                             <option value="2">{getEstado(2)}</option>
                                             <option value="3">{getEstado(3)}</option>
@@ -165,44 +168,39 @@ const EnviosInfo = () => {
                                 <div className="contenedorTarifaInfo">
                                     <div className="tarifaInfo">
                                         <div className="tarifaDescripcion ">
-                                            <div className="tarifa card">$ {envioSeleccionado[0].tarifaenvio}</div>
+                                            <div className="tarifa card">$ {selectedE[0].tarifaenvio}</div>
                                             <div className="Descripcion card">
                                                 <h3>Descripcion paquete</h3>
-                                                <textarea value={envioSeleccionado[0].descripcionpaquete} disabled name="" id="" cols="50" rows="30" className="descripcionText">
+                                                <textarea value={selectedE[0].descripcionpaquete} disabled name="" id="" cols="50" rows="30" className="descripcionText">
                                                 </textarea>
                                             </div>
                                         </div>
-                                        <div className="personalInfo card">
-                                            <div className="personalInfoImage">
-                                                <img src={logo} alt="profileFoto" />
-                                            </div>
-                                            <h3>Repartidor</h3>
-                                            <select name="repartidoractual" className="status" onChange={handleRepartidorSeleccionado}>
-                                                <option key={envioSeleccionado[0].idrepartidor || "0"} value={envioSeleccionado[0].idrepartidor || "0"}>
-                                                    {nombreRepartidor.nombrerepartidor || "No asignado"}
-                                                </option>
-                                                {
-                                                    repartidoresList.map((val) => {
 
-                                                        return (
-                                                            <React.Fragment key={val.idrepartidor}>
-                                                                <option key={val.idrepartidor} value={val.idrepartidor}>
-                                                                    {val.nombrerepartidor}
-                                                                </option>
-                                                            </React.Fragment>
-                                                        );
-                                                    })
-                                                }
-                                            </select>
+
+                                        <div className="personalInfo card" >
+
+                                            <div className="personalInfoImage" >
+
+
+                                                <img src={logo} alt="profileFoto" />
+
+                                            </div>
+
+                                            <h3>Cliente</h3>
+                                            <Link to="/ClientesInfoRepartidores">
+                                                <h3>{nombreCliente}</h3>
+                                            </Link>
                                             {err && <p className="register__bg__error"> {err}</p>}
                                             <button type="submit" onClick={handleSubmit}>Actualizar</button>
+
                                         </div>
+
                                     </div>
                                     <div className="direccion">
                                         <h3>
                                             Dirección
                                         </h3>
-                                        <p>Cra 506 #70-1 Barrio San Martín, Cúcuta</p>
+                                        <p>{selectedE[0].destinoenvio}</p>
                                     </div>
                                 </div>
 
@@ -215,4 +213,4 @@ const EnviosInfo = () => {
         </div>
     );
 };
-export default EnviosInfo;
+export default EnviosInfoRepartidores;

@@ -139,11 +139,23 @@ export const AuthContexProvider = ({ children }) => {
     return res.data;
   }
 
+  const getEnviosRepartidor = async (idRepartidor) => {
+    const res = await axios.get(`/envios/getEnviosRepartidor/${idRepartidor}`);
+    return res.data;
+  }
+
   const deleteEnviosCliente = async (idCliente) => {
     const res = await axios.delete(`/envios/deleteEnviosCliente/${idCliente}`);
     //console.log("Aqui empiexaaaa");
     console.log(res.data);
   }
+
+  const deleteEnvioId = async (idenvio) => {
+    console.log("Entro a delete");
+    const res = await axios.delete(`/envios/deleteEnvioId/${idenvio}`);
+    console.log(res.data);
+  }
+
 
   const updateEnvioEstado = async (inputs) => {
     const res = await axios.post("/envios/updateEnvioEstado", inputs);
@@ -174,6 +186,31 @@ export const AuthContexProvider = ({ children }) => {
     const res = await axios.get(`/solicitudesenvio/getSolicitudId/${idsolicitudenvio}`);
     return res.data;
   }
+  const getSolicitudIdCliente = async (idCliente) => {
+    const res = await axios.get(`/solicitudesenvio/getSolicitudIdCliente/${idCliente}`);
+    return res.data;
+  }
+  const createSolEnvio = async (inputs) => {
+    const res = await axios.post("/solicitudesenvio/createSolEnvio", inputs);
+    console.log(res.data);
+  }
+  const deleteSolEnvCliente = async (idsolicitudenvio) => {
+    const res = await axios.delete(`/solicitudesenvio/deleteSolEnvCliente/${idsolicitudenvio}`);
+    //console.log("Aqui empiexaaaa");
+    console.log(res.data);
+  }
+
+  //AUDITORIAS 
+  const getAuditoriaLog = async () => {
+    const res = await axios.get("/auditorias/getAuditoriaLog");
+    return res.data;
+  };
+
+  const getAuditoriaOperaciones = async () => {
+    const res = await axios.get("/auditorias/getAuditoriaOperaciones");
+    return res.data;
+  };
+
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
@@ -192,7 +229,7 @@ export const AuthContexProvider = ({ children }) => {
   }, [currentNew]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor, getSolicitudId, registerRepartidor, registrarCliente, createEnvio }}>
+    <AuthContext.Provider value={{ currentUser, currentTypeUser, login, logout, auth_recov1, auth_recov2, auth_recov3, getinfouser, currentIn, currentNew, update, updatepass, checkpass, getRepartidores, getClientes, deleteRepartidor, deleteCliente, deleteSolicitudesCliente, deleteEnviosCliente, getSolicitudesEnvio, getEnviosCliente, getEnviosRepartidor, getEnvios, getRepartidor, getCliente, getClienteSol, updateEnvioEstado, updateEnvioRepartidor, getSolicitudId, registerRepartidor, registrarCliente, createEnvio, createSolEnvio, getSolicitudIdCliente, deleteSolEnvCliente, getAuditoriaLog,getAuditoriaOperaciones, deleteEnvioId }}>
       {children}
     </AuthContext.Provider>
   );

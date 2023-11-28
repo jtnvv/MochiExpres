@@ -3,6 +3,7 @@ import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import ModuloSolicitudEnvio from "./ModuloSolicitudEnvio";
+import logo from '../img/Mochi.jpeg';
 
 export const senvioSeleccionado = [];
 
@@ -45,11 +46,8 @@ const HabilitarSolicitud = () => {
                         <div className="containerButtonsRepartidor">
                             <h3 className="styleH3Clientes">Solicitud de envíos</h3>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar solicitud envío" />
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                            <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     {

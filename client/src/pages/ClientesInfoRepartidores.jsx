@@ -8,7 +8,7 @@ import * as RiIcons from "react-icons/ri";
 import { AuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { clienteSeleccionado } from "./Clientes";
+import { selectedClient } from "./EnviosInfoRepartidores";
 import logo from '../img/Mochi.jpeg';
 
 const ClientesInfo = () => {
@@ -44,7 +44,7 @@ const ClientesInfo = () => {
                             <div className="divBodyPersonalInfo">
                                 <div className="divLeftPersonalInfo">
                                     <img className="imgLeftPersonalInfo" src={logo} alt="" />
-                                    <h2 className="usernameTxt">{clienteSeleccionado[0].nombrecliente}</h2>
+                                    <h2 className="usernameTxt">{selectedClient[0].nombrecliente}</h2>
 
                                 </div>
                                 <div className="divRightPersonalInfo">
@@ -54,19 +54,19 @@ const ClientesInfo = () => {
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Número telefónico: </p>
-                                                    <p className="content">{clienteSeleccionado[0].telefonocliente}</p>
+                                                    <p className="content">{selectedClient[0].telefonocliente}</p>
                                                 </div>
                                             </li><br />
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Correo electrónico: </p>
-                                                    <p className="content">{clienteSeleccionado[0].correocliente}</p>
+                                                    <p className="content">{selectedClient[0].correocliente}</p>
                                                 </div>
                                             </li><br />
                                             <li>
                                                 <div className="p">
                                                     <p className="p-list">Identificador de usuario: </p>
-                                                    <p className="content">{clienteSeleccionado[0].idCliente}</p>
+                                                    <p className="content">{selectedClient[0].idCliente}</p>
                                                 </div>
                                             </li><br />
 
