@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Sidebar from "./Sidebar";
 import { SolEnvClienteSeleccionado } from "./SolEnvClientes";
 import { Link } from "react-router-dom";
+import logo from '../img/Mochi.jpeg';
 
 const SolEnvClientesInfo = () => {
     return (
@@ -16,11 +17,8 @@ const SolEnvClientesInfo = () => {
                         <div className="containerButtonsRepartidor">
                             <h3 className="styleH3Clientes">Solicitud de envíos</h3>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar solicitud envío" />
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                            <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                 </div>

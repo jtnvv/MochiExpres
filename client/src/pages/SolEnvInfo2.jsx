@@ -8,7 +8,7 @@ import { repartidorSeleccionadoexp } from "./SolEnvInfo1";
 import { generarIdEnvio } from "../components/generarIdEnvio.js";
 import { Link } from "react-router-dom";
 import {retornarFecha} from "../components/retornarFecha.js";
-
+import logo from '../img/Mochi.jpeg';
 const SolEnvInfo2 = () => {
 
     const navigate = useNavigate();
@@ -66,11 +66,8 @@ const SolEnvInfo2 = () => {
                         <div className="containerButtonsRepartidor">
                             <h3 className="styleH3Clientes">Solicitud de envíos</h3>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar solicitud envío" />
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.imgur.com/T9X0JHm.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                            <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="Sol-env2__bg">

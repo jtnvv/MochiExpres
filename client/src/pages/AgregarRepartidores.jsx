@@ -6,6 +6,7 @@ import { getPreguntaSeguridad } from "../components/preguntaSeguridad.js";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
 import React, { useState, useEffect } from "react";
+import logo from '../img/Mochi.jpeg';
 
 
 const AgregarRepartidores = () => {

@@ -6,6 +6,7 @@ import { useContext } from "react";
 import ModuloClientes from "./ModuloClientes";
 import { AuthContext } from "../context/authContext";
 import { mensajeError, mensajeExito } from "../components/mensajesAlerta.js";
+import logo from '../img/Mochi.jpeg';
 export const clienteSeleccionado = [];
 
 function Clientes() {
@@ -98,11 +99,8 @@ function Clientes() {
                             <h3 className="styleH3Clientes">Clientes</h3>
                             <button className="buttonRepartidorStyle" onClick={handleButtonClick}>Eliminar Cliente</button>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Cliente" />
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                                <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="lista">{

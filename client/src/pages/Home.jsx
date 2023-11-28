@@ -10,6 +10,7 @@ import * as IoIcons from "react-icons/io";
 import * as FaIcons from "react-icons/fa6";
 import * as FcIcons from "react-icons/fc";
 import { Link } from "react-router-dom";
+import logo from '../img/Mochi.jpeg';
 const Home = () => {
 
     const { currentTypeUser } = useContext(AuthContext);
@@ -23,16 +24,14 @@ const Home = () => {
                             <h3 className="styleH3Clientes"> Bienvenido de vuelta!
                             </h3>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                            <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="ItemsContainerHAdmin" style={{ overflowY: 'auto' }}>
                         <Link to="/Personal-Info" className="NombreH" style={{ textDecoration: 'none' }}>
                             <div className="image">
-                                <img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                                <img src={logo} alt="" />
                             </div>
                             <h3> Información personal</h3>
                         </Link>
@@ -74,16 +73,14 @@ const Home = () => {
                             <h3 className="styleH3Clientes"> Bienvenido de vuelta!
                             </h3>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                            <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="ItemsContainerHAdmin">
                         <Link to="/Personal-Info" className="NombreH" style={{ textDecoration: 'none' }}>
                             <div className="image">
-                                <img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                                <img src={logo} alt="" />
                             </div>
                             <h3> Información personal</h3>
                         </Link>
@@ -109,16 +106,14 @@ const Home = () => {
                             <h3 className="styleH3Clientes"> Bienvenido de vuelta!
                             </h3>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                            <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="ItemsContainerHAdmin">
                         <Link to="/Personal-Info" className="NombreH" style={{ textDecoration: 'none' }}>
                             <div className="image">
-                                <img src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                                <img src={logo} alt="" />
                             </div>
                             <h3> Información personal</h3>
                         </Link>

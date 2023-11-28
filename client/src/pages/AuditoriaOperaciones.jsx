@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import ModuloAuditoriaOperaciones from "./ModuloAuditoriaOperaciones"
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
+import logo from '../img/Mochi.jpeg';
 export const EnvClienteSeleccionado = [];
 
 
@@ -36,10 +37,8 @@ function AuditoriaOperaciones() {
                         <div className="containerButtonsRepartidor">
                             <h3 className="styleH3Auditoria">Registro de auditoría - operaciones</h3>
                         </div>
-                        <div className="containerBusquedaRepartidor containerBusquedaEnvClientes">
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                                <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="Auditoria">
@@ -47,11 +46,11 @@ function AuditoriaOperaciones() {
                             <div className="header">
                                 <h3 className="text_i">ID Auditoria</h3>
                                 <h3 className="text">Tipo de usuario</h3>
-                                <h3 className="text">Identificador usuario</h3>
+                                <h3 className="text">ID usuario</h3>
                                 <h3 className="text">Nombre usuario</h3>
                                 <h3 className="text">Acción</h3>
                                 <h3 className="text">Archivo</h3>
-                                <h3 className="text">Id del objeto</h3>
+                                <h3 className="text">ID objeto</h3>
                                 <h3 className="text">Detalle</h3>
                                 <h3 className="text">Resultado</h3>
                                 <h3 className="text_d">Fecha</h3>

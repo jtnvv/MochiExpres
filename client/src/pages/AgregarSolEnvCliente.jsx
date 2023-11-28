@@ -6,6 +6,7 @@ import { generarIdSolicitudEnvio } from "../components/generarIdSolicitudEnvio.j
 import { retornarFecha } from "../components/retornarFecha.js";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
+import logo from '../img/Mochi.jpeg';
 import React, { useState, useEffect } from "react";
 
 

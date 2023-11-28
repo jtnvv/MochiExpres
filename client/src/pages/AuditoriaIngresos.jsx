@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import ModuloAuditoriaIngresos from "./ModuloAuditoriaIngresos"
 import { AuthContext } from "../context/authContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import logo from '../img/Mochi.jpeg';
 
 export const auditoriaIngresosSeleccionado = [];
 
@@ -36,10 +37,8 @@ function AuditoriaIngresos() {
                         <div className="containerButtonsRepartidor">
                             <h3 className="styleH3Auditoria">Registro de auditoría - Ingresos</h3>
                         </div>
-                        <div className="containerBusquedaRepartidor containerBusquedaEnvClientes">
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                                <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="Auditoria">

@@ -9,6 +9,7 @@ import { AuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { selectedClient } from "./EnviosInfoRepartidores";
+import logo from '../img/Mochi.jpeg';
 
 const ClientesInfo = () => {
 
@@ -42,7 +43,7 @@ const ClientesInfo = () => {
 
                             <div className="divBodyPersonalInfo">
                                 <div className="divLeftPersonalInfo">
-                                    <img className="imgLeftPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
+                                    <img className="imgLeftPersonalInfo" src={logo} alt="" />
                                     <h2 className="usernameTxt">{selectedClient[0].nombrecliente}</h2>
 
                                 </div>

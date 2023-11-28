@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { selectedE } from "./EnviosAsignados.jsx";
 import { getEstado, obtenerValorEstado } from "../components/estadosEnvio.js";
+import logo from '../img/Mochi.jpeg';
 export const selectedClient = [];
 
 const EnviosInfoRepartidores = () => {
@@ -139,11 +140,8 @@ const EnviosInfoRepartidores = () => {
                         <div className="containerButtonsRepartidor">
                             <h3 className="styleH3Clientes">Envíos</h3>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Envío" />
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                            <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="modalEnvioContenedor">
@@ -184,7 +182,7 @@ const EnviosInfoRepartidores = () => {
                                             <div className="personalInfoImage" >
 
 
-                                                <img src="https://i.imgur.com/bzO2izE.png" alt="profileFoto" />
+                                                <img src={logo} alt="profileFoto" />
 
                                             </div>
 

@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import ModuloSolEnvCliente from "./ModuloSolEnvCliente"
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
+import logo from '../img/Mochi.jpeg';
 export const SolEnvClienteSeleccionado = [];
 
 
@@ -95,11 +96,8 @@ function SolEnvClientes() {
                             <button className="buttonRepartidorStyle" onClick={handleRedirect}>Agregar Solicitud</button>
                             <button className="buttonRepartidorStyle" onClick={handleButtonClick}>Eliminar Solicitud</button>
                         </div>
-                        <div className="containerBusquedaRepartidor">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar Solicitud" />
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                            <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="lista">{

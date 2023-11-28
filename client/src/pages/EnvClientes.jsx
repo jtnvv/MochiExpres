@@ -6,6 +6,7 @@ import { AuthContext } from "../context/authContext.js";
 import { HiOutlineTrash } from "react-icons/hi";
 import { FaCirclePlus } from "react-icons/fa6";
 import {mensajeExito} from "../components/mensajesAlerta.js";
+import logo from '../img/Mochi.jpeg';
 
 export const envioSeleccionado = [];
 
@@ -102,11 +103,8 @@ function EnvClientes() {
                                Eliminar  <HiOutlineTrash className="IconColor" />
                             </button>
                         </div>
-                        <div className="containerBusquedaRepartidor containerBusquedaEnvClientes">
-                            <input type="text" className="BusquedaRepartidor" placeholder="Buscar envio" />
-                            <div className="InfoBarImg">
-                                <img className="imgPersonalInfo" src="https://i.pinimg.com/736x/b4/f0/c1/b4f0c18411053da3aa6df7d115ac2e62--siamese-cats-kitty-cats.jpg" alt="" />
-                            </div>
+                        <div className="InfoBarImg">
+                                <img className="imgPersonalInfo" src={logo} alt="" />
                         </div>
                     </div>
                     <div className="lista">

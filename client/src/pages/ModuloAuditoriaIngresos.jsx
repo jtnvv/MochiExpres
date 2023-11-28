@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { AuthContext } from "../context/authContext";
 import { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+
 const ModuloAuditoriaIngresos = (props) => {
 
     const [modalStyle, setModalStyle] = useState({});
