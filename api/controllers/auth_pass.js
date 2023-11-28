@@ -1,7 +1,8 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import CryptoJS from 'crypto-js';
 import { registrarOperacion } from './auditoria.js';
+import { decryptData } from './auth.js';
 
 // const db = require('../db.js');
 
@@ -39,17 +40,16 @@ export const recoverPassword1 = (req, res) => {
             console.log(data[0]);
             usuario_mod.idusuario = data[0].idusuario;
             usuario_mod.nombreusuario = data[0].nombreusuario;
-            usuario_mod.correousuario = data[0].correousuario;
-            usuario_mod.direccionusuario = data[0].direccionusuario;
-            usuario_mod.telefonousuario = data[0].telefonousuario;
+            usuario_mod.correousuario = decryptData(data[0].correousuario);
+            usuario_mod.direccionusuario = decryptData(data[0].direccionusuario);
+            usuario_mod.telefonousuario = decryptData(data[0].telefonousuario);
             usuario_mod.contrasenausuario = data[0].contrasenausuario;
             usuario_mod.identificadorpregusuario = data[0];
-            usuario_mod.respuestapregusuario = data[0].respuestapregusuario;
+            usuario_mod.respuestapregusuario = decryptData(data[0].respuestapregusuario);
             usuario_mod.tipousuario = data[0].tipousuario;
             registrarOperacion(data[0].tipousuario, data[0].idusuario, data[0].nombreusuario,"GET", "Cliente,Administrador,Repartidor", req.body.idusuario, "Recuperación de contraseña Paso 1: Usuario Encontrado, Exitosa", "Exitoso", new Date(), res);
             return res.status(200).json(data[0]);
         }
-
     });
 
     // db.query(q, [req.body.idusuario], (err, data) => {
@@ -87,7 +87,7 @@ export const recoverPassword2 = (req, res) => {
 
         const respuestaIn = req.body.respuestapregusuario;
         console.log(respuestaIn);
-        const respuestaBd = data[0].respuestapregusuario;
+        const respuestaBd = decryptData(data[0].respuestapregusuario);
         console.log(respuestaBd);
 
         if (respuestaIn === respuestaBd) {
