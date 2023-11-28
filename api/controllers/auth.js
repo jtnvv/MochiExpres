@@ -1,9 +1,41 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import CryptoJS from 'crypto-js';
+
+export const key = {
+    key: "Mochi",
+};
 
 import { registrarLog, registrarOperacion } from './auditoria.js';
 // const db = require('../db.js');
+// Función para cifrar la contraseña
+export const encryptData = (data) => {
+
+    // Ciframos la contraseña con la clave secreta
+    const ciphertext = CryptoJS.AES.encrypt(data, key.key);
+  
+    // Devolvemos la clave secreta y el cifrado en formato string
+    return {
+      key: key.toString(),
+      ciphertext: ciphertext.toString()
+    };
+  }
+  
+  // Función para descifrar la contraseña
+  export const decryptData = (encryptedData) => {
+    if (typeof encryptedData !== 'string' || !encryptedData) {
+        console.log('Invalid encrypted data');
+        return null;
+    }
+
+    const bytes = CryptoJS.AES.decrypt(encryptedData, key.key).toString(CryptoJS.enc.Utf8);
+    console.log(bytes);
+    return bytes;
+}
+
+
+
 
 export const usuario_log = {
     idusuario: "",
@@ -42,17 +74,29 @@ export const registerClients = (req, res) => {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.contrasenacliente, salt);
 
+        //Encriptar correo 
+        const correo = encryptData(req.body.correocliente).ciphertext;
+
+        //Encriptar direccion
+        const direccion = encryptData(req.body.direccioncliente).ciphertext;
+
+        //Encriptar telefono
+        const telefono = encryptData(req.body.telefonocliente).ciphertext;
+
+        //Encriptar respuesta
+        const respuesta = encryptData(req.body.respuestapregcliente).ciphertext;
+
         const q = "INSERT INTO cliente(`idCliente`,`nombrecliente`,`correocliente`,`direccioncliente`,`telefonocliente`,`contrasenacliente`,`identificadorpregcliente`,`respuestapregcliente`) values (?)";
 
         const values = [
             req.body.idCliente,
             req.body.nombrecliente,
-            req.body.correocliente,
-            req.body.direccioncliente,
-            req.body.telefonocliente,
+            correo,
+            direccion,
+            telefono,
             hash,
             req.body.identificadorpregcliente,
-            req.body.respuestapregcliente,
+            respuesta,
         ]
 
         db.query(q, [values], (err, data) => {
@@ -89,31 +133,36 @@ export const login = (req, res) => {
         const isPasswordCorrect = bcrypt.compareSync(req.body.contrasenausuario, data[0].contrasenausuario);
 
         if (!isPasswordCorrect) {
-            registrarLog(data[0].tipousuario, data[0].idusuario ,data[0].nombreusuario, "Login", "Contraseña incorrecta", "Fallido", new Date(), res);
+            registrarLog(tipo_usuario, data[0].idusuario ,data[0].nombreusuario, "Login", "Contraseña incorrecta", "Fallido", new Date(), res);
             return res.status(400).json("¡Contraseña incorrecta!");
         };
-
-        
 
         const token = jwt.sign({ id: data[0].idusuario }, "jwtkey");
         const { contrasenausuario, ...other } = data[0];
 
+        const correo = decryptData(data[0].correousuario);
+        const direccion = decryptData(data[0].direccionusuario);
+        const telefono = decryptData(data[0].telefonousuario);
+        const respuesta = decryptData(data[0].respuestapregusuario); 
+
         usuario_log.idusuario = data[0].idusuario;
         usuario_log.nombreusuario = data[0].nombreusuario;
         usuario_log.contrasenausuario = data[0].contrasenausuario;
-        usuario_log.correousuario = data[0].correousuario;
-        usuario_log.direccionusuario = data[0].direccionusuario;
-        usuario_log.telefonousuario = data[0].telefonousuario;
+        usuario_log.correousuario = correo;
+        usuario_log.direccionusuario = direccion;
+        usuario_log.telefonousuario = telefono;
         usuario_log.contrasenausuario = data[0].contrasenausuario;
         usuario_log.identificadorpregusuario = data[0].identificadorpregusuario;
-        usuario_log.respuestapregusuario = data[0].respuestapregusuario;
+        usuario_log.respuestapregusuario = respuesta;
         usuario_log.tipousuario = data[0].tipousuario;
+
+        console.log(usuario_log);
 
         registrarLog(data[0].tipousuario, data[0].idusuario, data[0].nombreusuario, "Login", "Login exitoso", "Exitoso", new Date(), res);
 
         res.cookie("access_token", token, {
             httpOnly: true
-        }).status(200).json(other);
+        }).status(200).json(usuario_log);
 
     });
 

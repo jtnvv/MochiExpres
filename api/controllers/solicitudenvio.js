@@ -91,7 +91,7 @@ export const getSolicitudIdCliente = (req, res) => {
         console.log(err);
         if (data.length == 0) {
             registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario, "GET", "Solicitud de envio", "Desconocido", `No hay solicitudes de envio registradas con el identificador ${req.params.idCliente}`, "Fallido", new Date(), res);
-            return res.json("No hay solicitudes de envio registradas");
+            return res.status(409).json("No hay solicitudes de envio registradas");
         }
         registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario, "GET", "Solicitud de envio", req.params.idCliente, `Consulta de solicitudes de envio con el identificador ${req.params.idCliente} exitosa`, "Exitoso", new Date(), res);
         return res.status(200).json(data);

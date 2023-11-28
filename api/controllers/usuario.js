@@ -1,8 +1,8 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { usuario_log } from './auth.js';
 import { registrarOperacion } from './auditoria.js';
+import {decryptData} from './auth.js';
 
 
 export const updateuser = (req, res) => {
@@ -17,16 +17,15 @@ export const updateuser = (req, res) => {
 
     const values = [
         req.body.nombreusuario,
-        req.body.correousuario,
-        req.body.direccionusuario,
-        req.body.telefonousuario,
+        decryptData(req.body.correousuario),
+        decryptData(req.body.direccionusuario),
+        decryptData(req.body.telefonousuario),
         req.body.identificadorpregusuario,
-        req.body.respuestapregusuario,
+        decryptData(req.body.respuestapregusuario),
         req.body.idusuario,
     ]
 
     if (tipo_usuario === "cliente") {
-
 
         db.query(query_cliente, values, (err, data) => {
             if (err) {
@@ -76,6 +75,11 @@ export const getuser = (req, res) => {
         }
         console.log(data2[0]);
         registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario, "GET", "Usuario", req.body.idusuario, `Consulta de usuario con identificador ${req.body.idusuario} exitosa`, "Exitoso", new Date(), res);
+        data2[0].correousuario = decryptData(data2[0].correousuario);
+        data2[0].direccionusuario = decryptData(data2[0].direccionusuario);
+        data2[0].telefonousuario = decryptData(data2[0].telefonousuario);
+        data2[0].respuestapregusuario = decryptData(data2[0].respuestapregusuario);
+        console.log(data2[0].correousuario);
         return res.status(200).json(data2[0]);
     });
 }

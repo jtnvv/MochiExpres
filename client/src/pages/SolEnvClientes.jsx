@@ -42,13 +42,6 @@ function SolEnvClientes() {
     }, []);
 
 
-    useEffect(() => {
-
-    }, [SolEnvCliente]);
-    // useEffect(() => {
-    //     console.log("Aqui esta la respuesta");
-    //     console.log(repartidoresList);
-    // }, [repartidoresList]);
 
     const [divStyle, setDivStyle] = useState({});
     const [clicked, setClicked] = useState(false);

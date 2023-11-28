@@ -2,6 +2,7 @@ import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 import { usuario_log } from './auth.js';
 import { registrarOperacion } from './auditoria.js';
+import {decryptData} from './auth.js';
 
 export const getClientes = (req, res) => {
     const q = "SELECT * FROM cliente";
@@ -19,7 +20,18 @@ export const getClientes = (req, res) => {
             return res.status(409).json("No hay clientes registrados");
         }
         registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"GET", "Cliente", "Tabla cliente", "Clientes consultados con exito", "Exitoso", new Date(), res);
-        return res.status(200).json(data);
+        
+        datosDesencriptados = data.map((cliente) => {
+            return{
+                ...cliente,
+                correocliente: decryptData(cliente.correocliente),
+                direccioncliente: decryptData(cliente.direccioncliente),
+                telefonocliente: decryptData(cliente.telefonocliente),
+                respuestapregcliente: decryptData(cliente.respuestapregcliente)
+            };
+        });
+        
+        return res.status(200).json(datosDesencriptados);
 
     });
 }
@@ -38,6 +50,12 @@ export const getClienteId = (req, res) => {
             return res.status(409).json("El cliente dado el identificador no está registrado");
         }
         registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"GET", "Cliente", req.params.idCliente, `Cliente dado el identificador ${req.params.idCliente} fue consultado con exito`, "Exitoso", new Date(), res);
+
+        data[0].correocliente = decryptData(data[0].correocliente);
+        data[0].direccioncliente = decryptData(data[0].direccioncliente);
+        data[0].telefonocliente = decryptData(data[0].telefonocliente);
+        data[0].respuestapregcliente = decryptData(data[0].respuestapregcliente);
+
         return res.status(200).json(data[0]);
     });
 }
@@ -56,6 +74,10 @@ export const getClienteSolId = (req, res) => {
             return res.status(409).json("El cliente dada la solicitud no está registrado");
         }
         registrarOperacion(usuario_log.tipousuario, usuario_log.idusuario, usuario_log.nombreusuario,"GET", "Cliente", data[0].idCliente, `Cliente dada la solicitud ${req.params.idsolicitudenvio} fue consultado con exito`, "Exitoso", new Date(), res);
+        data[0].correocliente = decryptData(data[0].correocliente);
+        data[0].direccioncliente = decryptData(data[0].direccioncliente);
+        data[0].telefonocliente = decryptData(data[0].telefonocliente);
+        data[0].respuestapregcliente = decryptData(data[0].respuestapregcliente);
         return res.status(200).json(data[0]);
     });
 }

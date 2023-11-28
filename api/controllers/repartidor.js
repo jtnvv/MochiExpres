@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { usuario_log } from './auth.js';
 import { registrarOperacion } from './auditoria.js';
+import {decryptData} from './auth.js';
 
 export const getRepartidores = (req, res) => {
     const q = "SELECT * FROM repartidor";
@@ -20,7 +21,18 @@ export const getRepartidores = (req, res) => {
             return res.status(409).json("No hay repartidores registrados");
         }
         registrarOperacion(usuario_log.tipousuario,usuario_log.idusuario,usuario_log.nombreusuario,"GET","Repartidor","Tabla de repartidores","Consulta de repartidores exitosa","Exitoso",new Date(),res);
-        let respuesta = res.status(200).json(data);
+        
+        datosDesencriptados = data.map((repartidor) => {
+            return{
+                ...repartidor,
+                correorepartidor: decryptData(repartidor.correorepartidor),
+                direccionrepartidor: decryptData(repartidor.direccionrepartidor),
+                telefonorepartidor: decryptData(repartidor.telefonorepartidor),
+                respuestapregrepar: decryptData(repartidor.respuestapregrepar)
+            };
+        });
+
+        let respuesta = res.status(200).json(datosDesencriptados);
         //console.log(respuesta);
         return respuesta; 
     });
@@ -40,6 +52,12 @@ export const getRepartidorId = (req, res) => {
             return res.json("El repartidor no se encuentra registrado");
         }
         registrarOperacion(usuario_log.tipousuario,usuario_log.idusuario,usuario_log.nombreusuario,"GET","Repartidor",req.params.idrepartidor,`Consulta de repartidor con identificación ${req.params.idrepartidor} exitosa`,"Exitoso",new Date(),res);
+        
+        data[0].correorepartidor = decryptData(data[0].correorepartidor);
+        data[0].direccionrepartidor = decryptData(data[0].direccionrepartidor);
+        data[0].telefonorepartidor = decryptData(data[0].telefonorepartidor);
+        data[0].respuestapregrepar = decryptData(data[0].respuestapregrepar);
+        
         let respuesta = res.status(200).json(data[0]);
         //console.log(respuesta);
         return respuesta;
@@ -69,12 +87,12 @@ export const registerRepartidores = (req, res) => {
             const values = [
                 req.body.idrepartidor,
                 req.body.nombrerepartidor,
-                req.body.correorepartidor,
-                req.body.direccionrepartidor,
-                req.body.telefonorepartidor,
+                decryptData(req.body.correorepartidor),
+                decryptData(req.body.direccionrepartidor),
+                decryptData(req.body.telefonorepartidor),
                 hash,
                 req.body.identificadorpregrepar,
-                req.body.respuestapregrepar,
+                decryptData(req.body.respuestapregrepar),
             ]
     
             db.query(q, [values], (err, data) => {
