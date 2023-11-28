@@ -87,7 +87,7 @@ const Login = () => {
                         onClick={handleSubmit}
                     >Entra!</button>
                     <Link className="auth__bg__text" to="/Registro">¿No tienes cuenta? Únete</Link>
-                    <Link className="auth__bg__text" onClick={()=> showModal()}>Tratamiento de datos personales</Link>
+                    <Link className="auth__bg__text" onClick={() => showModal()}>Tratamiento de datos personales</Link>
                 </form>
             </div>
             <div className="auth__img">
@@ -97,19 +97,19 @@ const Login = () => {
 
             <div className="modalConsultarContenedor" style={modalStyle}>
                 <div className="containerModalEliminarRepartidor2">
-                <div className="eliminarModalRepartidor" onClick={() => showModal()}>X</div>
+                    <div className="eliminarModalRepartidor" onClick={() => showModal()}>X</div>
                     <div className="modalConsultarPedido">
                         <h3>Tratamiento de datos</h3>
                         <p>Al ingresar en la aplicacion autorizo de manera voluntaria, previa, expresa e informada a Mochi Express para tratar mi información personal, de acuerdo con lo dispuesto en la Ley 1581 de 2012,asimismo las finalidades descritas en la política de tratamiento de datos personales, las cuales están relacionadas con Mercadeo, Administrativas y Frente a Terceros disponibles para consulta <a href="https://www.sic.gov.co/sites/default/files/documentos/072020/Pol%C3%ADtica%20de%20Tratamiento%20de%20Datos%20Personales%20-%20SIC.pdf"> AQUI </a>
 
-                            Recuerde que, si desea conocer, actualizar, rectificar, suprimir datos personales o revocar la autorización al uso de los mismos, puede escribir a Mochiexpress@gmail.com para realizar la solicitud.
+                            Recuerde que, si desea conocer, actualizar, rectificar, suprimir datos personales o revocar la autorización al uso de los mismos, puede escribir a jonathan.jnthnd@gmail.com para realizar la solicitud.
                         </p>
 
                     </div>
                 </div>
             </div>
         </div>
-       
+
 
     );
 };
