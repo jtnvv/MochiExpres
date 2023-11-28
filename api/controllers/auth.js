@@ -34,9 +34,6 @@ export const encryptData = (data) => {
     return bytes;
 }
 
-
-
-
 export const usuario_log = {
     idusuario: "",
     nombreusuario: "",
@@ -133,7 +130,7 @@ export const login = (req, res) => {
         const isPasswordCorrect = bcrypt.compareSync(req.body.contrasenausuario, data[0].contrasenausuario);
 
         if (!isPasswordCorrect) {
-            registrarLog(tipo_usuario, data[0].idusuario ,data[0].nombreusuario, "Login", "Contraseña incorrecta", "Fallido", new Date(), res);
+            registrarLog(data[0].tipousuario, data[0].idusuario ,data[0].nombreusuario, "Login", "Contraseña incorrecta", "Fallido", new Date(), res);
             return res.status(400).json("¡Contraseña incorrecta!");
         };
 
