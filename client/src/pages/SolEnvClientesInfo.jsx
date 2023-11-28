@@ -25,9 +25,8 @@ const SolEnvClientesInfo = () => {
                 <div className="Sol-env1__bg">
                     <h2>Fecha Solicitud: </h2><p>{SolEnvClienteSeleccionado[0].fechasolicitud}</p><br />
                     <h2>Peso del paquete: </h2><p>{SolEnvClienteSeleccionado[0].pesopaquete} kg</p><br />
-                    <h2>Descipcion paquete: </h2><p>{SolEnvClienteSeleccionado[0].descripcionsolicitud}</p><br />
+                    <h2>Descripción paquete: </h2><p>{SolEnvClienteSeleccionado[0].descripcionsolicitud}</p><br />
                     <h2>Destino de la solicitud: </h2><p>{SolEnvClienteSeleccionado[0].destinosolicitud}</p><br />
-                    <h2>Estado: </h2><p>En espera</p><br />
                 </div>
             </div>
         </div>
