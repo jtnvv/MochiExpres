@@ -1,8 +1,6 @@
 # Mochi Expres
 A web platform that allows users to request the shipment of packages and view their progress. It includes three main views: customer mode, delivery mode and administrator mode.
 
-Currently is under development
-
 ## Site
 
 ### Landing Page / Login
